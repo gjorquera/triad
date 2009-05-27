@@ -7,6 +7,14 @@ and research.
 This means that the application is designed and implemented to be easy to extend
 with new algorithms or visual properties.
 
+Dependencies
+============
+
+Triad depends on the following libraries:
+  - [Qt 4.4](http://www.qtsoftware.com/products)
+  - Euclid
+  - MeshViewer
+
 Mesh Format
 ===========
 
