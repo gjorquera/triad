@@ -2,3 +2,7 @@
 .bak
 .obj/
 .moc/
+bin/
+docs/
+inc/
+static/
