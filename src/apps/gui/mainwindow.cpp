@@ -1,13 +1,18 @@
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), Ui::MainWindow()
+namespace App
 {
-    // UI setup
-    setupUi(this);
-}
 
-MainWindow::~MainWindow()
-{
+    MainWindow::MainWindow(QWidget *parent)
+        : QMainWindow(parent), Ui::MainWindow()
+    {
+        // UI setup
+        setupUi(this);
+    }
+
+    MainWindow::~MainWindow()
+    {
+    }
+
 }
 
