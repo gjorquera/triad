@@ -1,6 +1,7 @@
 ~
 .bak
 .obj/
+.uic/
 .moc/
 bin/
 docs/
