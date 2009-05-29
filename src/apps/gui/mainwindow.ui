@@ -22,9 +22,67 @@
      <height>29</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionOpenMesh" />
+    <addaction name="actionSaveMesh" />
+    <addaction name="separator" />
+    <addaction name="actionExportImage" />
+    <addaction name="separator" />
+    <addaction name="actionQuit" />
+   </widget>
+   <addaction name="menuFile" />
   </widget>
   <widget class="QStatusBar" name="statusbar" />
+  <action name="actionOpenMesh" >
+   <property name="text" >
+    <string>&amp;Open Mesh</string>
+   </property>
+   <property name="toolTip" >
+    <string>Open a saved mesh</string>
+   </property>
+  </action>
+  <action name="actionSaveMesh" >
+   <property name="text" >
+    <string>&amp;Save Mesh</string>
+   </property>
+   <property name="toolTip" >
+    <string>Save a refined mesh</string>
+   </property>
+  </action>
+  <action name="actionExportImage" >
+   <property name="text" >
+    <string>Export &amp;Image</string>
+   </property>
+   <property name="toolTip" >
+    <string>Export image</string>
+   </property>
+  </action>
+  <action name="actionQuit" >
+   <property name="text" >
+    <string>&amp;Quit</string>
+   </property>
+  </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
