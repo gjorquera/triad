@@ -1,5 +1,8 @@
 LIBS += -L../../../static
-INCLUDEPATH += ../../libs
+INCLUDEPATH += ../../libs \
+    ../../../inc
+
+include(../inc/Viewer/Viewer.pro)
 
 unix {
     debug:OBJECTS_DIR = $${OUT_PWD}/.obj/debug-shared
