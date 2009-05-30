@@ -169,7 +169,7 @@ p.formulaDsp {
 }
 
 img.formulaDsp {
-    
+
 }
 
 img.formulaInl {
@@ -206,20 +206,20 @@ span.charliteral {
     color: #008080
 }
 
-span.vhdldigit { 
-    color: #ff00ff 
+span.vhdldigit {
+    color: #ff00ff
 }
 
-span.vhdlchar { 
-    color: #000000 
+span.vhdlchar {
+    color: #000000
 }
 
-span.vhdlkeyword { 
-    color: #700070 
+span.vhdlkeyword {
+    color: #700070
 }
 
-span.vhdllogic { 
-    color: #ff0000 
+span.vhdllogic {
+    color: #ff0000
 }
 
 /* @end */
@@ -318,7 +318,7 @@ hr {
 }
 
 .memproto, .memdoc {
-    border: 1px solid #84b0c7;  
+    border: 1px solid #84b0c7;
 }
 
 .memproto {
@@ -453,5 +453,39 @@ proper pixel height of your image.
 address {
     font-style: normal;
     color: #333;
+}
+
+/* tabs */
+
+div.tabs span {
+    background: none;
+    border: 0;
+    margin-right: 2px;
+}
+
+div.tabs a {
+    background: none;
+    border: 0;
+}
+
+div.tabs {
+    background: none;
+    border-bottom: 1px solid #ccc;
+}
+
+div.tabs li.current a {
+    color: #666;
+}
+
+div.navpath {
+    border: 0;
+}
+
+address {
+    display: none;
+}
+
+hr {
+    border: 0;
 }
 
