@@ -1,0 +1,43 @@
+<doxygenlayout version="1.0">
+    <navindex>
+        <tab type="mainpage" visible="yes" title="Home"/>
+        <tab type="classes" visible="yes" title="All Classes"/>
+        <tab type="hierarchy" visible="yes" title="Class Hierarchy"/>
+        <tab type="pages" visible="yes" title=""/>
+    </navindex>
+    <class>
+        <detaileddescription title="Description"/>
+        <memberdecl>
+            <membergroups visible="yes"/>
+            <nestedclasses visible="yes" title=""/>
+            <publictypes title=""/>
+            <publicslots title=""/>
+            <signals title=""/>
+            <publicmethods title=""/>
+            <publicstaticmethods title=""/>
+            <publicattributes title=""/>
+            <publicstaticattributes title=""/>
+            <protectedtypes title=""/>
+            <protectedslots title=""/>
+            <protectedmethods title=""/>
+            <protectedstaticmethods title=""/>
+            <protectedattributes title=""/>
+            <protectedstaticattributes title=""/>
+            <packagetypes title=""/>
+            <packagemethods title=""/>
+            <packagestaticmethods title=""/>
+            <packageattributes title=""/>
+            <packagestaticattributes title=""/>
+            <properties title=""/>
+            <events title=""/>
+            <privatetypes title=""/>
+            <privateslots title=""/>
+            <privatemethods title=""/>
+            <privatestaticmethods title=""/>
+            <privateattributes title=""/>
+            <privatestaticattributes title=""/>
+            <friends title=""/>
+            <related title="" subtitle=""/>
+        </memberdecl>
+    </class>
+</doxygenlayout>
