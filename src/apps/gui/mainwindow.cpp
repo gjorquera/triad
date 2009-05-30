@@ -8,6 +8,9 @@ namespace App
     {
         // UI setup
         setupUi(this);
+
+        _viewerWidget = new Viewer::Widget(this);
+        this->setCentralWidget(_viewerWidget);
     }
 
     MainWindow::~MainWindow()

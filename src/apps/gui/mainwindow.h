@@ -1,6 +1,8 @@
 #pragma once
 
+#include <memory>
 #include <QMainWindow>
+#include <Viewer/Widget.h>
 #include "ui_mainwindow.h"
 
 namespace App
@@ -23,6 +25,9 @@ namespace App
          * Destructor.
          */
         ~MainWindow();
+
+    private:
+        Viewer::Widget* _viewerWidget;
     };
 
 }

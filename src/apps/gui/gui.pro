@@ -6,9 +6,7 @@ DESTDIR = ../../../bin
 include(../../qworkbench.pri)
 
 SOURCES += main.cpp \
-    mainwindow.cpp \
-    widgets/displaywidget.cpp
-HEADERS += mainwindow.h \
-    widgets/displaywidget.h
+    mainwindow.cpp
+HEADERS += mainwindow.h
 FORMS += mainwindow.ui
 
