@@ -1,4 +1,4 @@
-#include <Viewer/ComplexDecoration.h>
+#include <Viewer/ComplexDecorator.h>
 #include "triangle.h"
 #include "decoratedtriangle.h"
 #include "neighbordecorator.h"
@@ -13,7 +13,7 @@ namespace App
     Viewer::IFigure*
     Triangle::decorate() const
     {
-        Viewer::ComplexDecoration *decorator = new Viewer::ComplexDecoration;
+        Viewer::ComplexDecorator *decorator = new Viewer::ComplexDecorator;
         decorator->add(new DecoratedTriangle(this));
         decorator->add(new NeighborDecorator(this));
         return decorator;
