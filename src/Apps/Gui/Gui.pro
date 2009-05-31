@@ -3,7 +3,7 @@ TEMPLATE = app
 TARGET = Triad
 DESTDIR = ../../../bin
 
-include(../../qworkbench.pri)
+include(../../Workbench.pri)
 
 SOURCES += Main.cpp \
     MainWindow.cpp \
