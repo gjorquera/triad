@@ -1,6 +1,8 @@
+CONFIG -= release
 LIBS += -L../../../static
 INCLUDEPATH += ../../libs \
     ../../../inc
+QMAKE_CXXFLAGS += -Werror -Wextra -Wpointer-arith -Wcast-qual
 
 include(../inc/Viewer/Viewer.pro)
 
