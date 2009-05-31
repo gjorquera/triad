@@ -33,7 +33,20 @@
     <addaction name="separator" />
     <addaction name="actionQuit" />
    </widget>
+   <widget class="QMenu" name="menuSelect" >
+    <property name="title" >
+     <string>&amp;Select</string>
+    </property>
+    <addaction name="actionOnlyOne" />
+    <addaction name="actionManualSelection" />
+    <addaction name="separator" />
+    <addaction name="actionByLongestEdge" />
+    <addaction name="actionByTriangleArea" />
+    <addaction name="separator" />
+    <addaction name="actionClearSelection" />
+   </widget>
    <addaction name="menuFile" />
+   <addaction name="menuSelect" />
   </widget>
   <widget class="QStatusBar" name="statusbar" />
   <action name="actionOpenMesh" >
@@ -72,6 +85,31 @@
    </property>
    <property name="shortcut" >
     <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionOnlyOne" >
+   <property name="text" >
+    <string>&amp;Only One</string>
+   </property>
+  </action>
+  <action name="actionByLongestEdge" >
+   <property name="text" >
+    <string>By &amp;Longest Edge</string>
+   </property>
+  </action>
+  <action name="actionByTriangleArea" >
+   <property name="text" >
+    <string>By &amp;Triangle Area</string>
+   </property>
+  </action>
+  <action name="actionClearSelection" >
+   <property name="text" >
+    <string>&amp;Clear Selection</string>
+   </property>
+  </action>
+  <action name="actionManualSelection" >
+   <property name="text" >
+    <string>&amp;Manual Selection</string>
    </property>
   </action>
  </widget>
