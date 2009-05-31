@@ -1,13 +1,13 @@
 #pragma once
 
-#include <Viewer/DecoratedFigure.h>
+#include <Viewer/FigureDecorator.h>
 
 namespace App
 {
 
     class Triangle;
 
-    class NeighborDecorator : public Viewer::DecoratedFigure
+    class NeighborDecorator : public Viewer::FigureDecorator
     {
     public:
         NeighborDecorator(const Triangle* figure);

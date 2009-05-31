@@ -5,7 +5,7 @@ namespace App
 {
 
     NeighborDecorator::NeighborDecorator(const Triangle* figure)
-        : Viewer::DecoratedFigure(figure)
+        : Viewer::FigureDecorator(figure)
     {
     }
 

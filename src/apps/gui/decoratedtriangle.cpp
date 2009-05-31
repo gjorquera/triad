@@ -5,7 +5,7 @@ namespace App
 {
 
     DecoratedTriangle::DecoratedTriangle(const Triangle* figure)
-        : Viewer::DecoratedFigure(figure)
+        : Viewer::FigureDecorator(figure)
     {
     }
 
