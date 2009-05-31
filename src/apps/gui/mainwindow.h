@@ -20,7 +20,7 @@ namespace App
          * Constructs a new instance of the MainWindow class given the \b parent
          * as it's parent.
          */
-        MainWindow(QWidget *parent = 0);
+        MainWindow(QWidget* parent = 0);
         /*!
          * Destructor.
          */
