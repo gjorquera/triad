@@ -14,5 +14,5 @@ HEADERS += MainWindow.h \
     decoratedtriangle.h \
     triangle.h \
     neighbordecorator.h
-FORMS += mainwindow.ui
+FORMS += MainWindow.ui
 

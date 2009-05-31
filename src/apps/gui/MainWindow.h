@@ -3,7 +3,7 @@
 #include <memory>
 #include <QMainWindow>
 #include <Viewer/Widget.h>
-#include "ui_mainwindow.h"
+#include "ui_MainWindow.h"
 
 namespace App
 {
