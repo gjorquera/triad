@@ -1,3 +1,3 @@
 TEMPLATE = subdirs
-SUBDIRS = gui
+SUBDIRS = Gui
 
