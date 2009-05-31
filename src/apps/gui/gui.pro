@@ -5,12 +5,12 @@ DESTDIR = ../../../bin
 
 include(../../qworkbench.pri)
 
-SOURCES += main.cpp \
-    mainwindow.cpp \
+SOURCES += Main.cpp \
+    MainWindow.cpp \
     decoratedtriangle.cpp \
     triangle.cpp \
     neighbordecorator.cpp
-HEADERS += mainwindow.h \
+HEADERS += MainWindow.h \
     decoratedtriangle.h \
     triangle.h \
     neighbordecorator.h

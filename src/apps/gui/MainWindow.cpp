@@ -1,6 +1,6 @@
 #include <Viewer/Initializer.h>
 #include <Viewer/OrthographicProjection.h>
-#include "mainwindow.h"
+#include "MainWindow.h"
 #include "triangle.h"
 
 namespace App
