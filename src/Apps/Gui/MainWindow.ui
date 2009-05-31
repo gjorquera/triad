@@ -41,7 +41,10 @@
     <string>&amp;Open Mesh</string>
    </property>
    <property name="toolTip" >
-    <string>Open a saved mesh</string>
+    <string>Opens a saved mesh</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="actionSaveMesh" >
@@ -50,6 +53,9 @@
    </property>
    <property name="toolTip" >
     <string>Save a refined mesh</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="actionExportImage" >
@@ -63,6 +69,9 @@
   <action name="actionQuit" >
    <property name="text" >
     <string>&amp;Quit</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Q</string>
    </property>
   </action>
  </widget>
