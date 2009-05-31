@@ -4,6 +4,7 @@ INCLUDEPATH += ../../libs \
     ../../../inc
 QMAKE_CXXFLAGS += -Werror -Wextra -Wpointer-arith -Wcast-qual
 
+include(../inc/Euclid/Euclid.pro)
 include(../inc/Viewer/Viewer.pro)
 
 unix {
