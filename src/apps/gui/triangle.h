@@ -13,7 +13,7 @@ namespace App
         void render();
 
     protected:
-        IFigure* decorate() const;
+        Viewer::IFigure* decorate() const;
     };
 }
 
