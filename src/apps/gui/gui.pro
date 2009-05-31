@@ -8,9 +8,11 @@ include(../../qworkbench.pri)
 SOURCES += main.cpp \
     mainwindow.cpp \
     decoratedtriangle.cpp \
-    triangle.cpp
+    triangle.cpp \
+    neighbordecorator.cpp
 HEADERS += mainwindow.h \
     decoratedtriangle.h \
-    triangle.h
+    triangle.h \
+    neighbordecorator.h
 FORMS += mainwindow.ui
 
