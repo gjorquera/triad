@@ -44,7 +44,7 @@
  *   Viewer::FigureDecorator implement the Decorator Pattern to be able to
  *   switch figure render decorations.
  * - Composite: The classes Viewer::FigureDecorator and
- *   Viewer::ComplexDecoration implement the Composite Pattern to be able to add
+ *   Viewer::ComplexDecorator implement the Composite Pattern to be able to add
  *   more than one decoration to the figure render process.
  */
 
