@@ -40,5 +40,11 @@
  * @section Design Patterns
  *
  * The design patterns used to implement this library are the following:
+ * - Decorator: The classes Viewer::IFigure, Viewer::Figure and
+ *   Viewer::FigureDecorator implement the Decorator Pattern to be able to
+ *   switch figure render decorations.
+ * - Composite: The classes Viewer::FigureDecorator and
+ *   Viewer::ComplexDecoration implement the Composite Pattern to be able to add
+ *   more than one decoration to the figure render process.
  */
 
