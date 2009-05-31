@@ -7,10 +7,10 @@ namespace App
 
     class Triangle;
 
-    class DecoratedTriangle : public Viewer::FigureDecorator
+    class SelectedDecorator : public Viewer::FigureDecorator
     {
     public:
-        DecoratedTriangle(const Triangle* figure);
+        SelectedDecorator(const Triangle* figure);
 
         void render() const;
     };

@@ -1,16 +1,16 @@
-#include "decoratedtriangle.h"
+#include "SelectedDecorator.h"
 #include "Triangle.h"
 
 namespace App
 {
 
-    DecoratedTriangle::DecoratedTriangle(const Triangle* figure)
+    SelectedDecorator::SelectedDecorator(const Triangle* figure)
         : Viewer::FigureDecorator(figure)
     {
     }
 
     void
-    DecoratedTriangle::render() const
+    SelectedDecorator::render() const
     {
         /// @todo OpenGL options depending on the triangle state.
         glColor3f(1.0, 0.0, 0.0);

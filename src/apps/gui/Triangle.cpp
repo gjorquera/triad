@@ -1,7 +1,7 @@
 #include <Viewer/ComplexDecorator.h>
 #include "Triangle.h"
-#include "decoratedtriangle.h"
-#include "neighbordecorator.h"
+#include "SelectedDecorator.h"
+#include "NeighborDecorator.h"
 
 namespace App
 {
@@ -14,7 +14,7 @@ namespace App
     Triangle::decorate() const
     {
         Viewer::ComplexDecorator *decorator = new Viewer::ComplexDecorator;
-        decorator->add(new DecoratedTriangle(this));
+        decorator->add(new SelectedDecorator(this));
         decorator->add(new NeighborDecorator(this));
         return decorator;
     }

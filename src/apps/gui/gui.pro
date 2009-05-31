@@ -7,12 +7,12 @@ include(../../qworkbench.pri)
 
 SOURCES += Main.cpp \
     MainWindow.cpp \
-    decoratedtriangle.cpp \
-    Triangle.cpp \
-    neighbordecorator.cpp
+    NeighborDecorator.cpp \
+    SelectedDecorator.cpp \
+    Triangle.cpp
 HEADERS += MainWindow.h \
-    decoratedtriangle.h \
-    Triangle.h \
-    neighbordecorator.h
+    NeighborDecorator.h \
+    SelectedDecorator.h \
+    Triangle.h
 FORMS += MainWindow.ui
 

@@ -1,4 +1,4 @@
-#include "neighbordecorator.h"
+#include "NeighborDecorator.h"
 #include "Triangle.h"
 
 namespace App
