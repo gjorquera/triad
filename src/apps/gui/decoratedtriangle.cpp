@@ -1,19 +1,20 @@
 #include "decoratedtriangle.h"
+#include "triangle.h"
 
 namespace App
 {
 
-    DecoratedTriangle::DecoratedTriangle(Viewer::IFigure *figure)
+    DecoratedTriangle::DecoratedTriangle(const Triangle* figure)
         : Viewer::DecoratedFigure(figure)
     {
     }
 
     void
-    DecoratedTriangle::render()
+    DecoratedTriangle::render() const
     {
         /// @todo OpenGL options depending on the triangle state.
         glColor3f(1.0, 0.0, 0.0);
-        DecoratedFigure::render();
+        Viewer::DecoratedFigure::render();
     }
 }
 

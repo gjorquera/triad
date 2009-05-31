@@ -10,7 +10,7 @@ namespace App
     public:
         Triangle();
 
-        void render();
+        void render() const;
 
     protected:
         Viewer::IFigure* decorate() const;

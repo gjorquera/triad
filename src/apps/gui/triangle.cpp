@@ -9,7 +9,7 @@ namespace App
     }
 
     void
-    Triangle::render()
+    Triangle::render() const
     {
         glBegin(GL_LINE_LOOP);
             glVertex3f(0.0, 100.0, 0.0);
@@ -21,8 +21,7 @@ namespace App
     Viewer::IFigure*
     Triangle::decorate() const
     {
-        Triangle* triangle = const_cast<Triangle*>(this);
-        return new DecoratedTriangle(triangle);
+        return new DecoratedTriangle(this);
     }
 }
 

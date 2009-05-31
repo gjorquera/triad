@@ -5,12 +5,14 @@
 namespace App
 {
 
+    class Triangle;
+
     class DecoratedTriangle : public Viewer::DecoratedFigure
     {
     public:
-        DecoratedTriangle(Viewer::IFigure* figure);
+        DecoratedTriangle(const Triangle* figure);
 
-        void render();
+        void render() const;
     };
 }
 
