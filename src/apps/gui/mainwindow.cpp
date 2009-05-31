@@ -18,6 +18,9 @@ namespace App
 
         _viewerWidget = new Viewer::Widget(initializer, projection, this);
         this->setCentralWidget(_viewerWidget);
+
+        Triangle *t = new Triangle();
+        _viewerWidget->add(t);
     }
 
     MainWindow::~MainWindow()

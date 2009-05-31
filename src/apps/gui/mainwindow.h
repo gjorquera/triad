@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <Viewer/Widget.h>
 #include "ui_mainwindow.h"
+#include "triangle.h"
 
 namespace App
 {
