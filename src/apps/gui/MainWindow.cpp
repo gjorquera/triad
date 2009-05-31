@@ -1,7 +1,7 @@
 #include <Viewer/Initializer.h>
 #include <Viewer/OrthographicProjection.h>
 #include "MainWindow.h"
-#include "triangle.h"
+#include "Triangle.h"
 
 namespace App
 {

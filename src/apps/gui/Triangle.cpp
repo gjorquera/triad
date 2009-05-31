@@ -1,5 +1,5 @@
 #include <Viewer/ComplexDecorator.h>
-#include "triangle.h"
+#include "Triangle.h"
 #include "decoratedtriangle.h"
 #include "neighbordecorator.h"
 
