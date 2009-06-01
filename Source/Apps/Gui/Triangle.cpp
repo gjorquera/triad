@@ -1,7 +1,7 @@
 #include <Viewer/ComplexDecorator.h>
 #include "Triangle.h"
-#include "SelectedDecorator.h"
-#include "NeighborDecorator.h"
+#include "Decorator/SelectedDecorator.h"
+#include "Decorator/NeighborDecorator.h"
 
 namespace App
 {

@@ -8,12 +8,12 @@ include(../../Workbench.pri)
 
 SOURCES += Main.cpp \
     MainWindow.cpp \
-    NeighborDecorator.cpp \
-    SelectedDecorator.cpp \
+    Decorator/NeighborDecorator.cpp \
+    Decorator/SelectedDecorator.cpp \
     Triangle.cpp
 HEADERS += MainWindow.h \
-    NeighborDecorator.h \
-    SelectedDecorator.h \
+    Decorator/NeighborDecorator.h \
+    Decorator/SelectedDecorator.h \
     Triangle.h
 FORMS += MainWindow.ui
 
