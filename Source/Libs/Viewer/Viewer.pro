@@ -7,12 +7,12 @@ include(../../Workbench.pri)
 
 SOURCES += ComplexDecorator.cpp
 
-HEADERS += $$PWD/ComplexDecorator.h \
-    $$PWD/Figure.h \
-    $$PWD/FigureDecorator.h \
-    $$PWD/IFigure.h \
-    $$PWD/Initializer.h \
-    $$PWD/OrthographicProjection.h \
-    $$PWD/Projection.h \
-    $$PWD/Widget.h
+HEADERS += ComplexDecorator.h \
+    Figure.h \
+    FigureDecorator.h \
+    IFigure.h \
+    Initializer.h \
+    OrthographicProjection.h \
+    Projection.h \
+    Widget.h
 
