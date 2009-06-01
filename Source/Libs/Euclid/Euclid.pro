@@ -4,5 +4,7 @@ DESTDIR = ../../../Static
 
 include(../../Workbench.pri)
 
-HEADERS += $$PWD/Type/Point.h
+HEADERS += Type/NumTraits.h \
+    Type/Point.h \
+    Type/Vector.h
 
