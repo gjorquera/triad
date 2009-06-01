@@ -11,7 +11,8 @@ SOURCES += ComplexDecorator.cpp \
     IFigure.cpp \
     Initializer.cpp \
     OrthoProjection.cpp \
-    Projection.cpp
+    Projection.cpp \
+    Widget.cpp
 
 HEADERS += ComplexDecorator.h \
     Figure.h \
