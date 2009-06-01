@@ -8,6 +8,7 @@ namespace Viewer
     {
     }
 
+    /*virtual*/
     ComplexDecorator::~ComplexDecorator()
     {
         QList<FigureDecorator*>::ConstIterator i;
