@@ -22,33 +22,13 @@ namespace Viewer
     class ComplexDecorator : public FigureDecorator
     {
     public:
-        ComplexDecorator()
-            : FigureDecorator()
-        {
-        }
+        ComplexDecorator();
 
-        ~ComplexDecorator()
-        {
-            QList<FigureDecorator*>::ConstIterator i;
-            for (i = _decorations.begin(); i != _decorations.end(); i++)
-            {
-                delete *i;
-            }
-        }
+        ~ComplexDecorator();
 
-        void add(FigureDecorator* decoration)
-        {
-            _decorations.append(decoration);
-        }
+        void add(FigureDecorator* decoration);
 
-        void render() const
-        {
-            QList<FigureDecorator*>::ConstIterator i;
-            for (i = _decorations.begin(); i != _decorations.end(); i++)
-            {
-                (*i)->render();
-            }
-        }
+        void render() const;
 
     protected:
         QList<FigureDecorator*> _decorations;

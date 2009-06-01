@@ -5,6 +5,8 @@ DESTDIR = ../../../Static
 
 include(../../Workbench.pri)
 
+SOURCES += ComplexDecorator.cpp
+
 HEADERS += $$PWD/ComplexDecorator.h \
     $$PWD/Figure.h \
     $$PWD/FigureDecorator.h \
