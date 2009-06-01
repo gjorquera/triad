@@ -105,28 +105,28 @@ namespace Euclid
 
         Vector<N,T> &operator+=(const Vector<N,T> &vector)
         {
-            m_terminal += (vector.terminal() - vector.initial());
+            _terminal += (vector._terminal - vector._initial);
 
             return *this;
         }
 
         Vector<N,T> &operator-=(const Vector<N,T> &vector)
         {
-            m_terminal -= (vector.terminal() - vector.initial());
+            _terminal -= (vector._terminal - vector._initial);
 
             return *this;
         }
 
         Vector<N,T> &operator*=(const T scale)
         {
-            m_terminal = m_initial + (m_terminal - m_initial) * scale;
+            _terminal = _initial + (_terminal - _initial) * scale;
 
             return *this;
         }
 
         Vector<N,T> &operator/=(const T scale)
         {
-            m_terminal = m_initial + (m_terminal - m_initial) / scale;
+            _terminal = _initial + (_terminal - _initial) / scale;
 
             return *this;
         }
@@ -153,8 +153,8 @@ namespace Euclid
 
         bool operator==(const Vector<N,T> &vector) const
         {
-            return (m_terminal == vector.terminal()
-                && m_initial == vector.initial());
+            return (_terminal == vector._terminal
+                && _initial == vector._initial);
         }
 
         bool operator!=(const Vector<N,T> &vector) const

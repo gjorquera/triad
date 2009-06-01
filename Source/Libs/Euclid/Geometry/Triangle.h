@@ -71,7 +71,7 @@ namespace Euclid
         }
 
     protected:
-        Info m_info;
+        Info _info;
         Vertex<Kernel>* _vertices[3];
         Triangle<Kernel>* _neighbors[3];
 
@@ -84,7 +84,7 @@ namespace Euclid
                 bool shared = false;
                 for (int j=0; j<3; j++)
                 {
-                    if (m_vertices[i] == triangle->m_vertices[j])
+                    if (_vertices[i] == triangle->_vertices[j])
                     {
                         shared = true;
                         break;

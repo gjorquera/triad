@@ -91,22 +91,22 @@ namespace Euclid
 
         const Point<N,T> operator+(const Point<N,T>& point) const
         {
-            return Point<N,T>(*this) += p;
+            return Point<N,T>(*this) += point;
         }
 
         const Point<N,T> operator-(const Point<N,T>& point) const
         {
-            return Point<N,T>(*this) -= p;
+            return Point<N,T>(*this) -= point;
         }
 
         const Point<N,T> operator*(const T scale) const
         {
-            return Point<N,T>(*this) *= s;
+            return Point<N,T>(*this) *= scale;
         }
 
         const Point<N,T> operator/(const T scale) const
         {
-            return Point<N,T>(*this) /= s;
+            return Point<N,T>(*this) /= scale;
         }
 
         bool operator==(const Point<N,T>& point) const
