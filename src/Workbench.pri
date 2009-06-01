@@ -1,7 +1,6 @@
 CONFIG -= release
-LIBS += -L../../../static
-INCLUDEPATH += ../../Libs \
-    ../../../inc
+LIBS += -L../../../Static
+INCLUDEPATH += ../../Libs
 QMAKE_CXXFLAGS += -Werror -Wextra -Wpointer-arith -Wcast-qual
 
 include(../inc/Euclid/Euclid.pro)

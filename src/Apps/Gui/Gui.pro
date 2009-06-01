@@ -1,7 +1,7 @@
 QT += opengl
 TEMPLATE = app
 TARGET = Triad
-DESTDIR = ../../../bin
+DESTDIR = ../../../Bin
 LIBS += -lViewer
 
 include(../../Workbench.pri)

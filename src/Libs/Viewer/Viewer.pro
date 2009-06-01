@@ -1,7 +1,7 @@
 QT += opengl
 TEMPLATE = lib
 CONFIG += staticlib
-DESTDIR = ../../../static
+DESTDIR = ../../../Static
 
 include(../../Workbench.pri)
 
