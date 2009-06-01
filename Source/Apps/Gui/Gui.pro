@@ -10,10 +10,10 @@ SOURCES += Main.cpp \
     MainWindow.cpp \
     Decorator/NeighborDecorator.cpp \
     Decorator/SelectedDecorator.cpp \
-    Triangle.cpp
+    Figure/Triangle.cpp
 HEADERS += MainWindow.h \
     Decorator/NeighborDecorator.h \
     Decorator/SelectedDecorator.h \
-    Triangle.h
+    Figure/Triangle.h
 FORMS += MainWindow.ui
 

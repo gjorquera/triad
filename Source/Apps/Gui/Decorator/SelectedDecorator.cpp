@@ -1,5 +1,5 @@
 #include "SelectedDecorator.h"
-#include "Triangle.h"
+#include "../Figure/Triangle.h"
 
 namespace App
 {
