@@ -15,20 +15,11 @@ namespace Viewer
     class Figure : public IFigure
     {
     public:
-        Figure()
-        {
-        }
+        Figure();
 
-        virtual ~Figure()
-        {
-        }
+        virtual ~Figure();
 
-        void render() const
-        {
-            IFigure* figure = decorate();
-            figure->render();
-            delete figure;
-        }
+        void render() const;
 
     protected:
         virtual IFigure* decorate() const = 0;
