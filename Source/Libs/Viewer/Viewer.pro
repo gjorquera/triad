@@ -8,7 +8,8 @@ include(../../Workbench.pri)
 SOURCES += ComplexDecorator.cpp \
     Figure.cpp \
     FigureDecorator.cpp \
-    IFigure.cpp
+    IFigure.cpp \
+    Initializer.cpp
 
 HEADERS += ComplexDecorator.h \
     Figure.h \
