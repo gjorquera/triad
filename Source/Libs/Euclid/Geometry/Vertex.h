@@ -5,6 +5,9 @@
 namespace Euclid
 {
 
+    /*!
+     * The Vertex class defines a triangle's vertex.
+     */
     template <class Kernel>
     class Vertex
     {
