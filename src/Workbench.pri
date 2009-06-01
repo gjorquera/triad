@@ -1,6 +1,6 @@
 CONFIG -= release
 LIBS += -L../../../static
-INCLUDEPATH += ../../libs \
+INCLUDEPATH += ../../Libs \
     ../../../inc
 QMAKE_CXXFLAGS += -Werror -Wextra -Wpointer-arith -Wcast-qual
 

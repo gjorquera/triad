@@ -1,3 +1,4 @@
 TEMPLATE = subdirs
-SUBDIRS = Apps
+SUBDIRS = Libs \
+    Apps
 
