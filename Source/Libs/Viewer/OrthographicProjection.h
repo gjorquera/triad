@@ -28,33 +28,16 @@ namespace Viewer
     class OrthographicProjection : public Projection
     {
     public:
-        OrthographicProjection(float znear, float zfar)
-            : Projection(0.0, 0.0, DYNAMIC)
-        {
-            _znear = znear;
-            _zfar = zfar;
-        }
-
+        OrthographicProjection(float znear, float zfar);
         OrthographicProjection(float width, float height, float znear,
-            float zfar)
-            : Projection(width, height, FIXED)
-        {
-            _znear = znear;
-            _zfar = zfar;
-        }
+            float zfar);
 
     protected:
         float _znear;
         float _zfar;
 
-        OrthographicProjection()
-        {
-        }
-
-        void apply() const
-        {
-            glOrtho(0, _width, 0, _height, _znear, _zfar);
-        }
+        OrthographicProjection();
+        void apply() const;
     };
 }
 

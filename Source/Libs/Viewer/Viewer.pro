@@ -9,7 +9,8 @@ SOURCES += ComplexDecorator.cpp \
     Figure.cpp \
     FigureDecorator.cpp \
     IFigure.cpp \
-    Initializer.cpp
+    Initializer.cpp \
+    OrthographicProjection.cpp
 
 HEADERS += ComplexDecorator.h \
     Figure.h \
