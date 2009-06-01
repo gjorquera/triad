@@ -4,8 +4,7 @@ tags
 .obj/
 .uic/
 .moc/
-bin/
+Bin/
 docs/
-inc/
-static/
+Static/
 Makefile
