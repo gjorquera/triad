@@ -18,16 +18,11 @@ namespace Viewer
     class IFigure
     {
     public:
-        virtual ~IFigure()
-        {
-        }
-
+        virtual ~IFigure();
         virtual void render() const = 0;
 
     protected:
-        IFigure()
-        {
-        }
+        IFigure();
     };
 }
 
