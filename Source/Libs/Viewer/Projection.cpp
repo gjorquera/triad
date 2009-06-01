@@ -7,7 +7,7 @@ namespace Viewer
     {
     }
 
-    Projection::Projection(float width, float height,
+    Projection::Projection(int width, int height,
         RedimensionPolicy redimensionPolicy)
     {
         _width = width;

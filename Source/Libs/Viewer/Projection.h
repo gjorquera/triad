@@ -42,11 +42,11 @@ namespace Viewer
         void resize(int width, int height);
 
     protected:
-        float _width;
-        float _height;
+        int _width;
+        int _height;
 
         Projection();
-        Projection(float width, float height,
+        Projection(int width, int height,
             RedimensionPolicy redimensionPolicy);
         virtual void apply() const = 0;
 

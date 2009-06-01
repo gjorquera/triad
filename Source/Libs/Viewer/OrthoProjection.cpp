@@ -8,14 +8,14 @@ namespace Viewer
     }
 
     OrthoProjection::OrthoProjection(float znear, float zfar)
-        : Projection(0.0, 0.0, DYNAMIC)
+        : Projection(0, 0, DYNAMIC)
     {
         _znear = znear;
         _zfar = zfar;
     }
 
-    OrthoProjection::OrthoProjection(float znear, float zfar, float width,
-        float height)
+    OrthoProjection::OrthoProjection(float znear, float zfar, int width,
+        int height)
         : Projection(width, height, FIXED)
     {
         _znear = znear;

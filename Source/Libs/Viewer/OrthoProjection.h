@@ -29,7 +29,7 @@ namespace Viewer
     {
     public:
         OrthoProjection(float znear, float zfar);
-        OrthoProjection(float znear, float zfar, float width, float height);
+        OrthoProjection(float znear, float zfar, int width, int height);
 
     protected:
         float _znear;
