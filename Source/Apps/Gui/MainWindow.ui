@@ -42,6 +42,7 @@
     <addaction name="separator" />
     <addaction name="actionByLongestEdge" />
     <addaction name="actionByTriangleArea" />
+    <addaction name="actionByPercentage" />
     <addaction name="separator" />
     <addaction name="actionClearSelection" />
    </widget>
@@ -88,6 +89,9 @@
    </property>
   </action>
   <action name="actionOnlyOne" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
    <property name="text" >
     <string>&amp;Only One</string>
    </property>
@@ -108,8 +112,19 @@
    </property>
   </action>
   <action name="actionManualSelection" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
    <property name="text" >
     <string>&amp;Manual Selection</string>
+   </property>
+  </action>
+  <action name="actionByPercentage" >
+   <property name="text" >
+    <string>By &amp;Percentage</string>
    </property>
   </action>
  </widget>
