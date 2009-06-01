@@ -501,7 +501,7 @@ FILE_VERSION_FILTER    =
 # file name after the option, if omitted DoxygenLayout.xml will be used as the name 
 # of the layout file.
 
-LAYOUT_FILE            = files/Doxygenlayout.xml
+LAYOUT_FILE            = Files/Doxygenlayout.xml
 
 #---------------------------------------------------------------------------
 # configuration options related to warning and progress messages
@@ -563,7 +563,7 @@ WARN_LOGFILE           =
 # directories like "/usr/src/myproject". Separate the files or directories 
 # with spaces.
 
-INPUT                  = src
+INPUT                  = Source
 
 # This tag can be used to specify the character encoding of the source files 
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding, which is 
