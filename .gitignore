@@ -6,5 +6,6 @@ tags
 .moc/
 Bin/
 docs/
+inc/
 Static/
 Makefile
