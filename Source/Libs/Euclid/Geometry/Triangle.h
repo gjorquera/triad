@@ -25,12 +25,6 @@ namespace Euclid
             for (int i=0; i<3; i++) _neighbors[i] = 0;
         }
 
-        Vertex<Kernel> *vertex(const int i)
-        {
-            assert(0 <= i && i < 3);
-            return _vertices[i];
-        }
-
         const Vertex<Kernel> *vertex(const int i) const
         {
             assert(0 <= i && i < 3);
@@ -43,7 +37,7 @@ namespace Euclid
             _vertices[i] = const_cast<Vertex<Kernel>*>(vertex);
         }
 
-        Triangle<Kernel> *neighbor(const int i)
+        const Triangle<Kernel> *neighbor(const int i) const
         {
             assert(0 <= i && i < 3);
             return _neighbors[i];
@@ -60,11 +54,6 @@ namespace Euclid
             return _info;
         }
 
-        Info& info()
-        {
-            return _info;
-        }
-
         void setInfo(const Info& info)
         {
             _info = info;
@@ -75,7 +64,7 @@ namespace Euclid
         Vertex<Kernel>* _vertices[3];
         Triangle<Kernel>* _neighbors[3];
 
-        int neighborIndex(const Triangle<Kernel> *triangle)
+        int neighborIndex(const Triangle<Kernel> *triangle) const
         {
             assert(0 != triangle);
             int index = -1;
