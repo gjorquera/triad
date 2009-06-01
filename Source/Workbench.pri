@@ -3,9 +3,6 @@ LIBS += -L../../../Static
 INCLUDEPATH += ../../Libs
 QMAKE_CXXFLAGS += -Werror -Wextra -Wpointer-arith -Wcast-qual
 
-include(../inc/Euclid/Euclid.pro)
-include(../inc/Viewer/Viewer.pro)
-
 unix {
     debug:OBJECTS_DIR = $${OUT_PWD}/.obj/debug-shared
     release:OBJECTS_DIR = $${OUT_PWD}/.obj/release-shared
