@@ -1,5 +1,5 @@
 #include <Viewer/Initializer.h>
-#include <Viewer/OrthographicProjection.h>
+#include <Viewer/OrthoProjection.h>
 #include "MainWindow.h"
 #include "Triangle.h"
 
@@ -15,7 +15,7 @@ namespace App
         Viewer::Initializer* initializer;
         initializer = new Viewer::Initializer();
         Viewer::Projection* projection;
-        projection = new Viewer::OrthographicProjection(0.0, 10.0);
+        projection = new Viewer::OrthoProjection(0.0, 10.0);
 
         _viewerWidget = new Viewer::Widget(initializer, projection, this);
         this->setCentralWidget(_viewerWidget);

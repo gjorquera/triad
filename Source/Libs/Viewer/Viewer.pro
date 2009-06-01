@@ -10,14 +10,14 @@ SOURCES += ComplexDecorator.cpp \
     FigureDecorator.cpp \
     IFigure.cpp \
     Initializer.cpp \
-    OrthographicProjection.cpp
+    OrthoProjection.cpp
 
 HEADERS += ComplexDecorator.h \
     Figure.h \
     FigureDecorator.h \
     IFigure.h \
     Initializer.h \
-    OrthographicProjection.h \
+    OrthoProjection.h \
     Projection.h \
     Widget.h
 

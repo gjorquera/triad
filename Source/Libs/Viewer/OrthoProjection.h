@@ -25,18 +25,17 @@ namespace Viewer
      * orthographic projection with \b znear = 0 and \b zfar = 10 will draw
      * objects whose \c z coordinate are located in the range [0, -10[.
      */
-    class OrthographicProjection : public Projection
+    class OrthoProjection : public Projection
     {
     public:
-        OrthographicProjection(float znear, float zfar);
-        OrthographicProjection(float width, float height, float znear,
-            float zfar);
+        OrthoProjection(float znear, float zfar);
+        OrthoProjection(float znear, float zfar, float width, float height);
 
     protected:
         float _znear;
         float _zfar;
 
-        OrthographicProjection();
+        OrthoProjection();
         void apply() const;
     };
 }
