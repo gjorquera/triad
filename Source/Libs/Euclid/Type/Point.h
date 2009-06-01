@@ -32,13 +32,13 @@ namespace Euclid
             }
         }
 
-        Point<N,T>& operator=(const Point<N,T>& p)
+        Point<N,T>& operator=(const Point<N,T>& point)
         {
-            if (this == &p) return *this;
+            if (this == &point) return *this;
 
             for (int i=0; i<N; i++)
             {
-                _coords[i] = p._coords[i];
+                _coords[i] = point._coords[i];
             }
 
             return *this;
@@ -61,65 +61,65 @@ namespace Euclid
             return _coords[i];
         }
 
-        Point<N,T>& operator+=(const Point<N,T>& p)
+        Point<N,T>& operator+=(const Point<N,T>& point)
         {
-            for (int i=0; i<N; i++) _coords[i] += p._coords[i];
+            for (int i=0; i<N; i++) _coords[i] += point._coords[i];
 
             return *this;
         }
 
-        Point<N,T>& operator-=(const Point<N,T>& p)
+        Point<N,T>& operator-=(const Point<N,T>& point)
         {
-            for (int i=0; i<N; i++) _coords[i] -= p._coords[i];
+            for (int i=0; i<N; i++) _coords[i] -= point._coords[i];
 
             return *this;
         }
 
-        Point<N,T>& operator*=(const T s)
+        Point<N,T>& operator*=(const T scale)
         {
-            for (int i=0; i<N; i++) _coords[i] *= s;
+            for (int i=0; i<N; i++) _coords[i] *= scale;
 
             return *this;
         }
 
-        Point<N,T>& operator/=(const T s)
+        Point<N,T>& operator/=(const T scale)
         {
-            for (int i=0; i<N; i++) _coords[i] /= s;
+            for (int i=0; i<N; i++) _coords[i] /= scale;
 
             return *this;
         }
 
-        const Point<N,T> operator+(const Point<N,T>& p) const
+        const Point<N,T> operator+(const Point<N,T>& point) const
         {
             return Point<N,T>(*this) += p;
         }
 
-        const Point<N,T> operator-(const Point<N,T>& p) const
+        const Point<N,T> operator-(const Point<N,T>& point) const
         {
             return Point<N,T>(*this) -= p;
         }
 
-        const Point<N,T> operator*(const T s) const
+        const Point<N,T> operator*(const T scale) const
         {
             return Point<N,T>(*this) *= s;
         }
 
-        const Point<N,T> operator/(const T s) const
+        const Point<N,T> operator/(const T scale) const
         {
             return Point<N,T>(*this) /= s;
         }
 
-        bool operator==(const Point<N,T>& p) const
+        bool operator==(const Point<N,T>& point) const
         {
             for (int i=0; i<N; i++)
-                if (_coords[i] != p._coords[i]) return false;
+                if (_coords[i] != point._coords[i]) return false;
 
             return true;
         }
 
-        bool operator!=(const Point<N,T>& p) const
+        bool operator!=(const Point<N,T>& point) const
         {
-            return (! *this == p);
+            return (! *this == point);
         }
 
     protected:
