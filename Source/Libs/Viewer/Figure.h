@@ -16,9 +16,7 @@ namespace Viewer
     {
     public:
         Figure();
-
         virtual ~Figure();
-
         void render() const;
 
     protected:

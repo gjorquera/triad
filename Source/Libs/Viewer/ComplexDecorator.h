@@ -23,11 +23,8 @@ namespace Viewer
     {
     public:
         ComplexDecorator();
-
         ~ComplexDecorator();
-
         void add(FigureDecorator* decoration);
-
         void render() const;
 
     protected:

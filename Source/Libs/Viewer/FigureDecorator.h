@@ -20,7 +20,6 @@ namespace Viewer
     {
     public:
         FigureDecorator(const IFigure* figure);
-
         virtual ~FigureDecorator();
 
     protected:
