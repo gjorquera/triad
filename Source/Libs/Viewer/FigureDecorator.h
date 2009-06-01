@@ -19,17 +19,14 @@ namespace Viewer
     class FigureDecorator : public IFigure
     {
     public:
-        FigureDecorator(const IFigure* figure)
-        {
-            _figure = figure;
-        }
+        FigureDecorator(const IFigure* figure);
+
+        virtual ~FigureDecorator();
 
     protected:
         const IFigure* _figure;
 
-        FigureDecorator()
-        {
-        }
+        FigureDecorator();
     };
 }
 
