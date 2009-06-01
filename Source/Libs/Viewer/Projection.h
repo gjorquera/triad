@@ -36,37 +36,18 @@ namespace Viewer
             FIXED,
             DYNAMIC
         };
-
-        virtual ~Projection()
-        {
-        }
-
-        void resize(int width, int height)
-        {
-            if (_redimensionPolicy == DYNAMIC) {
-                _width = width;
-                _height = height;
-            }
-        }
-
         friend class Widget;
+
+        virtual ~Projection();
+        void resize(int width, int height);
 
     protected:
         float _width;
         float _height;
 
-        Projection()
-        {
-        }
-
+        Projection();
         Projection(float width, float height,
-            RedimensionPolicy redimensionPolicy)
-        {
-            _width = width;
-            _height = height;
-            _redimensionPolicy = redimensionPolicy;
-        }
-
+            RedimensionPolicy redimensionPolicy);
         virtual void apply() const = 0;
 
     private:
