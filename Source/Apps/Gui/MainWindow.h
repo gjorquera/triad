@@ -19,6 +19,10 @@ namespace App
         MainWindow(QWidget* parent = 0);
         ~MainWindow();
 
+    protected slots:
+        void open();
+        void save();
+
     private:
         Viewer::Widget* _viewerWidget;
     };
