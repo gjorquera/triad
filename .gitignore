@@ -5,7 +5,7 @@ tags
 .uic/
 .moc/
 Bin/
-docs/
+Docs/
 inc/
 Static/
 Makefile
