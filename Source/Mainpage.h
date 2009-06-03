@@ -16,7 +16,7 @@
  *
  * The \b Euclid namespace implements a template library to work with 2
  * dimensional triangle meshes, although it can be extended to N dimensional
- * polygonal meshes. It uses Eigen 2 for the basic geometry definitions.
+ * polygonal meshes.
  *
  * The \b Viewer namespace implements a simple abstraction of the QGLWidget to
  * be able to define and draw an OpenGL scene in a more object oriented way.
