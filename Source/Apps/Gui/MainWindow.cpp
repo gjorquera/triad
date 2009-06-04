@@ -1,4 +1,5 @@
 #include <QFileDialog>
+#include <Euclid/Geometry/M2dFactory.h>
 #include <Viewer/Initializer.h>
 #include <Viewer/OrthoProjection.h>
 #include "MainWindow.h"
@@ -39,10 +40,9 @@ namespace App
             tr("Open Mesh File"), QDir::currentPath(), tr("M2D File (*.m2d)"));
 
         if (0 != filename) {
-            /// @todo Load the saved mesh.
-            //if (0 != this->m_trimesh) delete this->m_trimesh;
-            //Euclid::M2dFactory<Kernel> m2dFactory(filename.toStdString());
-            //this->m_trimesh = m2dFactory.load();
+            if (0 != _trimesh) delete _trimesh;
+            Euclid::M2dFactory<Kernel> m2dFactory(filename.toStdString());
+            _trimesh = m2dFactory.load();
         }
 
         /// @todo Update the OpenGL widget

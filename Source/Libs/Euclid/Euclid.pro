@@ -4,7 +4,9 @@ DESTDIR = ../../../Static
 
 include(../../Workbench.pri)
 
-HEADERS += Geometry/Triangle.h \
+HEADERS += Geometry/M2dFactory.h \
+    Geometry/Triangle.h \
+    Geometry/TriMesh.h \
     Geometry/Vertex.h \
     Type/DefaultKernel.h \
     Type/NumTraits.h \
