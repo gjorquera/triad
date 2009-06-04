@@ -25,7 +25,7 @@ namespace Euclid
         TriMesh<Kernel>* load()
         {
             TriMesh<Kernel>* trimesh = factoryMethod(_filename);
-            return trumesh;
+            return trimesh;
         }
 
     protected:
