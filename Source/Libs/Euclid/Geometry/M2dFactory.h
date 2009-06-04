@@ -16,7 +16,7 @@ namespace Euclid
     {
     public:
         M2dFactory(const std::string &filename)
-            : TriMeshFactory(filename)
+            : TriMeshFactory<Kernel>(filename)
         {
         }
 
