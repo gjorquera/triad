@@ -13,7 +13,7 @@ namespace Euclid
     class TriMeshFactory
     {
     public:
-        TriMeshFactory(const std::string &filename)
+        TriMeshFactory(std::string filename)
         {
             _filename = filename;
         }
@@ -53,7 +53,7 @@ namespace Euclid
         }
 
     private:
-        const std::string _filename;
+        std::string _filename;
     };
 }
 

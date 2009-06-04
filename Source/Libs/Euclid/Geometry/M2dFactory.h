@@ -19,7 +19,7 @@ namespace Euclid
     class M2dFactory : public TriMeshFactory<Kernel>
     {
     public:
-        M2dFactory(const std::string &filename)
+        M2dFactory(std::string filename)
             : TriMeshFactory<Kernel>(filename)
         {
         }
@@ -29,7 +29,7 @@ namespace Euclid
         }
 
     protected:
-        TriMesh<Kernel>* factoryMethod(const std::string &filename)
+        TriMesh<Kernel>* factoryMethod(std::string &filename)
         {
             QMap<int,Triangle<Kernel>*> triangles;
             QMap<int,Vertex<Kernel>*> vertices;
