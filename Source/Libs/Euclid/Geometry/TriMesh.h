@@ -45,7 +45,7 @@ namespace Euclid
 
         int numVertices() const
         {
-            return _vertices.size()
+            return _vertices.size();
         }
 
         int numTriangles() const
