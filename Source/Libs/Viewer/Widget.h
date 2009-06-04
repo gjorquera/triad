@@ -11,7 +11,7 @@ namespace Viewer
 {
 
     /*!
-     * The Widget class inherits from QGLWidget to implement a custom OpenGL
+     * The Widget class inherits from \c QGLWidget to implement a custom OpenGL
      * widget viewer.
      *
      * \c QGLWidget is the default widget to display graphics through OpenGL.
