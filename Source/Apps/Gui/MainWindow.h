@@ -9,6 +9,7 @@
 
 namespace App
 {
+    typedef Euclid::DefaultKernel Kernel;
 
     /*!
      * The application's main window.
@@ -26,7 +27,7 @@ namespace App
         void saveMesh();
 
     private:
-        Euclid::TriMesh<Euclid::DefaultKernel> _trimesh;
+        Euclid::TriMesh<Kernel> _trimesh;
         Viewer::Widget* _viewerWidget;
     };
 

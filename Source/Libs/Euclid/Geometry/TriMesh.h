@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QList>
+#include "Triangle.h"
+#include "Vertex.h"
 
 namespace Euclid
 {
@@ -12,8 +14,8 @@ namespace Euclid
     class TriMesh
     {
     public:
-        typedef typename Kernel::Triangle                Triangle;
-        typedef typename Kernel::Vertex                  Vertex;
+        typedef Triangle<Kernel>                Triangle;
+        typedef Vertex<Kernel>                  Vertex;
         typedef typename QList<Triangle*>::Iterator      Iterator;
         typedef typename QList<Triangle*>::ConstIterator ConstIterator;
         typedef typename QList<Vertex*>::Iterator        VertexIterator;
