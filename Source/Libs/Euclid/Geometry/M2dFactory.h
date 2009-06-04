@@ -4,6 +4,8 @@
 #include <sstream>
 #include "TriMesh.h"
 #include "TriMeshFactory.h"
+#include "../Geometry/Triangle.h"
+#include "../Geometry/Vertex.h"
 #include "../Type/Point.h"
 
 namespace Euclid
