@@ -29,7 +29,7 @@ namespace Euclid
         }
 
     protected:
-        virtual TriMesh<Kernel>* factoryMethod(const std::string &filename) = 0;
+        virtual TriMesh<Kernel>* factoryMethod(std::string &filename) = 0;
 
         static void trimComments(std::string &line, const std::string &comment)
         {
