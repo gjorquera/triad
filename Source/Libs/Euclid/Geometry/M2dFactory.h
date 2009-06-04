@@ -4,6 +4,7 @@
 #include <sstream>
 #include "TriMesh.h"
 #include "TriMeshFactory.h"
+#include "../Type/Point.h"
 
 namespace Euclid
 {
@@ -52,7 +53,7 @@ namespace Euclid
                 if (type == 'v' || type == 'V') // Vertex.
                 {
                     Point<3,float> p;
-                    sin >> p;
+                    sin >> p[0] >> p[1] >> p[2];
                     Vertex<Kernel> *v = new Vertex<Kernel>(id, p);
                     trimesh->addVertex(id, v);
                 }
