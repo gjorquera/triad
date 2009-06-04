@@ -31,6 +31,9 @@ namespace Euclid
     protected:
         TriMesh<Kernel>* factoryMethod(const std::string &filename)
         {
+            QMap<int,Triangle<Kernel>*> triangles;
+            QMap<int,Vertex<Kernel>*> vertices;
+
             TriMesh<Kernel> *trimesh = new TriMesh<Kernel>;
 
             std::ifstream fin(filename.c_str());
@@ -57,30 +60,30 @@ namespace Euclid
                 {
                     Point<3,float> p;
                     sin >> p[0] >> p[1] >> p[2];
-                    Vertex<Kernel> *v = new Vertex<Kernel>(id, p);
-                    trimesh->addVertex(id, v);
+                    Vertex<Kernel> *v = new Vertex<Kernel>(p);
+                    trimesh->addVertex(v);
+                    vertices[id] = v;
                 }
                 else if (type == 't' || type == 'T') // Triangle.
                 {
                     int v1, v2, v3;
                     sin >> v1 >> v2 >> v3;
                     Triangle<Kernel> *t = new Triangle<Kernel>(
-                        id,
-                        trimesh->vertex(v1),
-                        trimesh->vertex(v2),
-                        trimesh->vertex(v3));
-                    trimesh->addTriangle(id, t);
+                        vertices[v1],
+                        vertices[v2],
+                        vertices[v3]);
+                    trimesh->addTriangle(t);
                 }
                 else if (type == 'n' || type == 'N') // Neighbor.
                 {
                     int n1, n2, n3;
                     sin >> n1 >> n2 >> n3;
                     if (0 != n1)
-                        trimesh->triangle(id)->addNeighbor(trimesh->triangle(n1));
+                        triangles[id]->addNeighbor(triangles[n1]);
                     if (0 != n2)
-                        trimesh->triangle(id)->addNeighbor(trimesh->triangle(n2));
+                        triangles[id]->addNeighbor(triangles[n2]);
                     if (0 != n3)
-                        trimesh->triangle(id)->addNeighbor(trimesh->triangle(n3));
+                        triangles[id]->addNeighbor(triangles[n3]);
                 }
                 else
                 {
