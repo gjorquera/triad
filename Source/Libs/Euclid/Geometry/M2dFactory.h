@@ -35,8 +35,8 @@ namespace Euclid
             while (std::getline(fin, line))
             {
                 // Preparing the line.
-                trimComments(line, "#");
-                trimSpaces(line);
+                this->trimComments(line, "#");
+                this->trimSpaces(line);
                 if (line.size() == 0) continue;
 
                 // Now let's process the line as a stream.
