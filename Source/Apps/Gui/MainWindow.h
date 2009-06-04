@@ -27,7 +27,7 @@ namespace App
         void saveMesh();
 
     private:
-        Euclid::TriMesh<Kernel> _trimesh;
+        Euclid::TriMesh<Kernel>* _trimesh;
         Viewer::Widget* _viewerWidget;
     };
 
