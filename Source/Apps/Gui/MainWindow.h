@@ -20,8 +20,8 @@ namespace App
         ~MainWindow();
 
     protected slots:
-        void open();
-        void save();
+        void openMesh();
+        void saveMesh();
 
     private:
         Viewer::Widget* _viewerWidget;

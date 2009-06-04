@@ -24,8 +24,8 @@ namespace App
         Triangle* t = new Triangle();
         _viewerWidget->add(t);
 
-        connect(actionOpenMesh, SIGNAL(triggered()), this, SLOT(open()));
-        connect(actionSaveMesh, SIGNAL(triggered()), this, SLOT(save()));
+        connect(actionOpenMesh, SIGNAL(triggered()), this, SLOT(openMesh()));
+        connect(actionSaveMesh, SIGNAL(triggered()), this, SLOT(saveMesh()));
     }
 
     MainWindow::~MainWindow()
@@ -33,7 +33,7 @@ namespace App
     }
 
     void
-    MainWindow::open()
+    MainWindow::openMesh()
     {
         QString filename = QFileDialog::getOpenFileName(this,
             tr("Open Mesh File"), QDir::currentPath(), tr("M2D File (*.m2d)"));
@@ -50,7 +50,7 @@ namespace App
     }
 
     void
-    MainWindow::save()
+    MainWindow::saveMesh()
     {
         QString filename = QFileDialog::getSaveFileName(this,
             tr("Save Mesh File"), QDir::currentPath(), tr("M2D File (*.m2d)"));
