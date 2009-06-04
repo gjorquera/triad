@@ -16,6 +16,8 @@ namespace Euclid
         typedef typename Kernel::Vertex                  Vertex;
         typedef typename QList<Triangle*>::Iterator      Iterator;
         typedef typename QList<Triangle*>::ConstIterator ConstIterator;
+        typedef typename QList<Vertex*>::Iterator        VertexIterator;
+        typedef typename QList<Vertex*>::ConstIterator   VertexCostIterator;
 
         TriMesh()
         {
@@ -23,7 +25,7 @@ namespace Euclid
 
         virtual ~TriMesh()
         {
-            TriangleIterator i;
+            Iterator i;
             for (i = _triangles.begin(); i != _triangles.end(); i++)
                 delete (*i);
             VertexIterator j;
