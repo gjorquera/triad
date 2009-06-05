@@ -1,17 +1,18 @@
 #include <Viewer/ComplexDecorator.h>
-#include "Triangle.h"
-#include "Decorator/SelectedDecorator.h"
-#include "Decorator/NeighborDecorator.h"
+#include "TriangleDecorator.h"
+#include "../Decorator/SelectedDecorator.h"
+#include "../Decorator/NeighborDecorator.h"
 
 namespace App
 {
 
-    Triangle::Triangle()
+    TriangleDecorator::TriangleDecorator(Euclid::Triangle<Kernel>* triangle)
     {
+        _triangle = triangle;
     }
 
     Viewer::IFigure*
-    Triangle::decorate() const
+    TriangleDecorator::decorate() const
     {
         Viewer::ComplexDecorator *decorator = new Viewer::ComplexDecorator;
         decorator->add(new SelectedDecorator(this));

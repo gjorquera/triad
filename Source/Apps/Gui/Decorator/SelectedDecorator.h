@@ -5,7 +5,7 @@
 namespace App
 {
 
-    class Triangle;
+    class TriangleDecorator;
 
     /*!
      * The SelectedDecorator class implements a decorator for selected
@@ -14,7 +14,7 @@ namespace App
     class SelectedDecorator : public Viewer::FigureDecorator
     {
     public:
-        SelectedDecorator(const Triangle* figure);
+        SelectedDecorator(const TriangleDecorator* figure);
         void render() const;
     };
 }

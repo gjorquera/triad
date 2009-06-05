@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Euclid/Geometry/Triangle.h>
+#include <Euclid/Type/DefaultKernel.h>
 #include <Viewer/Figure.h>
 
 namespace App
@@ -11,12 +13,15 @@ namespace App
      * This class is in charge of returning the appropiate decorations based on
      * the state of the current triangle instance.
      */
-    class Triangle : public Viewer::Figure
+    class TriangleDecorator : public Viewer::Figure
     {
     public:
-        Triangle();
+        typedef Euclid::DefaultKernel Kernel;
+
+        TriangleDecorator(Euclid::Triangle<Kernel>* triangle);
 
     protected:
+        Euclid::Triangle<Kernel>* _triangle;
         Viewer::IFigure* decorate() const;
     };
 }

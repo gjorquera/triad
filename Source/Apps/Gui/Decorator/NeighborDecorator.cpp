@@ -1,10 +1,10 @@
 #include "NeighborDecorator.h"
-#include "../Figure/Triangle.h"
+#include "../Figure/TriangleDecorator.h"
 
 namespace App
 {
 
-    NeighborDecorator::NeighborDecorator(const Triangle* figure)
+    NeighborDecorator::NeighborDecorator(const TriangleDecorator* figure)
         : Viewer::FigureDecorator(figure)
     {
     }

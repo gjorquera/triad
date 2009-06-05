@@ -1,10 +1,10 @@
 #include "SelectedDecorator.h"
-#include "../Figure/Triangle.h"
+#include "../Figure/TriangleDecorator.h"
 
 namespace App
 {
 
-    SelectedDecorator::SelectedDecorator(const Triangle* figure)
+    SelectedDecorator::SelectedDecorator(const TriangleDecorator* figure)
         : Viewer::FigureDecorator(figure)
     {
     }
