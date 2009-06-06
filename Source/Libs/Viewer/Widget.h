@@ -33,17 +33,25 @@ namespace Viewer
         Q_OBJECT
 
     public:
+        typedef QList<Figure*>::Iterator      Iterator;
+        typedef QList<Figure*>::ConstIterator ConstIterator;
+
         Widget(QWidget* parent = 0);
         virtual ~Widget();
         void add(Figure* figure);
         void clear();
+        Iterator begin();
+        ConstIterator begin() const;
+        Iterator end();
+        ConstIterator end() const;
 
     protected:
-        QList<Figure*> _figures;
-
         virtual void paintGL();
         virtual void initializeGL() = 0;
         virtual void resizeGL(int width, int height) = 0;
+
+    private:
+        QList<Figure*> _figures;
     };
 }
 

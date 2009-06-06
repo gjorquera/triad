@@ -40,5 +40,29 @@ namespace Viewer
             delete decorator;
         }
     }
+
+    Iterator
+    Widget::begin()
+    {
+        return _figures.begin();
+    }
+
+    ConstIterator
+    Widget::begin()
+    {
+        return _figures.begin();
+    }
+
+    Iterator
+    Widget::end()
+    {
+        return _figures.end();
+    }
+
+    ConstIterator
+    Widget::end()
+    {
+        return _figures.end();
+    }
 }
 
