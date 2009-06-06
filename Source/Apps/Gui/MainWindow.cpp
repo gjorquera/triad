@@ -1,7 +1,5 @@
 #include <QFileDialog>
 #include <Euclid/Geometry/M2dFactory.h>
-#include <Viewer/Initializer.h>
-#include <Viewer/OrthoProjection.h>
 #include "MainWindow.h"
 #include "Figure/TriangleDecorator.h"
 
@@ -14,13 +12,8 @@ namespace App
         // UI setup
         setupUi(this);
 
-        Viewer::Initializer* initializer;
-        initializer = new Viewer::Initializer();
-        Viewer::Projection* projection;
-        projection = new Viewer::OrthoProjection(0.0, 10.0);
-
-        _viewerWidget = new Viewer::Widget(initializer, projection, this);
-        this->setCentralWidget(_viewerWidget);
+        _meshViewer = new MeshViewer(this);
+        this->setCentralWidget(_meshViewer);
 
         connect(actionOpenMesh, SIGNAL(triggered()), this, SLOT(openMesh()));
         connect(actionSaveMesh, SIGNAL(triggered()), this, SLOT(saveMesh()));
