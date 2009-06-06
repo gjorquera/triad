@@ -17,8 +17,6 @@ namespace Viewer
     {
     public:
         virtual ~Figure();
-
-    protected:
         virtual FigureDecorator* decorations() const = 0;
     };
 }
