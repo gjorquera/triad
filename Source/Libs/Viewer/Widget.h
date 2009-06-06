@@ -41,7 +41,7 @@ namespace Viewer
     protected:
         QList<Figure*> _figures;
 
-        void paintGL();
+        virtual void paintGL();
     };
 }
 

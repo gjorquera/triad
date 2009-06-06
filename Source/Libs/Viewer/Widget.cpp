@@ -27,7 +27,7 @@ namespace Viewer
         _figures.clear();
     }
 
-    void
+    /*virtual*/ void
     Widget::paintGL()
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
