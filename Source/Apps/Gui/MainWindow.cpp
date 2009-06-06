@@ -1,7 +1,6 @@
 #include <QFileDialog>
 #include <Euclid/Geometry/M2dFactory.h>
 #include "MainWindow.h"
-#include "Figure/TriangleDecorator.h"
 
 namespace App
 {

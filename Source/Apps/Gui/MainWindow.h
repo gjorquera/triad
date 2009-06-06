@@ -3,13 +3,12 @@
 #include <memory>
 #include <QMainWindow>
 #include <Euclid/Geometry/TriMesh.h>
-#include <Euclid/Type/DefaultKernel.h>
+#include "Kernel.h"
 #include "MeshViewer.h"
 #include "ui_MainWindow.h"
 
 namespace App
 {
-    typedef Euclid::DefaultKernel Kernel;
 
     /*!
      * The application's main window.
