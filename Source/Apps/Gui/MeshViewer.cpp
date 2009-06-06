@@ -14,6 +14,13 @@ namespace App
     }
 
     void
+    MeshViewer::set(Euclid::TriMesh<Kernel>* trimesh)
+    {
+        clear();
+        /// @todo Add figures
+    }
+
+    void
     MeshViewer::initializeGL()
     {
         glClearColor(1.0, 1.0, 1.0, 1.0);
