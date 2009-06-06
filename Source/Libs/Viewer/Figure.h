@@ -1,9 +1,8 @@
 #pragma once
 
-#include "IFigure.h"
-
 namespace Viewer
 {
+    class FigureDecorator;
 
     /*!
      * The Figure class defines a renderizable component.
@@ -15,12 +14,10 @@ namespace Viewer
     class Figure : public IFigure
     {
     public:
-        Figure();
         virtual ~Figure();
-        void render() const;
 
     protected:
-        virtual IFigure* decorate() const = 0;
+        virtual FigureDecorator* decorations() const = 0;
     };
 }
 
