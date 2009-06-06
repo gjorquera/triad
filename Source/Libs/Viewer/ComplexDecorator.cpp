@@ -25,7 +25,7 @@ namespace Viewer
     }
 
     void
-    ComplexDecorator::render() const
+    ComplexDecorator::paintGL() const
     {
         QList<FigureDecorator*>::ConstIterator i;
         for (i = _decorations.begin(); i != _decorations.end(); i++)

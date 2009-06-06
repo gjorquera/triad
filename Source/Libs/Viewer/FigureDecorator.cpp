@@ -1,3 +1,4 @@
+#include <cassert>
 #include "FigureDecorator.h"
 
 namespace Viewer
@@ -11,6 +12,13 @@ namespace Viewer
     /*virtual*/
     FigureDecorator::~FigureDecorator()
     {
+    }
+
+    const IFigure*
+    FigureDecorator::figure() const
+    {
+        assert(0 != _figure);
+        return _figure;
     }
 }
 

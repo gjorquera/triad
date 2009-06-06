@@ -25,9 +25,9 @@ namespace Viewer
         ComplexDecorator();
         virtual ~ComplexDecorator();
         void add(FigureDecorator* decoration);
-        void render() const;
+        void paintGL() const;
 
-    protected:
+    private:
         QList<FigureDecorator*> _decorations;
     };
 }

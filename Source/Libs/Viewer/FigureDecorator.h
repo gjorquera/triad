@@ -21,8 +21,9 @@ namespace Viewer
     public:
         FigureDecorator(const IFigure* figure = 0);
         virtual ~FigureDecorator();
+        const IFigure* figure() const;
 
-    protected:
+    private:
         const IFigure* _figure;
     };
 }
