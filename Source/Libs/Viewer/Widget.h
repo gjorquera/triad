@@ -42,6 +42,8 @@ namespace Viewer
         QList<Figure*> _figures;
 
         virtual void paintGL();
+        virtual void initializeGL() = 0;
+        virtual void resizeGL(int width, int height) = 0;
     };
 }
 
