@@ -1,5 +1,7 @@
 #pragma once
 
+#include "IFigure.h"
+
 namespace Viewer
 {
     class FigureDecorator;
