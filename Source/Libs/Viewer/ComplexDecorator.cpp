@@ -30,7 +30,7 @@ namespace Viewer
         QList<FigureDecorator*>::ConstIterator i;
         for (i = _decorations.begin(); i != _decorations.end(); i++)
         {
-            (*i)->render();
+            (*i)->paintGL();
         }
     }
 
