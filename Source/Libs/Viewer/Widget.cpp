@@ -41,26 +41,26 @@ namespace Viewer
         }
     }
 
-    Iterator
+    Widget::Iterator
     Widget::begin()
     {
         return _figures.begin();
     }
 
-    ConstIterator
-    Widget::begin()
+    Widget::ConstIterator
+    Widget::begin() const
     {
         return _figures.begin();
     }
 
-    Iterator
+    Widget::Iterator
     Widget::end()
     {
         return _figures.end();
     }
 
-    ConstIterator
-    Widget::end()
+    Widget::ConstIterator
+    Widget::end() const
     {
         return _figures.end();
     }
