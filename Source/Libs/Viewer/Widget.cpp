@@ -1,26 +1,18 @@
+#include "Figure.h"
+#include "FigureDecorator.h"
 #include "Widget.h"
 
 namespace Viewer
 {
 
-    Widget::Widget()
-    {
-    }
-
-    Widget::Widget(Initializer* initializer, Projection* projection,
-        QWidget* parent)
+    Widget::Widget(QWidget* parent)
         : QGLWidget(parent)
     {
-        assert(0 != initializer && 0 != projection);
-        _initializer = initializer;
-        _projection = projection;
     }
 
     /*virtual*/
     Widget::~Widget()
     {
-        delete _initializer;
-        delete _projection;
     }
 
     void
@@ -36,12 +28,6 @@ namespace Viewer
     }
 
     void
-    Widget::initializeGL()
-    {
-        _initializer->apply();
-    }
-
-    void
     Widget::paintGL()
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -49,19 +35,10 @@ namespace Viewer
         QList<Figure*>::ConstIterator i;
         for (i = _figures.begin(); i != _figures.end(); i++)
         {
-            (*i)->render();
+            FigureDecorator* decorator = (*i)->decorations();
+            decorator->paintGL();
+            delete decorator;
         }
-    }
-
-    void
-    Widget::resizeGL(int width, int height)
-    {
-        glViewport(0, 0, width, height);
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        _projection->resize(width, height);
-        _projection->apply();
-        glMatrixMode(GL_MODELVIEW);
     }
 }
 

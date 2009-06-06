@@ -3,30 +3,19 @@
 #include <cassert>
 #include <QtOpenGL>
 #include <QList>
-#include "Figure.h"
-#include "Initializer.h"
-#include "Projection.h"
 
 namespace Viewer
 {
+    class Figure;
 
     /*!
      * The Widget class inherits from \c QGLWidget to implement a custom OpenGL
      * widget viewer.
      *
      * \c QGLWidget is the default widget to display graphics through OpenGL.
-     * This class customization defines a new parent structure, so inherited
-     * classes works more like a scene manager rather than a event-driven
-     * widget.
      *
-     * This class implements the \b initializeGL, \b resizeGL and the \b paintGL
-     * \c QGLWidget methods to be able to draw using OpenGL.
-     *
-     * This widget uses two helper classes to configure the OpenGL environment:
-     * - The @ref Initializer class implements the \b apply method that is
-     *   called when the \b initializeGL method is called.
-     * - The @ref Projection class implements the \b apply method that is called
-     *   when the \b resizeGL method is called.
+     * This class implements the \b paintGL method but the \b initializeGL and
+     * the \b resizeGL must still be defined in child classes.
      *
      * This class only draws instances of the Figure class. You can \b add
      * figures as well as \b clear all the assigned figures.
@@ -44,21 +33,15 @@ namespace Viewer
         Q_OBJECT
 
     public:
-        Widget(Initializer* initializer, Projection* projection,
-            QWidget* parent = 0);
+        Widget(QWidget* parent = 0);
         virtual ~Widget();
         void add(Figure* figure);
         void clear();
 
     protected:
-        Projection* _projection;
-        Initializer* _initializer;
         QList<Figure*> _figures;
 
-        Widget();
-        void initializeGL();
         void paintGL();
-        void resizeGL(int width, int height);
     };
 }
 
