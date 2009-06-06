@@ -14,7 +14,7 @@ namespace App
     }
 
     void
-    initializeGL()
+    MeshViewer::initializeGL()
     {
         glClearColor(1.0, 1.0, 1.0, 1.0);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
@@ -26,7 +26,7 @@ namespace App
     }
 
     void
-    resizeGL(int width, int height)
+    MeshViewer::resizeGL(int width, int height)
     {
         glViewport(0, 0, width, height);
         glMatrixMode(GL_PROJECTION);
