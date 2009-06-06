@@ -15,7 +15,7 @@ namespace App
     {
     public:
         NeighborDecorator(const TriangleDecorator* figure);
-        void render() const;
+        void paintGL() const;
     };
 }
 

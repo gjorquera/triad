@@ -15,7 +15,7 @@ namespace App
     {
     public:
         SelectedDecorator(const TriangleDecorator* figure);
-        void render() const;
+        void paintGL() const;
     };
 }
 

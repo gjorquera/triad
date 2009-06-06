@@ -10,7 +10,7 @@ namespace App
     }
 
     void
-    NeighborDecorator::render() const
+    NeighborDecorator::paintGL() const
     {
         glColor3f(0.5, 0.5, 0.5);
         glBegin(GL_TRIANGLES);
