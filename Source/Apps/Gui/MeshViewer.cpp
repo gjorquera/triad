@@ -28,7 +28,7 @@ namespace App
     void
     resizeGL(int width, int height)
     {
-        glViewport(width, height);
+        glViewport(0, 0, width, height);
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         glOrtho(0, 10, 0, 10, 0, 10);
