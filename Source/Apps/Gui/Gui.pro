@@ -12,7 +12,8 @@ SOURCES += Main.cpp \
     Decorator/NeighborDecorator.cpp \
     Decorator/SelectedDecorator.cpp \
     Figure/TriangleDecorator.cpp
-HEADERS += MainWindow.h \
+HEADERS += Kernel.h \
+    MainWindow.h \
     MeshViewer.h \
     Decorator/NeighborDecorator.h \
     Decorator/SelectedDecorator.h \
