@@ -5,6 +5,9 @@
 namespace App
 {
 
+    /*!
+     * The Kernel structure defines the custom Euclid type templates.
+     */
     struct Kernel : public Euclid::DefaultKernel
     {
     };
