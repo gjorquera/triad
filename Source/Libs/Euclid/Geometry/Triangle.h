@@ -16,6 +16,7 @@ namespace Euclid
     {
     public:
 
+        typedef typename Kernel::Vector       Vector;
         typedef typename Kernel::TriangleInfo Info;
 
         Triangle(Vertex<Kernel> *v1, Vertex<Kernel> *v2, Vertex<Kernel> *v3)
@@ -39,6 +40,15 @@ namespace Euclid
         {
             assert(0 <= i && i < 3 && 0 != vertex);
             _vertices[i] = const_cast<Vertex<Kernel>*>(vertex);
+        }
+
+        const Vector& edge(const int i) const
+        {
+            assert(0 <= i && i < 3);
+            Vector v;
+            v.setInitial(vertex(i)->point());
+            v.setTerminal(vertex((i+1)%3)->point());
+            return v;
         }
 
         const Triangle<Kernel> *neighbor(const int i) const

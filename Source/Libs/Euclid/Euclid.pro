@@ -4,7 +4,9 @@ DESTDIR = ../../../Static
 
 include(../../Workbench.pri)
 
-HEADERS += Geometry/M2dFormatIO.h \
+HEADERS += Algorithm/Criterion.h \
+    Algorithm/LongestEdgeCriterion.h \
+    Geometry/M2dFormatIO.h \
     Geometry/Triangle.h \
     Geometry/TriMesh.h \
     Geometry/TriMeshIO.h \
