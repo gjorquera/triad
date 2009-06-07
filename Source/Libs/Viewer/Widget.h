@@ -20,10 +20,6 @@ namespace Viewer
      *
      * The \b clear method does not delete the actual figures.
      *
-     * @todo Maybe do a Camera abstraction. If I make a Camera abstraction, I
-     * can change back the description to "viewer" instead of "mesh viewer".
-     * @todo Think of a way to define a zoom value and implement a method to see
-     * all the poligons in the window "maximized".
      * @see http://doc.trolltech.com/4.5/qglwidget.html
      */
     class Widget : public QGLWidget
