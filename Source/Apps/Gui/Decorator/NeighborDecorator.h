@@ -5,7 +5,7 @@
 namespace App
 {
 
-    class TriangleDecorator;
+    class TriangleFigure;
 
     /*!
      * The NeighborDecorator class implements a decorator for neighbor triangles
@@ -14,7 +14,7 @@ namespace App
     class NeighborDecorator : public Viewer::FigureDecorator
     {
     public:
-        NeighborDecorator(const TriangleDecorator* figure);
+        NeighborDecorator(const TriangleFigure* figure);
         void paintGL() const;
     };
 }

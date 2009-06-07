@@ -6,17 +6,18 @@
 namespace App
 {
 
-    TriangleFigure::TriangleFigure(Euclid::Triangle<Kernel>* triangle)
+    TriangleFigure::TriangleFigure(const Euclid::Triangle<Kernel>* triangle)
     {
         _triangle = triangle;
     }
 
-    void paintGL() const
+    void
+    TriangleFigure::paintGL() const
     {
         /// @todo implement
     }
 
-    Viewer::IFigure*
+    Viewer::FigureDecorator*
     TriangleFigure::decorations() const
     {
         Viewer::ComplexDecorator *decorator = new Viewer::ComplexDecorator;

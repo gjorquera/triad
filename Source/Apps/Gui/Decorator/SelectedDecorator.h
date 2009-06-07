@@ -5,7 +5,7 @@
 namespace App
 {
 
-    class TriangleDecorator;
+    class TriangleFigure;
 
     /*!
      * The SelectedDecorator class implements a decorator for selected
@@ -14,7 +14,7 @@ namespace App
     class SelectedDecorator : public Viewer::FigureDecorator
     {
     public:
-        SelectedDecorator(const TriangleDecorator* figure);
+        SelectedDecorator(const TriangleFigure* figure);
         void paintGL() const;
     };
 }
