@@ -6,6 +6,7 @@ namespace App
 {
 
     bool MainWindow::viewNeighbors;
+    bool MainWindow::viewLepp;
 
     MainWindow::MainWindow(QWidget* parent)
         : QMainWindow(parent), Ui::MainWindow()
@@ -13,6 +14,7 @@ namespace App
         setupUi(this);
 
         MainWindow::viewNeighbors = true;
+        MainWindow::viewLepp = true;
         _trimesh = new Euclid::TriMesh<Kernel>;
         _meshViewer = new MeshViewer(this);
         this->setCentralWidget(_meshViewer);
@@ -27,6 +29,8 @@ namespace App
             _meshViewer, SLOT(clearSelection()));
         connect(actionNeighbors, SIGNAL(toggled(bool)),
             this, SLOT(setViewNeighbors(bool)));
+        connect(actionLepp, SIGNAL(toggled(bool)),
+            this, SLOT(setViewLepp(bool)));
     }
 
     MainWindow::~MainWindow()
@@ -66,6 +70,13 @@ namespace App
     MainWindow::setViewNeighbors(bool viewNeighbors)
     {
         MainWindow::viewNeighbors = viewNeighbors;
+        _meshViewer->updateGL();
+    }
+
+    void
+    MainWindow::setViewLepp(bool viewLepp)
+    {
+        MainWindow::viewLepp = viewLepp;
         _meshViewer->updateGL();
     }
 }

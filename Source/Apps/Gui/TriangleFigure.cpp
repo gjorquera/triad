@@ -54,7 +54,10 @@ namespace App
                 }
             }
         }
-        //decorator->add(new LeppDecorator(this));
+        if (MainWindow::viewLepp
+            && _triangle->info().lepp) {
+            decorator->add(new LeppDecorator(this));
+        }
         decorator->add(new NormalDecorator(this));
         return decorator;
     }

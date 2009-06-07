@@ -19,6 +19,7 @@ namespace App
 
     public:
         static bool viewNeighbors;
+        static bool viewLepp;
 
         MainWindow(QWidget* parent = 0);
         ~MainWindow();
@@ -27,6 +28,7 @@ namespace App
         void openMesh();
         void saveMesh();
         void setViewNeighbors(bool viewNeighbor);
+        void setViewLepp(bool viewLepp);
 
     private:
         Euclid::TriMesh<Kernel>* _trimesh;
