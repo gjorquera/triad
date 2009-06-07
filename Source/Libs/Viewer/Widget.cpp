@@ -8,7 +8,7 @@ namespace Viewer
     Widget::Widget(QWidget* parent)
         : QGLWidget(parent)
     {
-        _picking = false;
+        _picking = true;
     }
 
     /*virtual*/
