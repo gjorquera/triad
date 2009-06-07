@@ -13,7 +13,6 @@ namespace App
     NormalDecorator::paintGL() const
     {
         glPushMatrix();
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         glColor3f(1.0, 1.0, 1.0);
         glTranslatef(0.0, 0.0, -4.0);
         figure()->paintGL();
@@ -24,6 +23,7 @@ namespace App
         glTranslatef(0.0, 0.0, -2.0);
         glColor3f(0.0, 0.0, 0.0);
         figure()->paintGL();
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         glPopMatrix();
     }
 }

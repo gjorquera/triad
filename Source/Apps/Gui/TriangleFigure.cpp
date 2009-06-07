@@ -1,5 +1,6 @@
 #include <Viewer/ComplexDecorator.h>
 #include "TriangleFigure.h"
+#include "Decorator/LeppDecorator.h"
 #include "Decorator/NeighborDecorator.h"
 #include "Decorator/NormalDecorator.h"
 #include "Decorator/SelectedDecorator.h"
@@ -28,6 +29,7 @@ namespace App
     TriangleFigure::decorations() const
     {
         Viewer::ComplexDecorator *decorator = new Viewer::ComplexDecorator;
+        //decorator->add(new LeppDecorator(this));
         //decorator->add(new SelectedDecorator(this));
         //decorator->add(new NeighborDecorator(this));
         decorator->add(new NormalDecorator(this));
