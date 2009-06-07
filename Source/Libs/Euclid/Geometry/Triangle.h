@@ -23,6 +23,7 @@ namespace Euclid
             _vertices[1] = v2;
             _vertices[2] = v3;
             for (int i=0; i<3; i++) _neighbors[i] = 0;
+            _info = Info();
         }
 
         const Vertex<Kernel> *vertex(const int i) const
@@ -47,6 +48,11 @@ namespace Euclid
         {
             assert(0 != neighbor);
             _neighbors[neighborIndex(neighbor)] = neighbor;
+        }
+
+        Info& info()
+        {
+            return _info;
         }
 
         const Info& info() const
