@@ -43,13 +43,18 @@ namespace Viewer
         Iterator end();
         ConstIterator end() const;
 
+    public slots:
+        void setPicking(bool picking);
+
     protected:
         virtual void paintGL();
+        virtual void mouseReleaseEvent(QMouseEvent* event);
         virtual void initializeGL() = 0;
         virtual void resizeGL(int width, int height) = 0;
 
     private:
         QList<Figure*> _figures;
+        bool _picking;
     };
 }
 

@@ -8,6 +8,7 @@ namespace Viewer
     Widget::Widget(QWidget* parent)
         : QGLWidget(parent)
     {
+        _picking = false;
     }
 
     /*virtual*/
@@ -41,6 +42,62 @@ namespace Viewer
         }
     }
 
+    /*virtual*/ void
+    Widget::mouseReleaseEvent(QMouseEvent* event)
+    {
+        if (! _picking) return;
+
+        unsigned int selectBuf[512];
+        float cursorX = event->pos().x();
+        float cursorY = event->pos().y();
+        int viewport[4];
+
+        glSelectBuffer(512, selectBuf);
+        glRenderMode(GL_SELECT);
+
+        glMatrixMode(GL_PROJECTION);
+        glPushMatrix();
+        glLoadIdentity();
+
+        resizeGL(geometry().x(), geometry().y());
+        glGetIntegerv(GL_VIEWPORT, viewport);
+        gluPickMatrix(cursorX, viewport[3] - cursorY, 3, 3, viewport);
+        glMatrixMode(GL_MODELVIEW);
+
+        updateGL();
+
+        glMatrixMode(GL_PROJECTION);
+        glPopMatrix();
+        glMatrixMode(GL_MODELVIEW);
+
+        int hits = glRenderMode(GL_RENDER);
+
+        if (hits == 0) return;
+
+        int numberOfNames = 0;
+        unsigned int names, *ptr, minZ, *ptrNames = 0;
+
+        ptr = selectBuf;
+        minZ = 0xffffffff;
+        for (int i = 0; i < hits; i++)
+        {
+            names = *ptr;
+            ptr++;
+            if (*ptr < minZ) {
+                numberOfNames = names;
+                minZ = *ptr;
+                ptrNames = ptr + 2;
+            }
+            ptr += names + 2;
+        }
+        ptr = ptrNames;
+        for (int j = 0; j < numberOfNames; j++, ptr++)
+        {
+            Figure* figure = reinterpret_cast<Figure*>(*ptr);
+            figure->clicked();
+        }
+    }
+
     Widget::Iterator
     Widget::begin()
     {
@@ -63,6 +120,12 @@ namespace Viewer
     Widget::end() const
     {
         return _figures.end();
+    }
+
+    void
+    Widget::setPicking(bool picking)
+    {
+        _picking = picking;
     }
 }
 
