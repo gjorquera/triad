@@ -49,8 +49,10 @@ namespace Viewer
     protected:
         virtual void paintGL();
         virtual void mouseReleaseEvent(QMouseEvent* event);
+        virtual void resizeGL(int width, int height);
         virtual void initializeGL() = 0;
-        virtual void resizeGL(int width, int height) = 0;
+        virtual void viewportGL(int width, int height) = 0;
+        virtual void projectionGL(int width, int height) = 0;
 
     private:
         int _lastId;

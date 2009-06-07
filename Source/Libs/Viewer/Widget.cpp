@@ -37,10 +37,22 @@ namespace Viewer
         QMap<int,Figure*>::ConstIterator i;
         for (i = _figures.begin(); i != _figures.end(); i++)
         {
+            glPushName(i.key());
             FigureDecorator* decorator = i.value()->decorations();
             decorator->paintGL();
             delete decorator;
+            glPopName();
         }
+    }
+
+    /*virtual*/ void
+    Widget::resizeGL(int width, int height)
+    {
+        viewportGL(width, height);
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        projectionGL(width, height);
+        glMatrixMode(GL_MODELVIEW);
     }
 
     /*virtual*/ void
@@ -60,9 +72,9 @@ namespace Viewer
         glPushMatrix();
         glLoadIdentity();
 
-        resizeGL(geometry().x(), geometry().y());
         glGetIntegerv(GL_VIEWPORT, viewport);
         gluPickMatrix(cursorX, viewport[3] - cursorY, 3, 3, viewport);
+        projectionGL(geometry().x(), geometry().y());
         glMatrixMode(GL_MODELVIEW);
 
         updateGL();
@@ -94,9 +106,11 @@ namespace Viewer
         ptr = ptrNames;
         for (int j = 0; j < numberOfNames; j++, ptr++)
         {
-            Figure* figure = reinterpret_cast<Figure*>(*ptr);
-            figure->clicked();
+            int key = *ptr;
+            _figures[key]->clicked();
         }
+
+        updateGL();
     }
 
     Widget::Iterator

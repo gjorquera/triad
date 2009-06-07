@@ -26,7 +26,8 @@ namespace App
 
     protected:
         void initializeGL();
-        void resizeGL(int with, int height);
+        void viewportGL(int width, int height);
+        void projectionGL(int width, int height);
     };
 }
 

@@ -39,13 +39,15 @@ namespace App
     }
 
     void
-    MeshViewer::resizeGL(int width, int height)
+    MeshViewer::viewportGL(int width, int height)
     {
         glViewport(0, 0, width, height);
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
+    }
+
+    void
+    MeshViewer::projectionGL(int, int)
+    {
         glOrtho(0, 10, 0, 10, 0, 10);
-        glMatrixMode(GL_MODELVIEW);
     }
 }
 
