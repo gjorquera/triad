@@ -17,6 +17,7 @@ namespace Viewer
     {
     public:
         virtual ~Figure();
+        virtual void clicked() = 0;
         virtual FigureDecorator* decorations() const = 0;
     };
 }
