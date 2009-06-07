@@ -42,12 +42,12 @@ namespace Euclid
             _vertices[i] = const_cast<Vertex<Kernel>*>(vertex);
         }
 
-        const Vector& edge(const int i) const
+        const Vector* edge(const int i) const
         {
             assert(0 <= i && i < 3);
-            Vector v;
-            v.setInitial(vertex(i)->point());
-            v.setTerminal(vertex((i+1)%3)->point());
+            Vector* v = new Vector;
+            v->setInitial(vertex(i)->point());
+            v->setTerminal(vertex((i+1)%3)->point());
             return v;
         }
 

@@ -9,36 +9,38 @@ namespace Euclid
      * Longest edge criteria.
      */
     template <class Kernel>
-    class LongestEdgeCriterion : public Criterion
+    class LongestEdgeCriterion : public Criterion<Kernel>
     {
     public:
-        LongestEdgeCriterion(T maxLength = 1.0)
-            : Criterion()
+        typedef typename Kernel::T      T;
+        typedef typename Kernel::Vector Vector;
+
+        LongestEdgeCriterion(T maxLength = 1.0, bool biggest = true)
+            : Criterion<Kernel>()
         {
             _maxLength = maxLength;
+            _biggest = biggest;
         }
 
-        bool test(Triangle<Kernel>* triangle)
+        bool test(Triangle<Kernel>* triangle) const
         {
+            bool result = false;
             for (int i=0; i<3; i++)
             {
-                const Vector v = triangle->edge(i);
-                if (_maxLength > 0) {
-                    if (v.distance() > _maxLength) {
-                        return true;
-                    }
-                } else {
-                    if (v.distance() < -1.0*_maxLength) {
-                        return true;
-                    }
+                const Vector* v = triangle->edge(i);
+                if (_biggest && v->distance() > _maxLength
+                    || ! _biggest && v->distance() < _maxLength) {
+                    result = true;
                 }
+                delete v;
             }
 
-            return false;
+            return result;
         }
 
     private:
         T _maxLength;
+        bool _biggest;
     };
 }
 

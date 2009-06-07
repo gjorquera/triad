@@ -27,6 +27,7 @@ namespace App
     protected slots:
         void openMesh();
         void saveMesh();
+        void selectByLongestEdge();
         void setViewNeighbors(bool viewNeighbor);
         void setViewLepp(bool viewLepp);
 

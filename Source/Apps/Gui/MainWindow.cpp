@@ -1,4 +1,5 @@
 #include <QFileDialog>
+#include <Euclid/Algorithm/LongestEdgeCriterion.h>
 #include <Euclid/Geometry/M2dFormatIO.h>
 #include "MainWindow.h"
 
@@ -25,6 +26,8 @@ namespace App
             this, SLOT(saveMesh()));
         connect(actionManualSelection, SIGNAL(toggled(bool)),
             _meshViewer, SLOT(setPicking(bool)));
+        connect(actionByLongestEdge, SIGNAL(triggered()),
+            this, SLOT(selectByLongestEdge()));
         connect(actionClearSelection, SIGNAL(triggered()),
             _meshViewer, SLOT(clearSelection()));
         connect(actionNeighbors, SIGNAL(toggled(bool)),
@@ -64,6 +67,14 @@ namespace App
             Euclid::M2dFormatIO<Kernel> meshSaver(filename, _trimesh);
             meshSaver.save();
         }
+    }
+
+    void
+    MainWindow::selectByLongestEdge()
+    {
+        Euclid::LongestEdgeCriterion<Kernel> c(2.0);
+        _trimesh->select(c);
+        _meshViewer->updateGL();
     }
 
     void

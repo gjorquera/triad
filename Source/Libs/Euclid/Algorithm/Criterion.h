@@ -12,10 +12,6 @@ namespace Euclid
     class Criterion
     {
     public:
-        typedef typename Kernel::T      T;
-        typedef typename Kernel::Point  Point;
-        typedef typename Kernel::Vector Vector;
-
         Criterion()
         {
         }
