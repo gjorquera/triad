@@ -12,10 +12,11 @@ namespace App
     void
     SelectedDecorator::paintGL() const
     {
-        glColor3f(1.0, 0.0, 0.0);
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        glColor3f(1.0, 0.6, 0.4);
+        glPushMatrix();
+        glTranslatef(0.0, 0.0, -2.0);
         figure()->paintGL();
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        glPopMatrix();
     }
 }
 
