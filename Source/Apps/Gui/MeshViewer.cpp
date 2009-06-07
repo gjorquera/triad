@@ -44,7 +44,7 @@ namespace App
         glViewport(0, 0, width, height);
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        glOrtho(0, 10, 0, 10, 0, 10);
+        glOrtho(0, 10, 0, 10, 0, -10);
         glMatrixMode(GL_MODELVIEW);
     }
 }

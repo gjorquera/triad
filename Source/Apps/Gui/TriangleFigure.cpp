@@ -27,10 +27,10 @@ namespace App
     Viewer::FigureDecorator*
     TriangleFigure::decorations() const
     {
-        return new NormalDecorator(this);
         Viewer::ComplexDecorator *decorator = new Viewer::ComplexDecorator;
         decorator->add(new SelectedDecorator(this));
         decorator->add(new NeighborDecorator(this));
+        decorator->add(new NormalDecorator(this));
         return decorator;
     }
 }
