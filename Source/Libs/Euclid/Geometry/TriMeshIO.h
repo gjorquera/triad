@@ -12,6 +12,8 @@ namespace Euclid
      *
      * This class defines the \b load and \b save method that must be
      * implemented by concrete file format classes to load and save meshes.
+     *
+     * @todo Convert std::string to QString
      */
     template <class Kernel>
     class TriMeshIO

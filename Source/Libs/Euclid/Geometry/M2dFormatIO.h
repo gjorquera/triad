@@ -14,6 +14,8 @@ namespace Euclid
 
     /*!
      * TriMesh loader and saver for the M2D file format.
+     *
+     * @todo Convert std::string to QString
      */
     template <class Kernel>
     class M2dFormatIO : public TriMeshIO<Kernel>
