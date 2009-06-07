@@ -13,7 +13,7 @@ namespace Euclid
 {
 
     /*!
-     * TriMesh loader from the M2D file format.
+     * TriMesh loader and saver for the M2D file format.
      */
     template <class Kernel>
     class M2dFormatIO : public TriMeshIO<Kernel>
