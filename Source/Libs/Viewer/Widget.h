@@ -2,7 +2,7 @@
 
 #include <cassert>
 #include <QtOpenGL>
-#include <QList>
+#include <QMap>
 
 namespace Viewer
 {
@@ -53,7 +53,8 @@ namespace Viewer
         virtual void resizeGL(int width, int height) = 0;
 
     private:
-        QList<Figure*> _figures;
+        int _lastId;
+        QMap<int,Figure*> _figures;
         bool _picking;
     };
 }

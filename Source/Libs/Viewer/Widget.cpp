@@ -8,6 +8,7 @@ namespace Viewer
     Widget::Widget(QWidget* parent)
         : QGLWidget(parent)
     {
+        _lastId = 0;
         _picking = true;
     }
 
@@ -19,7 +20,7 @@ namespace Viewer
     void
     Widget::add(Figure* figure)
     {
-        _figures.append(figure);
+        _figures[++_lastId] = figure;
     }
 
     void
@@ -33,10 +34,10 @@ namespace Viewer
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glLoadIdentity();
-        QList<Figure*>::ConstIterator i;
+        QMap<int,Figure*>::ConstIterator i;
         for (i = _figures.begin(); i != _figures.end(); i++)
         {
-            FigureDecorator* decorator = (*i)->decorations();
+            FigureDecorator* decorator = i.value()->decorations();
             decorator->paintGL();
             delete decorator;
         }
@@ -101,25 +102,25 @@ namespace Viewer
     Widget::Iterator
     Widget::begin()
     {
-        return _figures.begin();
+        return _figures.values().begin();
     }
 
     Widget::ConstIterator
     Widget::begin() const
     {
-        return _figures.begin();
+        return _figures.values().begin();
     }
 
     Widget::Iterator
     Widget::end()
     {
-        return _figures.end();
+        return _figures.values().end();
     }
 
     Widget::ConstIterator
     Widget::end() const
     {
-        return _figures.end();
+        return _figures.values().end();
     }
 
     void
