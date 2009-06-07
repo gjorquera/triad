@@ -8,12 +8,12 @@ namespace App
     /*!
      * The information hold by every triangle.
      */
-    struct TriangleInfo
+    struct TriangleInfoStruct
     {
         bool selected;
         bool lepp;
 
-        TriangleInfo()
+        TriangleInfoStruct()
         {
             selected = false;
             lepp = false;
@@ -25,7 +25,7 @@ namespace App
      */
     struct Kernel : public Euclid::DefaultKernel
     {
-        typedef TriangleInfo TriangleInfo;
+        typedef TriangleInfoStruct TriangleInfo;
     };
 }
 
