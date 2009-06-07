@@ -41,6 +41,8 @@ namespace App
     void
     MeshViewer::paintGL()
     {
+        /// @todo Set lepp = false
+        /// @todo Calculate lepp based on selected triangles
         Viewer::Widget::paintGL();
     }
 
