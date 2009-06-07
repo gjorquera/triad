@@ -12,6 +12,8 @@ namespace Euclid
      *
      * This class holds vertices as well as triangles. Deleting this class will
      * delete all added vertices and triangles.
+     *
+     * @todo Maybe represent triangles and vertices with QMap
      */
     template <class Kernel>
     class TriMesh
