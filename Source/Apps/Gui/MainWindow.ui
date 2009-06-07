@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,122 +10,152 @@
     <height>600</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Triad: Triangle Mesh Refinment</string>
   </property>
-  <widget class="QWidget" name="centralwidget" />
-  <widget class="QMenuBar" name="menubar" >
-   <property name="geometry" >
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>29</height>
+     <height>26</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile" >
-    <property name="title" >
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="actionOpenMesh" />
-    <addaction name="actionSaveMesh" />
-    <addaction name="separator" />
-    <addaction name="actionExportImage" />
-    <addaction name="separator" />
-    <addaction name="actionQuit" />
+    <addaction name="actionOpenMesh"/>
+    <addaction name="actionSaveMesh"/>
+    <addaction name="separator"/>
+    <addaction name="actionExportImage"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
    </widget>
-   <widget class="QMenu" name="menuSelect" >
-    <property name="title" >
+   <widget class="QMenu" name="menuSelect">
+    <property name="title">
      <string>&amp;Select</string>
     </property>
-    <addaction name="actionOnlyOne" />
-    <addaction name="actionManualSelection" />
-    <addaction name="separator" />
-    <addaction name="actionByLongestEdge" />
-    <addaction name="actionByTriangleArea" />
-    <addaction name="actionByPercentage" />
-    <addaction name="separator" />
-    <addaction name="actionClearSelection" />
+    <addaction name="actionOnlyOne"/>
+    <addaction name="actionManualSelection"/>
+    <addaction name="separator"/>
+    <addaction name="actionByLongestEdge"/>
+    <addaction name="actionByTriangleArea"/>
+    <addaction name="actionByPercentage"/>
+    <addaction name="separator"/>
+    <addaction name="actionClearSelection"/>
    </widget>
-   <addaction name="menuFile" />
-   <addaction name="menuSelect" />
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="actionNeighbors"/>
+    <addaction name="actionLepp"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuSelect"/>
+   <addaction name="menuView"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar" />
-  <action name="actionOpenMesh" >
-   <property name="text" >
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpenMesh">
+   <property name="text">
     <string>&amp;Open Mesh</string>
    </property>
-   <property name="toolTip" >
+   <property name="toolTip">
     <string>Opens a saved mesh</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="actionSaveMesh" >
-   <property name="text" >
+  <action name="actionSaveMesh">
+   <property name="text">
     <string>&amp;Save Mesh</string>
    </property>
-   <property name="toolTip" >
+   <property name="toolTip">
     <string>Save a refined mesh</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="actionExportImage" >
-   <property name="text" >
+  <action name="actionExportImage">
+   <property name="text">
     <string>Export &amp;Image</string>
    </property>
-   <property name="toolTip" >
+   <property name="toolTip">
     <string>Export image</string>
    </property>
   </action>
-  <action name="actionQuit" >
-   <property name="text" >
+  <action name="actionQuit">
+   <property name="text">
     <string>&amp;Quit</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="actionOnlyOne" >
-   <property name="checkable" >
+  <action name="actionOnlyOne">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Only One</string>
    </property>
   </action>
-  <action name="actionByLongestEdge" >
-   <property name="text" >
+  <action name="actionByLongestEdge">
+   <property name="text">
     <string>By &amp;Longest Edge</string>
    </property>
   </action>
-  <action name="actionByTriangleArea" >
-   <property name="text" >
+  <action name="actionByTriangleArea">
+   <property name="text">
     <string>By &amp;Triangle Area</string>
    </property>
   </action>
-  <action name="actionClearSelection" >
-   <property name="text" >
+  <action name="actionClearSelection">
+   <property name="text">
     <string>&amp;Clear Selection</string>
    </property>
   </action>
-  <action name="actionManualSelection" >
-   <property name="checkable" >
+  <action name="actionManualSelection">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="checked" >
+   <property name="checked">
     <bool>true</bool>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Manual Selection</string>
    </property>
   </action>
-  <action name="actionByPercentage" >
-   <property name="text" >
+  <action name="actionByPercentage">
+   <property name="text">
     <string>By &amp;Percentage</string>
+   </property>
+  </action>
+  <action name="actionNeighbors">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Neighbors</string>
+   </property>
+  </action>
+  <action name="actionLepp">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Lepp</string>
    </property>
   </action>
  </widget>
@@ -136,11 +167,11 @@
    <receiver>MainWindow</receiver>
    <slot>close()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
     </hint>
