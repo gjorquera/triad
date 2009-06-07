@@ -14,7 +14,8 @@ SOURCES += Main.cpp \
     Decorator/LeppDecorator.cpp \
     Decorator/NeighborDecorator.cpp \
     Decorator/NormalDecorator.cpp \
-    Decorator/SelectedDecorator.cpp
+    Decorator/SelectedDecorator.cpp \
+    Dialog/LongestEdgeDialog.cpp
 HEADERS += Kernel.h \
     MainWindow.h \
     MeshViewer.h \
@@ -23,6 +24,8 @@ HEADERS += Kernel.h \
     Decorator/LeppDecorator.h \
     Decorator/NeighborDecorator.h \
     Decorator/NormalDecorator.h \
-    Decorator/SelectedDecorator.h
-FORMS += MainWindow.ui
+    Decorator/SelectedDecorator.h \
+    Dialog/LongestEdgeDialog.h
+FORMS += MainWindow.ui \
+    Dialog/LongestEdgeDialog.ui
 

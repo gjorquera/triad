@@ -2,6 +2,7 @@
 #include <Euclid/Algorithm/LongestEdgeCriterion.h>
 #include <Euclid/Geometry/M2dFormatIO.h>
 #include "MainWindow.h"
+#include "Dialog/LongestEdgeDialog.h"
 
 namespace App
 {
@@ -13,6 +14,8 @@ namespace App
         : QMainWindow(parent), Ui::MainWindow()
     {
         setupUi(this);
+
+        _longestEdgeDialog = new LongestEdgeDialog(this);
 
         MainWindow::viewNeighbors = true;
         MainWindow::viewLepp = true;
@@ -72,9 +75,13 @@ namespace App
     void
     MainWindow::selectByLongestEdge()
     {
-        Euclid::LongestEdgeCriterion<Kernel> c(2.0);
-        _trimesh->select(c);
-        _meshViewer->updateGL();
+        if (_longestEdgeDialog->exec()) {
+            float max = _longestEdgeDialog->dsbMaximum->value();
+            bool biggest = _longestEdgeDialog->rbtBigger->isChecked();
+            Euclid::LongestEdgeCriterion<Kernel> c(max, biggest);
+            _trimesh->select(c);
+            _meshViewer->updateGL();
+        }
     }
 
     void

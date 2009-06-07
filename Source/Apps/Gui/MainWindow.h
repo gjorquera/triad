@@ -10,6 +10,8 @@
 namespace App
 {
 
+    class LongestEdgeDialog;
+
     /*!
      * The application's main window.
      */
@@ -34,6 +36,7 @@ namespace App
     private:
         TriMesh* _trimesh;
         MeshViewer* _meshViewer;
+        LongestEdgeDialog* _longestEdgeDialog;
     };
 
 }
