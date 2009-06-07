@@ -38,8 +38,14 @@ namespace App
         if (_triangle->info().selected) {
             decorator->add(new SelectedDecorator(this));
         }
+        for (int i=0; i<3; i++)
+        {
+            const Euclid::Triangle<Kernel>* t = _triangle->neighbor(i);
+            if (0 != t && t->info().selected) {
+                decorator->add(new NeighborDecorator(this));
+            }
+        }
         //decorator->add(new LeppDecorator(this));
-        //decorator->add(new NeighborDecorator(this));
         decorator->add(new NormalDecorator(this));
         return decorator;
     }
