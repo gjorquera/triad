@@ -1,35 +1,47 @@
 #pragma once
 
-#include <string>
+#include <cassert>
+#include <QString>
 #include "TriMesh.h"
 
 namespace Euclid
 {
 
     /*!
-     * TriMesh factory.
+     * TriMesh input output class.
+     *
+     * This class defines the \b load and \b save method that must be
+     * implemented by concrete file format classes to load and save meshes.
      */
     template <class Kernel>
-    class TriMeshFactory
+    class TriMeshIO
     {
     public:
-        TriMeshFactory(std::string filename)
+        TriMeshIO(QString& filename, TriMesh<Kernel>* trimesh)
         {
+            assert(trimesh != 0);
             _filename = filename;
+            _trimesh = trimesh;
         }
 
-        virtual ~TriMeshFactory()
+        virtual ~TriMeshIO()
         {
         }
 
-        TriMesh<Kernel>* load()
-        {
-            TriMesh<Kernel>* trimesh = factoryMethod(_filename);
-            return trimesh;
-        }
+        virtual void load() = 0;
+
+        virtual void save() = 0;
 
     protected:
-        virtual TriMesh<Kernel>* factoryMethod(std::string &filename) = 0;
+        QString& filename()
+        {
+            return _filename;
+        }
+
+        TriMesh<Kernel>* trimesh()
+        {
+            return _trimesh;
+        }
 
         static void trimComments(std::string &line, const std::string &comment)
         {
@@ -53,7 +65,8 @@ namespace Euclid
         }
 
     private:
-        std::string _filename;
+        QString _filename;
+        TriMesh<Kernel>* _trimesh;
     };
 }
 

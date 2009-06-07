@@ -4,7 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include "TriMesh.h"
-#include "TriMeshFactory.h"
+#include "TriMeshIO.h"
 #include "../Geometry/Triangle.h"
 #include "../Geometry/Vertex.h"
 #include "../Type/Point.h"
@@ -16,27 +16,27 @@ namespace Euclid
      * TriMesh loader from the M2D file format.
      */
     template <class Kernel>
-    class M2dFactory : public TriMeshFactory<Kernel>
+    class M2dFormatIO : public TriMeshIO<Kernel>
     {
     public:
-        M2dFactory(std::string filename)
-            : TriMeshFactory<Kernel>(filename)
+        M2dFormatIO(QString& filename, TriMesh<Kernel>* trimesh)
+            : TriMeshIO<Kernel>(filename, trimesh)
         {
         }
 
-        ~M2dFactory()
+        ~M2dFormatIO()
         {
         }
 
-    protected:
-        TriMesh<Kernel>* factoryMethod(std::string &filename)
+        void load()
         {
             QMap<int,Triangle<Kernel>*> triangles;
             QMap<int,Vertex<Kernel>*> vertices;
 
-            TriMesh<Kernel> *trimesh = new TriMesh<Kernel>;
+            TriMesh<Kernel> *trimesh = TriMeshIO<Kernel>::trimesh();
 
-            std::ifstream fin(filename.c_str());
+            QString filename  = TriMeshIO<Kernel>::filename();
+            std::ifstream fin(filename.toStdString().c_str());
 
             std::string line;
             while (std::getline(fin, line))
@@ -95,8 +95,11 @@ namespace Euclid
                     std::cout << "\t '" << line << "'" << std::endl;
                 }
             }
+        }
 
-            return trimesh;
+        void save()
+        {
+            /// @todo implement save
         }
     };
 }

@@ -1,5 +1,5 @@
 #include <QFileDialog>
-#include <Euclid/Geometry/M2dFactory.h>
+#include <Euclid/Geometry/M2dFormatIO.h>
 #include "MainWindow.h"
 
 namespace App
@@ -10,7 +10,7 @@ namespace App
     {
         setupUi(this);
 
-        _trimesh = 0;
+        _trimesh = new Euclid::TriMesh<Kernel>;
         _meshViewer = new MeshViewer(this);
         this->setCentralWidget(_meshViewer);
 
@@ -33,9 +33,10 @@ namespace App
             tr("Open Mesh File"), QDir::currentPath(), tr("M2D File (*.m2d)"));
 
         if (0 != filename) {
-            if (0 != _trimesh) delete _trimesh;
-            Euclid::M2dFactory<Kernel> m2dFactory(filename.toStdString());
-            _trimesh = m2dFactory.load();
+            delete _trimesh;
+            _trimesh = new Euclid::TriMesh<Kernel>;
+            Euclid::M2dFormatIO<Kernel> meshLoader(filename, _trimesh);
+            meshLoader.load();
             _meshViewer->set(_trimesh);
         }
 
@@ -49,10 +50,9 @@ namespace App
             tr("Save Mesh File"), QDir::currentPath(), tr("M2D File (*.m2d)"));
 
         if (0 != filename) {
-            /// @todo Save mesh.
+            Euclid::M2dFormatIO<Kernel> meshSaver(filename, _trimesh);
+            meshSaver.save();
         }
-
-        _meshViewer->updateGL();
     }
 }
 
