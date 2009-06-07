@@ -13,14 +13,9 @@ namespace App
     SelectedDecorator::paintGL() const
     {
         glColor3f(1.0, 0.0, 0.0);
-        glPushMatrix();
-        glTranslatef(0.0, 0.0, 4.0);
-        glLineWidth(2.0);
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         figure()->paintGL();
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-        glLineWidth(1.0);
-        glPopMatrix();
     }
 }
 
