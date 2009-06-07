@@ -18,6 +18,7 @@ namespace App
     {
     public:
         TriangleFigure(const Euclid::Triangle<Kernel>* triangle);
+        void paintGL() const;
         Viewer::FigureDecorator* decorations() const;
 
     private:

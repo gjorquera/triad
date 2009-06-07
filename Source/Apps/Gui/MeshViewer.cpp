@@ -1,4 +1,5 @@
 #include "MeshViewer.h"
+#include "TriangleFigure.h"
 
 namespace App
 {
@@ -17,7 +18,12 @@ namespace App
     MeshViewer::set(Euclid::TriMesh<Kernel>* trimesh)
     {
         clear();
-        /// @todo Add figures
+        Euclid::TriMesh<Kernel>::ConstIterator i;
+        for (i = trimesh->begin(); i != trimesh->end(); i++)
+        {
+            TriangleFigure* figure = new TriangleFigure(*i);
+            add(figure);
+        }
     }
 
     void

@@ -11,6 +11,11 @@ namespace App
         _triangle = triangle;
     }
 
+    void paintGL() const
+    {
+        /// @todo implement
+    }
+
     Viewer::IFigure*
     TriangleFigure::decorations() const
     {
