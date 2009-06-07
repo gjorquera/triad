@@ -9,13 +9,11 @@ SOURCES += ComplexDecorator.cpp \
     Figure.cpp \
     FigureDecorator.cpp \
     IFigure.cpp \
-    Initializer.cpp \
     Widget.cpp
 
 HEADERS += ComplexDecorator.h \
     Figure.h \
     FigureDecorator.h \
     IFigure.h \
-    Initializer.h \
     Widget.h
 
