@@ -6,8 +6,8 @@ namespace Viewer
 {
 
     /*!
-     * The IFigure class defines the interface for the concrete figure and it's
-     * decorators.
+     * The IFigure class defines the interface for the concrete drawable figure
+     * and it's decorators.
      *
      * The IFigure, Figure and FigureDecorator classes implements the Decorator
      * Pattern.
