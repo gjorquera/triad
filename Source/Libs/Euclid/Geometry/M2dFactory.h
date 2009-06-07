@@ -73,17 +73,21 @@ namespace Euclid
                         vertices[v2],
                         vertices[v3]);
                     trimesh->addTriangle(t);
+                    triangles[id] = t;
                 }
                 else if (type == 'n' || type == 'N') // Neighbor.
                 {
                     int n1, n2, n3;
                     sin >> n1 >> n2 >> n3;
-                    if (0 != n1)
+                    if (0 != n1) {
                         triangles[id]->addNeighbor(triangles[n1]);
-                    if (0 != n2)
+                    }
+                    if (0 != n2) {
                         triangles[id]->addNeighbor(triangles[n2]);
-                    if (0 != n3)
+                    }
+                    if (0 != n3) {
                         triangles[id]->addNeighbor(triangles[n3]);
+                    }
                 }
                 else
                 {
