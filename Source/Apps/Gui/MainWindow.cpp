@@ -16,6 +16,8 @@ namespace App
 
         connect(actionOpenMesh, SIGNAL(triggered()), this, SLOT(openMesh()));
         connect(actionSaveMesh, SIGNAL(triggered()), this, SLOT(saveMesh()));
+        connect(actionManualSelection, SIGNAL(toggled(bool)),
+            _meshViewer, SLOT(setPicking(bool)));
     }
 
     MainWindow::~MainWindow()
