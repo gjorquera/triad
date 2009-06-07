@@ -12,13 +12,13 @@ namespace App
     void
     SelectedDecorator::paintGL() const
     {
-        /// @todo OpenGL options depending on the triangle state.
         glColor3f(1.0, 0.0, 0.0);
-        glBegin(GL_LINE_LOOP);
-            glVertex3f(0.0, 1.0, 0.0);
-            glVertex3f(1.0, 0.0, 0.0);
-            glVertex3f(1.0, 1.0, 0.0);
-        glEnd();
+        glPushMatrix();
+        glTranslatef(0.0, 0.0, 4.0);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        figure()->paintGL();
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        glPopMatrix();
     }
 }
 

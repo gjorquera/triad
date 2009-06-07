@@ -10,6 +10,8 @@ namespace App
     /*!
      * The SelectedDecorator class implements a decorator for selected
      * triangles.
+     *
+     * Selected triangles are drawn with red color lines.
      */
     class SelectedDecorator : public Viewer::FigureDecorator
     {
