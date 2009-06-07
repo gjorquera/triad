@@ -9,10 +9,12 @@ namespace App
 {
 
     /*!
-     * The Triangle class is the renderizable figure of the Viewer section.
+     * The TriangleFigure class defines a drawable triangle.
      *
      * This class is in charge of returning the appropiate decorations based on
-     * the state of the current triangle instance.
+     * the state of the current triangle instance and draw a basic triangle.
+     *
+     * The \b paintGL method is called by decorations.
      */
     class TriangleFigure : public Viewer::Figure
     {

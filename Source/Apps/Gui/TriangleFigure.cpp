@@ -15,11 +15,13 @@ namespace App
     void
     TriangleFigure::paintGL() const
     {
+        glBegin(GL_TRIANGLES);
         for (int i=0; i<3; i++)
         {
             const Euclid::Vertex<Kernel>* v = _triangle->vertex(i);
             glVertex3fv(v->point().toArray());
         }
+        glEnd();
     }
 
     Viewer::FigureDecorator*

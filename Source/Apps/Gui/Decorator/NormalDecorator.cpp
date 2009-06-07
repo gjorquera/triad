@@ -12,15 +12,13 @@ namespace App
     void
     NormalDecorator::paintGL() const
     {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         glColor3f(1.0, 1.0, 1.0);
-        glBegin(GL_TRIANGLES);
         figure()->paintGL();
-        glEnd();
 
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         glColor3f(0.0, 0.0, 0.0);
-        glBegin(GL_LINE_LOOP);
         figure()->paintGL();
-        glEnd();
     }
 }
 
