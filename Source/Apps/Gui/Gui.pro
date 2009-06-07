@@ -9,14 +9,14 @@ include(../../Workbench.pri)
 SOURCES += Main.cpp \
     MainWindow.cpp \
     MeshViewer.cpp \
-    TriangleFigure.cpp
+    TriangleFigure.cpp \
     Decorator/NeighborDecorator.cpp \
-    Decorator/SelectedDecorator.cpp \
+    Decorator/SelectedDecorator.cpp
 HEADERS += Kernel.h \
     MainWindow.h \
     MeshViewer.h \
-    TriangleFigure.h
+    TriangleFigure.h \
     Decorator/NeighborDecorator.h \
-    Decorator/SelectedDecorator.h \
+    Decorator/SelectedDecorator.h
 FORMS += MainWindow.ui
 
