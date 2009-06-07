@@ -25,6 +25,7 @@ namespace App
         void set(Euclid::TriMesh<Kernel>* trimesh);
 
     protected:
+        void paintGL();
         void initializeGL();
         void viewportGL(int width, int height);
         void projectionGL(int width, int height);

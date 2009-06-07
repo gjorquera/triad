@@ -27,6 +27,12 @@ namespace App
     }
 
     void
+    MeshViewer::paintGL()
+    {
+        Viewer::Widget::paintGL();
+    }
+
+    void
     MeshViewer::initializeGL()
     {
         glClearColor(1.0, 1.0, 1.0, 1.0);
