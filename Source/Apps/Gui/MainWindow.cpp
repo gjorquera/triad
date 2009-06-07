@@ -8,11 +8,9 @@ namespace App
     MainWindow::MainWindow(QWidget* parent)
         : QMainWindow(parent), Ui::MainWindow()
     {
-        // UI setup
         setupUi(this);
 
         _trimesh = 0;
-
         _meshViewer = new MeshViewer(this);
         this->setCentralWidget(_meshViewer);
 
@@ -49,6 +47,8 @@ namespace App
         if (0 != filename) {
             /// @todo Save mesh.
         }
+
+        _meshViewer->updateGL();
     }
 }
 
