@@ -5,21 +5,28 @@
 namespace App
 {
 
+    bool MainWindow::viewNeighbors;
+
     MainWindow::MainWindow(QWidget* parent)
         : QMainWindow(parent), Ui::MainWindow()
     {
         setupUi(this);
 
+        MainWindow::viewNeighbors = true;
         _trimesh = new Euclid::TriMesh<Kernel>;
         _meshViewer = new MeshViewer(this);
         this->setCentralWidget(_meshViewer);
 
-        connect(actionOpenMesh, SIGNAL(triggered()), this, SLOT(openMesh()));
-        connect(actionSaveMesh, SIGNAL(triggered()), this, SLOT(saveMesh()));
+        connect(actionOpenMesh, SIGNAL(triggered()),
+            this, SLOT(openMesh()));
+        connect(actionSaveMesh, SIGNAL(triggered()),
+            this, SLOT(saveMesh()));
         connect(actionManualSelection, SIGNAL(toggled(bool)),
             _meshViewer, SLOT(setPicking(bool)));
         connect(actionClearSelection, SIGNAL(triggered()),
             _meshViewer, SLOT(clearSelection()));
+        connect(actionNeighbors, SIGNAL(toggled(bool)),
+            this, SLOT(setViewNeighbors(bool)));
     }
 
     MainWindow::~MainWindow()
@@ -53,6 +60,13 @@ namespace App
             Euclid::M2dFormatIO<Kernel> meshSaver(filename, _trimesh);
             meshSaver.save();
         }
+    }
+
+    void
+    MainWindow::setViewNeighbors(bool viewNeighbors)
+    {
+        MainWindow::viewNeighbors = viewNeighbors;
+        _meshViewer->updateGL();
     }
 }
 

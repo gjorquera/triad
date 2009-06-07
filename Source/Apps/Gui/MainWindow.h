@@ -18,12 +18,15 @@ namespace App
         Q_OBJECT
 
     public:
+        static bool viewNeighbors;
+
         MainWindow(QWidget* parent = 0);
         ~MainWindow();
 
     protected slots:
         void openMesh();
         void saveMesh();
+        void setViewNeighbors(bool viewNeighbor);
 
     private:
         Euclid::TriMesh<Kernel>* _trimesh;
