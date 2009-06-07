@@ -19,12 +19,13 @@ namespace App
     class TriangleFigure : public Viewer::Figure
     {
     public:
-        TriangleFigure(const Euclid::Triangle<Kernel>* triangle);
+        TriangleFigure(Euclid::Triangle<Kernel>* triangle);
         void paintGL() const;
+        void clicked();
         Viewer::FigureDecorator* decorations() const;
 
     private:
-        const Euclid::Triangle<Kernel>* _triangle;
+        Euclid::Triangle<Kernel>* _triangle;
     };
 }
 

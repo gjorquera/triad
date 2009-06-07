@@ -8,7 +8,7 @@
 namespace App
 {
 
-    TriangleFigure::TriangleFigure(const Euclid::Triangle<Kernel>* triangle)
+    TriangleFigure::TriangleFigure(Euclid::Triangle<Kernel>* triangle)
     {
         _triangle = triangle;
     }
@@ -25,12 +25,20 @@ namespace App
         glEnd();
     }
 
+    void
+    TriangleFigure::clicked()
+    {
+        _triangle->info().selected = (! _triangle->info().selected);
+    }
+
     Viewer::FigureDecorator*
     TriangleFigure::decorations() const
     {
         Viewer::ComplexDecorator *decorator = new Viewer::ComplexDecorator;
+        if (_triangle->info().selected) {
+            decorator->add(new SelectedDecorator(this));
+        }
         //decorator->add(new LeppDecorator(this));
-        //decorator->add(new SelectedDecorator(this));
         //decorator->add(new NeighborDecorator(this));
         decorator->add(new NormalDecorator(this));
         return decorator;
