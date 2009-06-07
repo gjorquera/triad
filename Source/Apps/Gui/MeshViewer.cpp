@@ -29,7 +29,7 @@ namespace App
     void
     MeshViewer::clearSelection()
     {
-        Viewer::Widget::Iterator i;
+        Iterator i;
         for (i = begin(); i != end(); i++)
         {
             TriangleFigure* tf = dynamic_cast<TriangleFigure*>(*i);
@@ -41,7 +41,12 @@ namespace App
     void
     MeshViewer::paintGL()
     {
-        /// @todo Set lepp = false
+        Iterator i;
+        for (i = begin(); i < end(); i++)
+        {
+            TriangleFigure* tf = dynamic_cast<TriangleFigure*>(*i);
+            tf->triangle()->info().lepp = false;
+        }
         /// @todo Calculate lepp based on selected triangles
         Viewer::Widget::paintGL();
     }
