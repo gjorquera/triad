@@ -11,6 +11,8 @@ namespace App
         // UI setup
         setupUi(this);
 
+        _trimesh = 0;
+
         _meshViewer = new MeshViewer(this);
         this->setCentralWidget(_meshViewer);
 

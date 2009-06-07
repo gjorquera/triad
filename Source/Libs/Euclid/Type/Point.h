@@ -16,7 +16,7 @@ namespace Euclid
     public:
         Point()
         {
-            assert(N > 3);
+            assert(N > 0);
             for (int i=0; i<N; i++)
             {
                 _coords.append(T());
@@ -25,7 +25,7 @@ namespace Euclid
 
         Point(const T coord)
         {
-            assert(N > 3);
+            assert(N > 0);
             for (int i=0; i<N; i++)
             {
                 _coords.append(coord);
