@@ -7,6 +7,14 @@
 namespace App
 {
 
+    /*!
+     * The MeshViewer class defines a custom implementation of the
+     * Viewer::Widget class.
+     *
+     * This class implements the custom OpenGL \b initializeGL and \b resizeGL
+     * (viewport and projections) as well as implementing a method to \b set the
+     * widget figures based on an Euclid::TriMesh.
+     */
     class MeshViewer : public Viewer::Widget
     {
         Q_OBJECT
