@@ -6,6 +6,7 @@ include(../../Workbench.pri)
 
 HEADERS += Algorithm/Criterion.h \
     Algorithm/LongestEdgeCriterion.h \
+    Algorithm/NaiveLeppStrategy.h \
     Algorithm/Strategy.h \
     Geometry/M2dFormatIO.h \
     Geometry/Triangle.h \
