@@ -11,12 +11,14 @@ SOURCES += Main.cpp \
     MeshViewer.cpp \
     TriangleFigure.cpp \
     Decorator/NeighborDecorator.cpp \
+    Decorator/NormalDecorator.cpp \
     Decorator/SelectedDecorator.cpp
 HEADERS += Kernel.h \
     MainWindow.h \
     MeshViewer.h \
     TriangleFigure.h \
     Decorator/NeighborDecorator.h \
+    Decorator/NormalDecorator.h \
     Decorator/SelectedDecorator.h
 FORMS += MainWindow.ui
 

@@ -34,10 +34,10 @@ namespace App
             if (0 != _trimesh) delete _trimesh;
             Euclid::M2dFactory<Kernel> m2dFactory(filename.toStdString());
             _trimesh = m2dFactory.load();
+            _meshViewer->set(_trimesh);
         }
 
-        /// @todo Update the OpenGL widget
-        //this->redraw();
+        _meshViewer->updateGL();
     }
 
     void
