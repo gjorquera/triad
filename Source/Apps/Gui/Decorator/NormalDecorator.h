@@ -7,6 +7,11 @@ namespace App
 
     class TriangleFigure;
 
+    /*!
+     * The NormalDecorator class implements a decorator for normal triangles.
+     *
+     * Normal triangles are drawn with white background and black lines.
+     */
     class NormalDecorator : public Viewer::FigureDecorator
     {
     public:
