@@ -13,6 +13,12 @@ namespace App
         _triangle = triangle;
     }
 
+    Euclid::Triangle<Kernel>*
+    TriangleFigure::triangle()
+    {
+        return _triangle;
+    }
+
     void
     TriangleFigure::paintGL() const
     {

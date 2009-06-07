@@ -20,6 +20,7 @@ namespace App
     {
     public:
         TriangleFigure(Euclid::Triangle<Kernel>* triangle);
+        Euclid::Triangle<Kernel>* triangle();
         void paintGL() const;
         void clicked();
         Viewer::FigureDecorator* decorations() const;

@@ -27,6 +27,18 @@ namespace App
     }
 
     void
+    MeshViewer::clearSelection()
+    {
+        Viewer::Widget::Iterator i;
+        for (i = begin(); i != end(); i++)
+        {
+            TriangleFigure* tf = dynamic_cast<TriangleFigure*>(*i);
+            tf->triangle()->info().selected = false;
+            tf->triangle()->info().lepp = false;
+        }
+    }
+
+    void
     MeshViewer::paintGL()
     {
         Viewer::Widget::paintGL();

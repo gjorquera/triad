@@ -18,6 +18,8 @@ namespace App
         connect(actionSaveMesh, SIGNAL(triggered()), this, SLOT(saveMesh()));
         connect(actionManualSelection, SIGNAL(toggled(bool)),
             _meshViewer, SLOT(setPicking(bool)));
+        connect(actionClearSelection, SIGNAL(triggered()),
+            _meshViewer, SLOT(clearSelection()));
     }
 
     MainWindow::~MainWindow()

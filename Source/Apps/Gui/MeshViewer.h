@@ -24,6 +24,9 @@ namespace App
         virtual ~MeshViewer();
         void set(Euclid::TriMesh<Kernel>* trimesh);
 
+    public slots:
+        void clearSelection();
+
     protected:
         void paintGL();
         void initializeGL();
