@@ -12,10 +12,8 @@ namespace Viewer
      * The Widget class inherits from \c QGLWidget to implement a custom OpenGL
      * widget viewer.
      *
-     * \c QGLWidget is the default widget to display graphics through OpenGL.
-     *
      * This class implements the \b paintGL method but the \b initializeGL and
-     * the \b resizeGL must still be defined in child classes.
+     * the \b resizeGL must still be implemented in inherited classes.
      *
      * This class only draws instances of the Figure class. You can \b add
      * figures as well as \b clear all the assigned figures.
