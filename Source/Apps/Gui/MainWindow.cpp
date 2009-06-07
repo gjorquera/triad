@@ -15,7 +15,7 @@ namespace App
 
         MainWindow::viewNeighbors = true;
         MainWindow::viewLepp = true;
-        _trimesh = new Euclid::TriMesh<Kernel>;
+        _trimesh = new TriMesh;
         _meshViewer = new MeshViewer(this);
         this->setCentralWidget(_meshViewer);
 
@@ -45,7 +45,7 @@ namespace App
 
         if (0 != filename) {
             delete _trimesh;
-            _trimesh = new Euclid::TriMesh<Kernel>;
+            _trimesh = new TriMesh;
             Euclid::M2dFormatIO<Kernel> meshLoader(filename, _trimesh);
             meshLoader.load();
             _meshViewer->set(_trimesh);

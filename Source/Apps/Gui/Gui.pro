@@ -10,6 +10,7 @@ SOURCES += Main.cpp \
     MainWindow.cpp \
     MeshViewer.cpp \
     TriangleFigure.cpp \
+    TriMesh.cpp \
     Decorator/LeppDecorator.cpp \
     Decorator/NeighborDecorator.cpp \
     Decorator/NormalDecorator.cpp \
@@ -18,6 +19,7 @@ HEADERS += Kernel.h \
     MainWindow.h \
     MeshViewer.h \
     TriangleFigure.h \
+    TriMesh.h \
     Decorator/LeppDecorator.h \
     Decorator/NeighborDecorator.h \
     Decorator/NormalDecorator.h \

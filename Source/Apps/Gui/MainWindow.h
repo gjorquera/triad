@@ -2,7 +2,7 @@
 
 #include <memory>
 #include <QMainWindow>
-#include <Euclid/Geometry/TriMesh.h>
+#include "TriMesh.h"
 #include "Kernel.h"
 #include "MeshViewer.h"
 #include "ui_MainWindow.h"
@@ -31,7 +31,7 @@ namespace App
         void setViewLepp(bool viewLepp);
 
     private:
-        Euclid::TriMesh<Kernel>* _trimesh;
+        TriMesh* _trimesh;
         MeshViewer* _meshViewer;
     };
 
