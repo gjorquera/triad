@@ -2,6 +2,7 @@
 
 #include <Euclid/Geometry/TriMesh.h>
 #include <Viewer/Widget.h>
+#include "Algorithm/NaiveLeppStrategy.h"
 #include "Kernel.h"
 
 namespace App
@@ -23,6 +24,7 @@ namespace App
         MeshViewer(QWidget* parent = 0);
         virtual ~MeshViewer();
         void set(Euclid::TriMesh<Kernel>* trimesh);
+        void setStrategy(NaiveLeppStrategy* leppStrat);
 
     public slots:
         void clearSelection();
@@ -32,6 +34,9 @@ namespace App
         void initializeGL();
         void viewportGL(int width, int height);
         void projectionGL(int width, int height);
+
+    private:
+        NaiveLeppStrategy* _leppStrat;
     };
 }
 

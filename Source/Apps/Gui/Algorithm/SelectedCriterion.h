@@ -6,6 +6,9 @@
 namespace App
 {
 
+    /*!
+     * Selected triangles criterion.
+     */
     class SelectedCriterion : public Euclid::Criterion<Kernel>
     {
     public:

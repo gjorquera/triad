@@ -55,6 +55,8 @@ namespace App
             Euclid::M2dFormatIO<Kernel> meshLoader(filename, _trimesh);
             meshLoader.load();
             _meshViewer->set(_trimesh);
+            NaiveLeppStrategy* leppStrat = new NaiveLeppStrategy(_trimesh);
+            _meshViewer->setStrategy(leppStrat);
         }
 
         _meshViewer->updateGL();

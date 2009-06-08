@@ -7,6 +7,9 @@
 namespace Euclid
 {
 
+    /*!
+     * Represents refinement algorithms applyable to trimeshes.
+     */
     template <class Kernel>
     class Strategy
     {

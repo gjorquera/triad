@@ -7,6 +7,9 @@
 namespace App
 {
 
+    /*!
+     * Customization of the TriMesh class.
+     */
     class TriMesh : public Euclid::TriMesh<Kernel>
     {
     public:

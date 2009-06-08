@@ -5,6 +5,9 @@
 namespace Euclid
 {
 
+    /*!
+     * A naive lepp bisection refinement algorithm
+     */
     template <class Kernel>
     class NaiveLeppStrategy : public Strategy<Kernel>
     {

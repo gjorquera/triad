@@ -5,6 +5,9 @@
 namespace App
 {
 
+    /*!
+     * Longest edge dialog.
+     */
     class LongestEdgeDialog : public QDialog, public Ui::LongestEdgeDialog
     {
         Q_OBJECT

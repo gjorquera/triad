@@ -11,5 +11,11 @@ namespace App
     NaiveLeppStrategy::~NaiveLeppStrategy()
     {
     }
+
+    void
+    NaiveLeppStrategy::highlightLepp()
+    {
+        /// @todo do this method
+    }
 }
 

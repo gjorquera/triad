@@ -1,3 +1,4 @@
+#include "Algorithm/NaiveLeppStrategy.h"
 #include "MeshViewer.h"
 #include "TriangleFigure.h"
 
@@ -7,11 +8,13 @@ namespace App
     MeshViewer::MeshViewer(QWidget* parent)
         : Viewer::Widget(parent)
     {
+        _leppStrat = 0;
     }
 
     /*virtual*/
     MeshViewer::~MeshViewer()
     {
+        if (0 != _leppStrat) delete _leppStrat;
     }
 
     void
@@ -24,6 +27,12 @@ namespace App
             TriangleFigure* figure = new TriangleFigure(*i);
             add(figure);
         }
+    }
+
+    void
+    MeshViewer::setStrategy(NaiveLeppStrategy* leppStrat)
+    {
+        _leppStrat = leppStrat;
     }
 
     void
@@ -47,7 +56,9 @@ namespace App
             TriangleFigure* tf = dynamic_cast<TriangleFigure*>(*i);
             tf->triangle()->info().lepp = false;
         }
-        /// @todo Calculate lepp based on selected triangles
+        if (0 != _leppStrat) {
+            _leppStrat->highlightLepp();
+        }
         Viewer::Widget::paintGL();
     }
 
