@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QList>
+#include "MutableVertexIterator.h"
 #include "Triangle.h"
 #include "Vertex.h"
 
@@ -21,8 +22,6 @@ namespace Euclid
         typedef Vertex<Kernel>                           Vertex;
         typedef typename QList<Triangle*>::Iterator      Iterator;
         typedef typename QList<Triangle*>::ConstIterator ConstIterator;
-        typedef typename QList<Vertex*>::Iterator        VertexIterator;
-        typedef typename QList<Vertex*>::ConstIterator   VertexCostIterator;
 
         TriMesh()
         {
@@ -33,9 +32,12 @@ namespace Euclid
             Iterator i;
             for (i = _triangles.begin(); i != _triangles.end(); i++)
                 delete (*i);
-            VertexIterator j;
-            for (j = _vertices.begin(); j != _vertices.end(); j++)
-                delete (*j);
+            MutableVertexIterator<Kernel> j(this);
+            while (j.hasNext())
+            {
+                delete j.next();
+                j.remove();
+            }
         }
 
         void addVertex(const Vertex* vertex)
@@ -76,6 +78,16 @@ namespace Euclid
         ConstIterator end() const
         {
             return _triangles.end();
+        }
+
+        const QList<Vertex*>& vertices() const
+        {
+            return _vertices;
+        }
+
+        QList<Vertex*>& vertices()
+        {
+            return _vertices;
         }
 
     protected:
