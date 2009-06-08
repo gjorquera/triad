@@ -12,6 +12,8 @@ namespace Euclid
     class NaiveLeppStrategy : public Strategy<Kernel>
     {
     public:
+        typedef typename Kernel::Vector Vector;
+
         NaiveLeppStrategy(TriMesh<Kernel>* trimesh)
             : Strategy<Kernel>(trimesh)
         {
@@ -37,6 +39,34 @@ namespace Euclid
         void refineTriangle(Triangle<Kernel>*)
         {
             /// @todo implement this method
+        }
+
+        Triangle<Kernel>* longestEdgeNeighbor(Triangle<Kernel>* triangle)
+        {
+            Vector max;
+            int index = -1;
+
+            for (int i=0; i<3; i++)
+            {
+                Vector* e = triangle->edge(i);
+                if (max.distance() < e->distance()) {
+                    max = *e;
+                    index = i;
+                }
+                delete e;
+            }
+
+            assert(-1 != index);
+
+            return triangle->neighbor(index);
+        }
+
+        bool isTerminal(Triangle<Kernel>* triangle)
+        {
+            if (longestEdgeNeighbor(triangle) == 0
+                || longestEdgeNeighbor(triangle) == triangle)
+                return true;
+            return false;
         }
     };
 }
