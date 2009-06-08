@@ -12,8 +12,6 @@ namespace Euclid
      *
      * This class defines the \b load and \b save method that must be
      * implemented by concrete file format classes to load and save meshes.
-     *
-     * @todo Convert std::string to QString
      */
     template <class Kernel>
     class TriMeshIO
@@ -45,25 +43,35 @@ namespace Euclid
             return _trimesh;
         }
 
-        static void trimComments(std::string &line, const std::string &comment)
+        static void trimComments(QString& line, const QString& comment)
         {
-            std::string::size_type pos = line.find_first_of(comment);
-            if (pos != std::string::npos) line = line.substr(0, pos);
+            int pos = line.indexOf(comment);
+            if (-1 != pos) {
+                line = line.left(pos);
+            }
         }
 
-        static void trimSpaces(std::string &line)
+        static void trimSpaces(QString& line)
         {
-            std::string::size_type pos;
+            int pos;
 
-            // Trim ending spaces.
-            pos = line.find_last_not_of(' ');
-            if (pos != std::string::npos) line =
-                line.substr(0, pos + 1);
+            // Trim new lines
+            pos = line.indexOf("\n");
+            if (-1 != pos) {
+                line = line.left(pos);
+            }
 
-            // Trim beggining spaces.
-            pos = line.find_first_not_of(' ');
-            if (pos != std::string::npos) line =
-                line.substr(pos, line.length());
+            // Trim ending spaces
+            pos = line.lastIndexOf(QRegExp("[0-9]"));
+            if (-1 != pos) {
+                line = line.left(pos + 1);
+            }
+
+            // Trim beginning spaces
+            pos = line.indexOf(QRegExp("[a-zA-Z]"));
+            if (-1 != pos) {
+                line = line.right(line.length() - pos + 1);
+            }
         }
 
     private:
