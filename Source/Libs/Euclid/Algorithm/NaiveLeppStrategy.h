@@ -26,7 +26,7 @@ namespace Euclid
         void refine(Criterion<Kernel>& criterion)
         {
             TriMesh<Kernel>* trimesh = Strategy<Kernel>::trimesh();
-            typename TriMesh<Kernel>::Iterator i;
+            typename QList<Triangle<Kernel>*>::Iterator i;
             for (i = trimesh->begin(); i != trimesh->end(); i++)
             {
                 if (criterion.test(*i)) {
@@ -48,7 +48,7 @@ namespace Euclid
 
             for (int i=0; i<3; i++)
             {
-                Vector* e = triangle->edge(i);
+                const Vector* e = triangle->edge(i);
                 if (max.distance() < e->distance()) {
                     max = *e;
                     index = i;
@@ -58,7 +58,7 @@ namespace Euclid
 
             assert(-1 != index);
 
-            return triangle->neighbor(index);
+            return const_cast<Triangle<Kernel>*>(triangle->neighbor(index));
         }
 
         bool isTerminal(Triangle<Kernel>* triangle)

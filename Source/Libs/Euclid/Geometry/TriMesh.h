@@ -19,8 +19,8 @@ namespace Euclid
     class TriMesh
     {
     public:
-        typedef Triangle<Kernel>                Triangle;
-        typedef Vertex<Kernel>                  Vertex;
+        typedef Triangle<Kernel>                         Triangle;
+        typedef Vertex<Kernel>                           Vertex;
         typedef typename QList<Triangle*>::Iterator      Iterator;
         typedef typename QList<Triangle*>::ConstIterator ConstIterator;
         typedef typename QList<Vertex*>::Iterator        VertexIterator;

@@ -46,8 +46,8 @@ namespace Euclid
         {
             assert(0 <= i && i < 3);
             Vector* v = new Vector;
-            v->setInitial(vertex(i)->point());
-            v->setTerminal(vertex((i+1)%3)->point());
+            v->setInitial(vertex((i+1)%3)->point());
+            v->setTerminal(vertex((i+2)%3)->point());
             return v;
         }
 
