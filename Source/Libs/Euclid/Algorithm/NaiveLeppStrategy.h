@@ -63,9 +63,10 @@ namespace Euclid
 
         bool isTerminal(Triangle<Kernel>* triangle)
         {
-            if (longestEdgeNeighbor(triangle) == 0
-                || longestEdgeNeighbor(triangle) == triangle)
+            Triangle<Kernel>* neighbor = longestEdgeNeighbor(triangle);
+            if (0 == neighbor || triangle == longestEdgeNeighbor(neighbor)) {
                 return true;
+            }
             return false;
         }
     };
