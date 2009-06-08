@@ -1,3 +1,4 @@
+#include <Viewer/FigureIterator.h>
 #include "Algorithm/NaiveLeppStrategy.h"
 #include "MeshViewer.h"
 #include "TriangleFigure.h"
@@ -38,10 +39,10 @@ namespace App
     void
     MeshViewer::clearSelection()
     {
-        Iterator i;
-        for (i = begin(); i != end(); i++)
+        Viewer::FigureIterator i(*this);
+        while (i.hasNext())
         {
-            TriangleFigure* tf = dynamic_cast<TriangleFigure*>(*i);
+            TriangleFigure* tf = dynamic_cast<TriangleFigure*>(i.next());
             tf->triangle()->info().selected = false;
             tf->triangle()->info().lepp = false;
         }
@@ -50,10 +51,10 @@ namespace App
     void
     MeshViewer::paintGL()
     {
-        Iterator i;
-        for (i = begin(); i < end(); i++)
+        Viewer::FigureIterator i(*this);
+        while (i.hasNext())
         {
-            TriangleFigure* tf = dynamic_cast<TriangleFigure*>(*i);
+            TriangleFigure* tf = dynamic_cast<TriangleFigure*>(i.next());
             tf->triangle()->info().lepp = false;
         }
         if (0 != _leppStrat) {

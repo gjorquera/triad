@@ -27,17 +27,11 @@ namespace Viewer
         Q_OBJECT
 
     public:
-        typedef QList<Figure*>::Iterator      Iterator;
-        typedef QList<Figure*>::ConstIterator ConstIterator;
-
         Widget(QWidget* parent = 0);
         virtual ~Widget();
         void add(Figure* figure);
         void clear();
-        Iterator begin();
-        ConstIterator begin() const;
-        Iterator end();
-        ConstIterator end() const;
+        QList<Figure*> figures() const;
 
     public slots:
         void setPicking(bool picking);

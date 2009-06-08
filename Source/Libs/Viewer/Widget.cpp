@@ -29,6 +29,12 @@ namespace Viewer
         _figures.clear();
     }
 
+    QList<Figure*>
+    Widget::figures() const
+    {
+        return _figures.values();
+    }
+
     /*virtual*/ void
     Widget::paintGL()
     {
@@ -111,30 +117,6 @@ namespace Viewer
         }
 
         updateGL();
-    }
-
-    Widget::Iterator
-    Widget::begin()
-    {
-        return _figures.values().begin();
-    }
-
-    Widget::ConstIterator
-    Widget::begin() const
-    {
-        return _figures.values().begin();
-    }
-
-    Widget::Iterator
-    Widget::end()
-    {
-        return _figures.values().end();
-    }
-
-    Widget::ConstIterator
-    Widget::end() const
-    {
-        return _figures.values().end();
     }
 
     void
