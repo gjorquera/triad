@@ -16,11 +16,11 @@ namespace App
     NaiveLeppStrategy::highlightLepp()
     {
         Euclid::TriMesh<Kernel>* trimesh = Euclid::Strategy<Kernel>::trimesh();
-        Euclid::TriMesh<Kernel>::Iterator i;
-        for (i = trimesh->begin(); i != trimesh->end(); i++)
+        QMutableListIterator<Euclid::Triangle<Kernel>*> i(trimesh->triangles());
+        while (i.hasNext())
         {
-            if ((*i)->info().selected) {
-                Euclid::Triangle<Kernel>* t = *i;
+            if (i.next()->info().selected) {
+                Euclid::Triangle<Kernel>* t = i.next();
                 do
                 {
                     t->info().lepp = true;

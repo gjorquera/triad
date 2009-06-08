@@ -9,12 +9,10 @@ HEADERS += Algorithm/Criterion.h \
     Algorithm/NaiveLeppStrategy.h \
     Algorithm/Strategy.h \
     Geometry/M2dFormatIO.h \
-    Geometry/MutableVertexIterator.h \
     Geometry/Triangle.h \
     Geometry/TriMesh.h \
     Geometry/TriMeshIO.h \
     Geometry/Vertex.h \
-    Geometry/VertexIterator.h \
     Type/DefaultKernel.h \
     Type/NumTraits.h \
     Type/Point.h \

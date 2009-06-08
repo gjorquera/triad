@@ -11,11 +11,11 @@ namespace App
     void
     TriMesh::select(const Euclid::Criterion<Kernel>& criterion)
     {
-        Iterator i;
-        for (i = begin(); i != end(); i++)
+        QMutableListIterator<Euclid::Triangle<Kernel>*> i(triangles());
+        while (i.hasNext())
         {
-            if (criterion.test(*i)) {
-                (*i)->info().selected = true;
+            if (criterion.test(i.next())) {
+                i.next()->info().selected = true;
             }
         }
     }

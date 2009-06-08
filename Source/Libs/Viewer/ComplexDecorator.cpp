@@ -1,3 +1,4 @@
+#include <QMutableListIterator>
 #include "ComplexDecorator.h"
 
 namespace Viewer
@@ -11,10 +12,11 @@ namespace Viewer
     /*virtual*/
     ComplexDecorator::~ComplexDecorator()
     {
-        QList<FigureDecorator*>::ConstIterator i;
-        for (i = _decorations.begin(); i != _decorations.end(); i++)
+        QMutableListIterator<FigureDecorator*> i(_decorations);
+        while (i.hasNext())
         {
-            delete *i;
+            delete i.next();
+            i.remove();
         }
     }
 
@@ -27,10 +29,10 @@ namespace Viewer
     void
     ComplexDecorator::paintGL() const
     {
-        QList<FigureDecorator*>::ConstIterator i;
-        for (i = _decorations.begin(); i != _decorations.end(); i++)
+        QListIterator<FigureDecorator*> i(_decorations);
+        while (i.hasNext())
         {
-            (*i)->paintGL();
+            i.next()->paintGL();
         }
     }
 

@@ -1,4 +1,4 @@
-#include <Viewer/FigureIterator.h>
+#include <QListIterator>
 #include "Algorithm/NaiveLeppStrategy.h"
 #include "MeshViewer.h"
 #include "TriangleFigure.h"
@@ -22,10 +22,10 @@ namespace App
     MeshViewer::set(Euclid::TriMesh<Kernel>* trimesh)
     {
         clear();
-        Euclid::TriMesh<Kernel>::ConstIterator i;
-        for (i = trimesh->begin(); i != trimesh->end(); i++)
+        QListIterator<Euclid::Triangle<Kernel>*> i(trimesh->triangles());
+        while (i.hasNext())
         {
-            TriangleFigure* figure = new TriangleFigure(*i);
+            TriangleFigure* figure = new TriangleFigure(i.next());
             add(figure);
         }
     }
@@ -39,7 +39,7 @@ namespace App
     void
     MeshViewer::clearSelection()
     {
-        Viewer::FigureIterator i(*this);
+        QListIterator<Viewer::Figure*> i(figures());
         while (i.hasNext())
         {
             TriangleFigure* tf = dynamic_cast<TriangleFigure*>(i.next());
@@ -51,7 +51,7 @@ namespace App
     void
     MeshViewer::paintGL()
     {
-        Viewer::FigureIterator i(*this);
+        QListIterator<Viewer::Figure*> i(figures());
         while (i.hasNext())
         {
             TriangleFigure* tf = dynamic_cast<TriangleFigure*>(i.next());
