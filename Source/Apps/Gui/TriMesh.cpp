@@ -14,9 +14,10 @@ namespace App
         QMutableListIterator<Euclid::Triangle<Kernel>*> i(triangles());
         while (i.hasNext())
         {
-            if (criterion.test(i.next())) {
-                i.next()->info().selected = true;
+            if (criterion.test(i.peekNext())) {
+                i.peekNext()->info().selected = true;
             }
+            i.next();
         }
     }
 }

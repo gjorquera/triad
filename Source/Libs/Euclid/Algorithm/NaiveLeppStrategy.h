@@ -29,9 +29,10 @@ namespace Euclid
             QMutableListIterator<Triangle<Kernel>*> i(trimesh->triangles());
             while (i.hasNext())
             {
-                if (criterion.test(i.next())) {
-                    refineTriangle(i.next());
+                if (criterion.test(i.peekNext())) {
+                    refineTriangle(i.peekNext());
                 }
+                i.next();
             }
         }
 

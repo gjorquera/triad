@@ -19,8 +19,8 @@ namespace App
         QMutableListIterator<Euclid::Triangle<Kernel>*> i(trimesh->triangles());
         while (i.hasNext())
         {
-            if (i.next()->info().selected) {
-                Euclid::Triangle<Kernel>* t = i.next();
+            if (i.peekNext()->info().selected) {
+                Euclid::Triangle<Kernel>* t = i.peekNext();
                 do
                 {
                     t->info().lepp = true;
@@ -35,6 +35,7 @@ namespace App
                     }
                 } while (0 != t);
             }
+            i.next();
         }
     }
 }

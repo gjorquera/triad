@@ -1,3 +1,4 @@
+#include <QMapIterator>
 #include "Figure.h"
 #include "FigureDecorator.h"
 #include "Widget.h"
@@ -40,9 +41,10 @@ namespace Viewer
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glLoadIdentity();
-        QMap<int,Figure*>::ConstIterator i;
-        for (i = _figures.begin(); i != _figures.end(); i++)
+        QMapIterator<int,Figure*> i(_figures);
+        while (i.hasNext())
         {
+            i.next();
             glPushName(i.key());
             FigureDecorator* decorator = i.value()->decorations();
             decorator->paintGL();
