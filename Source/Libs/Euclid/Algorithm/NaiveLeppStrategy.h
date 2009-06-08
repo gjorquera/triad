@@ -14,10 +14,14 @@ namespace Euclid
         {
         }
 
-        void refine(Criterion& criterion)
+        ~NaiveLeppStrategy()
+        {
+        }
+
+        void refine(Criterion<Kernel>& criterion)
         {
             TriMesh<Kernel>* trimesh = Strategy<Kernel>::trimesh();
-            TriMesh<Kernel>::Iterator i;
+            typename TriMesh<Kernel>::Iterator i;
             for (i = trimesh->begin(); i != trimesh->end(); i++)
             {
                 if (criterion.test(*i)) {
@@ -27,8 +31,9 @@ namespace Euclid
         }
 
     protected:
-        void refineTriangle(Triangle<Kernel>* triangle)
+        void refineTriangle(Triangle<Kernel>*)
         {
+            /// @todo implement this method
         }
     };
 }

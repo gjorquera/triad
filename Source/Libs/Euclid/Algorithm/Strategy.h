@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cassert>
+#include "Criterion.h"
 #include "../Geometry/TriMesh.h"
 
 namespace Euclid
@@ -16,7 +17,11 @@ namespace Euclid
             _trimesh = trimesh;
         }
 
-        virtual void refine(Criterion& criterion) = 0;
+        virtual ~Strategy()
+        {
+        }
+
+        virtual void refine(Criterion<Kernel>& criterion) = 0;
 
     protected:
         TriMesh<Kernel>* trimesh()
