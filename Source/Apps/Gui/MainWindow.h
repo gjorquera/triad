@@ -26,6 +26,7 @@ namespace App
 
         MainWindow(QWidget* parent = 0);
         ~MainWindow();
+        void setStatusbarMessage();
 
     protected slots:
         void openMesh();

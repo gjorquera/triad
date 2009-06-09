@@ -54,6 +54,17 @@ namespace App
     }
 
     void
+    MainWindow::setStatusbarMessage()
+    {
+        QString status = "Loaded trimesh with %1 vertice(s), %2 triangle(s)"
+            " and %3 average lepp, using %4 MB memory";
+        statusbar->showMessage(status.arg(_trimesh->numVertices())
+            .arg(_trimesh->numTriangles())
+            .arg(0)
+            .arg(0));
+    }
+
+    void
     MainWindow::openMesh()
     {
         QString filename = QFileDialog::getOpenFileName(this,
@@ -67,6 +78,7 @@ namespace App
             _meshViewer->set(_trimesh);
             LeppStrategy* leppStrat = new LeppStrategy(_trimesh);
             _meshViewer->setStrategy(leppStrat);
+            setStatusbarMessage();
         }
 
         _meshViewer->updateGL();
@@ -131,6 +143,7 @@ namespace App
         _refineStrat->refine(sc);
         _meshViewer->set(_trimesh);
         _meshViewer->updateGL();
+        setStatusbarMessage();
     }
 }
 
