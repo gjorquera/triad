@@ -12,9 +12,13 @@ namespace Euclid
     class NaiveLeppStrategy : public Strategy<Kernel>
     {
     public:
+        typedef typename Kernel::Point  Point;
         typedef typename Kernel::Vector Vector;
+        typedef typename Euclid::Vertex<Kernel>   Vertex;
+        typedef typename Euclid::Triangle<Kernel> Triangle;
+        typedef typename Euclid::TriMesh<Kernel>  TriMesh;
 
-        NaiveLeppStrategy(TriMesh<Kernel>* trimesh)
+        NaiveLeppStrategy(TriMesh* trimesh)
             : Strategy<Kernel>(trimesh)
         {
         }
@@ -25,8 +29,8 @@ namespace Euclid
 
         void refine(Criterion<Kernel>& criterion)
         {
-            TriMesh<Kernel>* trimesh = Strategy<Kernel>::trimesh();
-            QMutableListIterator<Triangle<Kernel>*> i(trimesh->triangles());
+            TriMesh* trimesh = Strategy<Kernel>::trimesh();
+            QMutableListIterator<Triangle*> i(trimesh->triangles());
             while (i.hasNext())
             {
                 if (criterion.test(i.peekNext())) {
@@ -37,12 +41,78 @@ namespace Euclid
         }
 
     protected:
-        void refineTriangle(Triangle<Kernel>*)
+        void refineTriangle(Triangle* triangle)
         {
-            /// @todo implement this method
+            if (isTerminal(triangle)) {
+                refineTerminal(triangle);
+            } else {
+                refineTriangle(longestEdgeNeighbor(triangle));
+            }
         }
 
-        Triangle<Kernel>* longestEdgeNeighbor(Triangle<Kernel>* triangle)
+        void refineTerminal(Triangle* triangle)
+        {
+            TriMesh* trimesh = Strategy<Kernel>::trimesh();
+            const Vector* edge = longestEdge(triangle);
+            Point point((*edge / 2).terminal());
+            Vertex* newVertex = new Vertex(point);
+            trimesh->addVertex(newVertex);
+
+            Triangle* neighbor = longestEdgeNeighbor(triangle);
+
+            Triangle* newTriangle1 = cut(triangle, newVertex);
+
+            if (0 != neighbor) {
+                Triangle* newTriangle2 = cut(neighbor, newVertex);
+
+                triangle->addNeighbor(newTriangle2);
+                newTriangle2->addNeighbor(triangle);
+
+                neighbor->addNeighbor(newTriangle1);
+                newTriangle1->addNeighbor(neighbor);
+            }
+        }
+
+        Triangle* cut(Triangle* triangle, Vertex* newVertex)
+        {
+            TriMesh* trimesh = Strategy<Kernel>::trimesh();
+            int index = longestEdgeIndex(triangle);
+
+            Vertex* v1 = const_cast<Vertex*>(triangle->vertex(index));
+            Vertex* v2 = newVertex;
+            Vertex* v3 = const_cast<Vertex*>(triangle->vertex((index+2)%3));
+
+            Triangle* newTriangle = new Triangle(v1, v2, v3);
+            trimesh->addTriangle(newTriangle);
+
+            triangle->setVertex((index+2)%3, newVertex);
+
+            Triangle* neighbor = const_cast<Triangle*>(
+                triangle->neighbor((index+1)%3));
+            if (0 != neighbor) {
+                newTriangle->addNeighbor(neighbor);
+                neighbor->addNeighbor(newTriangle);
+            }
+
+            newTriangle->addNeighbor(triangle);
+            triangle->addNeighbor(newTriangle);
+
+            return newTriangle;
+        }
+
+        Triangle* longestEdgeNeighbor(Triangle* triangle)
+        {
+            int index = longestEdgeIndex(triangle);
+            return const_cast<Triangle*>(triangle->neighbor(index));
+        }
+
+        const Vector* longestEdge(Triangle* triangle)
+        {
+            int index = longestEdgeIndex(triangle);
+            return triangle->edge(index);
+        }
+
+        int longestEdgeIndex(Triangle* triangle)
         {
             Vector max;
             int index = -1;
@@ -59,12 +129,12 @@ namespace Euclid
 
             assert(-1 != index);
 
-            return const_cast<Triangle<Kernel>*>(triangle->neighbor(index));
+            return index;
         }
 
-        bool isTerminal(Triangle<Kernel>* triangle)
+        bool isTerminal(Triangle* triangle)
         {
-            Triangle<Kernel>* neighbor = longestEdgeNeighbor(triangle);
+            Triangle* neighbor = longestEdgeNeighbor(triangle);
             if (0 == neighbor || triangle == longestEdgeNeighbor(neighbor)) {
                 return true;
             }
