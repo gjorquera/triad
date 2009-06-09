@@ -17,7 +17,8 @@ SOURCES += Main.cpp \
     Decorator/NeighborDecorator.cpp \
     Decorator/NormalDecorator.cpp \
     Decorator/SelectedDecorator.cpp \
-    Dialog/LongestEdgeDialog.cpp
+    Dialog/LongestEdgeDialog.cpp \
+    Dialog/PercentageDialog.cpp
 HEADERS += Kernel.h \
     MainWindow.h \
     MeshViewer.h \
@@ -29,7 +30,9 @@ HEADERS += Kernel.h \
     Decorator/NeighborDecorator.h \
     Decorator/NormalDecorator.h \
     Decorator/SelectedDecorator.h \
-    Dialog/LongestEdgeDialog.h
+    Dialog/LongestEdgeDialog.h \
+    Dialog/PercentageDialog.h
 FORMS += MainWindow.ui \
-    Dialog/LongestEdgeDialog.ui
+    Dialog/LongestEdgeDialog.ui \
+    Dialog/PercentageDialog.ui
 

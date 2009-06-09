@@ -40,6 +40,12 @@ namespace Euclid
             }
         }
 
+        const Vector* longestEdge(Triangle* triangle)
+        {
+            int index = longestEdgeIndex(triangle);
+            return triangle->edge(index);
+        }
+
     protected:
         Triangle* refineTriangle(Triangle* triangle)
         {
@@ -110,12 +116,6 @@ namespace Euclid
         {
             int index = longestEdgeIndex(triangle);
             return const_cast<Triangle*>(triangle->neighbor(index));
-        }
-
-        const Vector* longestEdge(Triangle* triangle)
-        {
-            int index = longestEdgeIndex(triangle);
-            return triangle->edge(index);
         }
 
         int longestEdgeIndex(Triangle* triangle)

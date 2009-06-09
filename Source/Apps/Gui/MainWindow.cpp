@@ -1,10 +1,12 @@
 #include <QFileDialog>
 #include <Euclid/Algorithm/LongestEdgeCriterion.h>
+#include <Euclid/Algorithm/PercentageCriterion.h>
 #include <Euclid/Geometry/M2dFormatIO.h>
 #include "MainWindow.h"
 #include "Algorithm/LeppStrategy.h"
 #include "Algorithm/SelectedCriterion.h"
 #include "Dialog/LongestEdgeDialog.h"
+#include "Dialog/PercentageDialog.h"
 
 namespace App
 {
@@ -18,6 +20,7 @@ namespace App
         setupUi(this);
 
         _longestEdgeDialog = new LongestEdgeDialog(this);
+        _percentageDialog = new PercentageDialog(this);
 
         MainWindow::viewNeighbors = true;
         MainWindow::viewLepp = true;
@@ -35,6 +38,8 @@ namespace App
             _meshViewer, SLOT(setPicking(bool)));
         connect(actionByLongestEdge, SIGNAL(triggered()),
             this, SLOT(selectByLongestEdge()));
+        connect(actionByPercentage, SIGNAL(triggered()),
+            this, SLOT(selectByPercentage()));
         connect(actionClearSelection, SIGNAL(triggered()),
             _meshViewer, SLOT(clearSelection()));
         connect(actionNeighbors, SIGNAL(toggled(bool)),
@@ -104,6 +109,19 @@ namespace App
             float max = _longestEdgeDialog->dsbMaximum->value();
             bool biggest = _longestEdgeDialog->rbtBigger->isChecked();
             Euclid::LongestEdgeCriterion<Kernel> c(max, biggest);
+            _trimesh->select(c);
+            _meshViewer->updateGL();
+        }
+    }
+
+    void
+    MainWindow::selectByPercentage()
+    {
+        if (_percentageDialog->exec()) {
+            int percentage = _percentageDialog->spbPercentage->value();
+            bool biggest = _percentageDialog->rbtBigger->isChecked();
+            Euclid::PercentageCriterion<Kernel> c(_trimesh->triangles(),
+                percentage, biggest);
             _trimesh->select(c);
             _meshViewer->updateGL();
         }

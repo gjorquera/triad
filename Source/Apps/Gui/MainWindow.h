@@ -12,6 +12,7 @@ namespace App
 {
 
     class LongestEdgeDialog;
+    class PercentageDialog;
 
     /*!
      * The application's main window.
@@ -32,6 +33,7 @@ namespace App
         void openMesh();
         void saveMesh();
         void selectByLongestEdge();
+        void selectByPercentage();
         void setViewNeighbors(bool viewNeighbor);
         void setViewLepp(bool viewLepp);
         void setLeppRefinement();
@@ -42,6 +44,7 @@ namespace App
         TriMesh* _trimesh;
         MeshViewer* _meshViewer;
         LongestEdgeDialog* _longestEdgeDialog;
+        PercentageDialog* _percentageDialog;
         Euclid::Strategy<Kernel>* _refineStrat;
     };
 
