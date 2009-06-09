@@ -57,11 +57,11 @@ namespace App
     MainWindow::setStatusbarMessage()
     {
         QString status = "Loaded trimesh with %1 vertice(s), %2 triangle(s)"
-            " and %3 average lepp, using %4 MB memory";
+            " and %3 average lepp, using %4 kb memory";
         statusbar->showMessage(status.arg(_trimesh->numVertices())
             .arg(_trimesh->numTriangles())
             .arg(0)
-            .arg(0));
+            .arg(_trimesh->memory() / 1024));
     }
 
     void

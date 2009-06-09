@@ -61,6 +61,17 @@ namespace Euclid
             return _triangles.size();
         }
 
+        int memory() const
+        {
+            int mem = 0;
+            mem += numTriangles() * sizeof(Triangle);
+            mem += numTriangles() * sizeof(Triangle*);
+            mem += numVertices() * sizeof(Vertex);
+            mem += numVertices() * sizeof(Vertex*);
+            mem += sizeof(TriMesh<Kernel>);
+            return mem;
+        }
+
         const QList<Triangle*>& triangles() const
         {
             return _triangles;
