@@ -1,3 +1,4 @@
 TEMPLATE = subdirs
-SUBDIRS = Gui
+SUBDIRS = Cli \
+    Gui
 
