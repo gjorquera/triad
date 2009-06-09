@@ -2,6 +2,7 @@
 #include <Euclid/Algorithm/LongestEdgeCriterion.h>
 #include <Euclid/Geometry/M2dFormatIO.h>
 #include "MainWindow.h"
+#include "Algorithm/LeppStrategy.h"
 #include "Dialog/LongestEdgeDialog.h"
 
 namespace App
@@ -55,7 +56,7 @@ namespace App
             Euclid::M2dFormatIO<Kernel> meshLoader(filename, _trimesh);
             meshLoader.load();
             _meshViewer->set(_trimesh);
-            NaiveLeppStrategy* leppStrat = new NaiveLeppStrategy(_trimesh);
+            LeppStrategy* leppStrat = new LeppStrategy(_trimesh);
             _meshViewer->setStrategy(leppStrat);
         }
 

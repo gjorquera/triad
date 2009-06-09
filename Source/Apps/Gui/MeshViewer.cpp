@@ -1,5 +1,5 @@
 #include <QListIterator>
-#include "Algorithm/NaiveLeppStrategy.h"
+#include "Algorithm/LeppStrategy.h"
 #include "MeshViewer.h"
 #include "TriangleFigure.h"
 
@@ -31,7 +31,7 @@ namespace App
     }
 
     void
-    MeshViewer::setStrategy(NaiveLeppStrategy* leppStrat)
+    MeshViewer::setStrategy(LeppStrategy* leppStrat)
     {
         _leppStrat = leppStrat;
     }

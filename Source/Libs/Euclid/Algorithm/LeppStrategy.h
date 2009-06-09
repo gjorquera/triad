@@ -9,7 +9,7 @@ namespace Euclid
      * A naive lepp bisection refinement algorithm
      */
     template <class Kernel>
-    class NaiveLeppStrategy : public Strategy<Kernel>
+    class LeppStrategy : public Strategy<Kernel>
     {
     public:
         typedef typename Kernel::Point  Point;
@@ -18,12 +18,12 @@ namespace Euclid
         typedef typename Euclid::Triangle<Kernel> Triangle;
         typedef typename Euclid::TriMesh<Kernel>  TriMesh;
 
-        NaiveLeppStrategy(TriMesh* trimesh)
+        LeppStrategy(TriMesh* trimesh)
             : Strategy<Kernel>(trimesh)
         {
         }
 
-        ~NaiveLeppStrategy()
+        ~LeppStrategy()
         {
         }
 

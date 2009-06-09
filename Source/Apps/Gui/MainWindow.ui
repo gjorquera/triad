@@ -53,9 +53,19 @@
     <addaction name="actionNeighbors"/>
     <addaction name="actionLepp"/>
    </widget>
+   <widget class="QMenu" name="menuAlgorithm">
+    <property name="title">
+     <string>&amp;Algorithm</string>
+    </property>
+    <addaction name="actionSecuentialLeppBisection"/>
+    <addaction name="actionParallelLeppBisection"/>
+    <addaction name="separator"/>
+    <addaction name="actionExecute"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuSelect"/>
    <addaction name="menuView"/>
+   <addaction name="menuAlgorithm"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpenMesh">
@@ -155,6 +165,24 @@
    </property>
    <property name="text">
     <string>&amp;Lepp</string>
+   </property>
+  </action>
+  <action name="actionSecuentialLeppBisection">
+   <property name="text">
+    <string>&amp;Secuential Lepp Bisection</string>
+   </property>
+  </action>
+  <action name="actionParallelLeppBisection">
+   <property name="text">
+    <string>&amp;Parallel Lepp Bisection</string>
+   </property>
+  </action>
+  <action name="actionExecute">
+   <property name="text">
+    <string>&amp;Execute</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
    </property>
   </action>
  </widget>

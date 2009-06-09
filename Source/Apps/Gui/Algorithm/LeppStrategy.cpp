@@ -1,19 +1,19 @@
-#include "NaiveLeppStrategy.h"
+#include "LeppStrategy.h"
 
 namespace App
 {
 
-    NaiveLeppStrategy::NaiveLeppStrategy(Euclid::TriMesh<Kernel>* trimesh)
-        : Euclid::NaiveLeppStrategy<Kernel>(trimesh)
+    LeppStrategy::LeppStrategy(Euclid::TriMesh<Kernel>* trimesh)
+        : Euclid::LeppStrategy<Kernel>(trimesh)
     {
     }
 
-    NaiveLeppStrategy::~NaiveLeppStrategy()
+    LeppStrategy::~LeppStrategy()
     {
     }
 
     void
-    NaiveLeppStrategy::highlightLepp()
+    LeppStrategy::highlightLepp()
     {
         Euclid::TriMesh<Kernel>* trimesh = Euclid::Strategy<Kernel>::trimesh();
         QMutableListIterator<Euclid::Triangle<Kernel>*> i(trimesh->triangles());
