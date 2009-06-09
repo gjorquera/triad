@@ -15,6 +15,7 @@ namespace App
         LeppStrategy(Euclid::TriMesh<Kernel>* trimesh = 0);
         ~LeppStrategy();
         void highlightLepp();
+        int averageLepp();
     };
 }
 

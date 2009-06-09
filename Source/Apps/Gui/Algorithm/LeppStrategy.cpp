@@ -38,5 +38,28 @@ namespace App
             i.next();
         }
     }
+
+    int
+    LeppStrategy::averageLepp()
+    {
+        int lepps = 0;
+        Euclid::TriMesh<Kernel>* trimesh = Euclid::Strategy<Kernel>::trimesh();
+        QListIterator<Euclid::Triangle<Kernel>*> i(trimesh->triangles());
+        while (i.hasNext())
+        {
+            Euclid::Triangle<Kernel>* t = i.next();
+            do
+            {
+                lepps++;
+                if (isTerminal(t)) {
+                    if (0 != longestEdgeNeighbor(t)) lepps++;
+                    t = 0;
+                } else {
+                    t = longestEdgeNeighbor(t);
+                }
+            } while (0 != t);
+        }
+        return lepps / trimesh->numTriangles();
+    }
 }
 

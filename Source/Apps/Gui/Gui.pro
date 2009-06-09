@@ -1,6 +1,6 @@
 QT += opengl
 TEMPLATE = app
-TARGET = Triad
+TARGET = TriadGui
 DESTDIR = ../../../Bin
 LIBS += -lViewer -lEuclid
 
