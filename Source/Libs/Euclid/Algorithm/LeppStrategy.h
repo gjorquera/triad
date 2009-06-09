@@ -18,7 +18,7 @@ namespace Euclid
         typedef typename Euclid::Triangle<Kernel> Triangle;
         typedef typename Euclid::TriMesh<Kernel>  TriMesh;
 
-        LeppStrategy(TriMesh* trimesh)
+        LeppStrategy(TriMesh* trimesh = 0)
             : Strategy<Kernel>(trimesh)
         {
         }

@@ -14,9 +14,8 @@ namespace Euclid
     class Strategy
     {
     public:
-        Strategy(TriMesh<Kernel>* trimesh)
+        Strategy(TriMesh<Kernel>* trimesh = 0)
         {
-            assert(0 != trimesh);
             _trimesh = trimesh;
         }
 
@@ -24,11 +23,18 @@ namespace Euclid
         {
         }
 
+        void setTriMesh(TriMesh<Kernel>* trimesh)
+        {
+            assert(0 != trimesh);
+            _trimesh = trimesh;
+        }
+
         virtual void refine(Criterion<Kernel>& criterion) = 0;
 
     protected:
         TriMesh<Kernel>* trimesh()
         {
+            assert(0 != _trimesh);
             return _trimesh;
         }
 

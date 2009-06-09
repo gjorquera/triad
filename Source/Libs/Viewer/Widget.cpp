@@ -1,4 +1,5 @@
 #include <QMapIterator>
+#include <QMutableMapIterator>
 #include "Figure.h"
 #include "FigureDecorator.h"
 #include "Widget.h"
@@ -27,7 +28,12 @@ namespace Viewer
     void
     Widget::clear()
     {
-        _figures.clear();
+        QMutableMapIterator<int,Figure*> i(_figures);
+        while (i.hasNext())
+        {
+            delete i.value();
+            i.remove();
+        }
     }
 
     QList<Figure*>

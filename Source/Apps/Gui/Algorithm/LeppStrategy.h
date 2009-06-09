@@ -12,7 +12,7 @@ namespace App
     class LeppStrategy : public Euclid::LeppStrategy<Kernel>
     {
     public:
-        LeppStrategy(Euclid::TriMesh<Kernel>* trimesh);
+        LeppStrategy(Euclid::TriMesh<Kernel>* trimesh = 0);
         ~LeppStrategy();
         void highlightLepp();
     };

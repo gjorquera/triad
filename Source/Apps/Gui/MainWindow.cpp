@@ -3,6 +3,7 @@
 #include <Euclid/Geometry/M2dFormatIO.h>
 #include "MainWindow.h"
 #include "Algorithm/LeppStrategy.h"
+#include "Algorithm/SelectedCriterion.h"
 #include "Dialog/LongestEdgeDialog.h"
 
 namespace App
@@ -24,6 +25,8 @@ namespace App
         _meshViewer = new MeshViewer(this);
         this->setCentralWidget(_meshViewer);
 
+        _refineStrat = new LeppStrategy;
+
         connect(actionOpenMesh, SIGNAL(triggered()),
             this, SLOT(openMesh()));
         connect(actionSaveMesh, SIGNAL(triggered()),
@@ -38,6 +41,12 @@ namespace App
             this, SLOT(setViewNeighbors(bool)));
         connect(actionLepp, SIGNAL(toggled(bool)),
             this, SLOT(setViewLepp(bool)));
+        connect(actionSecuentialLeppBisection, SIGNAL(triggered()),
+            this, SLOT(setLeppRefinement()));
+        connect(actionParallelLeppBisection, SIGNAL(triggered()),
+            this, SLOT(setParallelLeppRefinement()));
+        connect(actionExecute, SIGNAL(triggered()),
+            this, SLOT(executeRefinement()));
     }
 
     MainWindow::~MainWindow()
@@ -98,6 +107,29 @@ namespace App
     MainWindow::setViewLepp(bool viewLepp)
     {
         MainWindow::viewLepp = viewLepp;
+        _meshViewer->updateGL();
+    }
+
+    void
+    MainWindow::setLeppRefinement()
+    {
+        _refineStrat = new LeppStrategy;
+    }
+
+    void
+    MainWindow::setParallelLeppRefinement()
+    {
+        /// @todo _refineStrat = new ParallelLeppStrategy;
+    }
+
+    void
+    MainWindow::executeRefinement()
+    {
+        assert(0 != _refineStrat);
+        SelectedCriterion sc;
+        _refineStrat->setTriMesh(_trimesh);
+        _refineStrat->refine(sc);
+        _meshViewer->set(_trimesh);
         _meshViewer->updateGL();
     }
 }
