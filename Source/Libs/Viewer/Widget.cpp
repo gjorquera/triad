@@ -28,12 +28,8 @@ namespace Viewer
     void
     Widget::clear()
     {
-        QMutableMapIterator<int,Figure*> i(_figures);
-        while (i.hasNext())
-        {
-            delete i.value();
-            i.remove();
-        }
+        /// @todo See if this is a memory leak
+        _figures.clear();
     }
 
     QList<Figure*>

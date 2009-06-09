@@ -41,13 +41,19 @@ namespace Euclid
         }
 
     protected:
-        void refineTriangle(Triangle* triangle)
+        Triangle* refineTriangle(Triangle* triangle)
         {
-            if (isTerminal(triangle)) {
-                refineTerminal(triangle);
-            } else {
-                refineTriangle(longestEdgeNeighbor(triangle));
-            }
+            Triangle* refined;
+            do {
+                if (isTerminal(triangle)) {
+                    refineTerminal(triangle);
+                    refined = triangle;
+                } else {
+                    refined = refineTriangle(longestEdgeNeighbor(triangle));
+                }
+            } while (refined != triangle);
+
+            return triangle;
         }
 
         void refineTerminal(Triangle* triangle)
