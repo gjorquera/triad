@@ -38,24 +38,32 @@ namespace Euclid
         {
             _percentage = percentage;
             _biggest = biggest;
-            _triangles = triangles;
-            qSort(_triangles.begin(), _triangles.end(), cmp<Kernel>);
+            _numTriangles = triangles.size();
+            QList<Triangle*> aux = triangles;
+            qSort(aux.begin(), aux.end(), cmp<Kernel>);
+            QListIterator<Triangle*> i(aux);
+            int index = 0;
+            while (i.hasNext())
+            {
+                _positions[i.next()] = ++index;
+            }
         }
 
         bool test(Triangle* triangle) const
         {
-            int index = _triangles.indexOf(triangle);
+            int index = _positions[triangle];
             if (_biggest) {
-                return index > _triangles.size() * (100 - _percentage) / 100;
+                return index > _numTriangles * (100 - _percentage) / 100;
             } else {
-                return index < _triangles.size() * _percentage / 100;
+                return index < _numTriangles * _percentage / 100;
             }
         }
 
     private:
         int _percentage;
+        int _numTriangles;
         bool _biggest;
-        QList<Triangle*> _triangles;
+        QMap<Triangle*,int> _positions;
     };
 }
 
