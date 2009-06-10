@@ -1,7 +1,7 @@
 CONFIG -= release
 LIBS += -L../../../Static
 INCLUDEPATH += ../../Libs
-QMAKE_CXXFLAGS += -Werror -Wextra -Wpointer-arith -Wcast-qual -W -O2
+QMAKE_CXXFLAGS += -Werror -Wextra -Wpointer-arith -Wcast-qual -W
 
 unix {
     debug:OBJECTS_DIR = $${OUT_PWD}/.obj/debug-shared
