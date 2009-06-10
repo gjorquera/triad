@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cassert>
+#include <QRegExp>
 #include <QString>
 #include "TriMesh.h"
 
