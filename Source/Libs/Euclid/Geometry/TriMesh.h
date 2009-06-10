@@ -41,14 +41,16 @@ namespace Euclid
             }
         }
 
-        void addVertex(const Vertex* vertex)
+        void addVertex(Vertex* vertex)
         {
-            _vertices.append(const_cast<Vertex*>(vertex));
+            assert(0 != vertex);
+            _vertices.append(vertex);
         }
 
-        void addTriangle(const Triangle* triangle)
+        void addTriangle(Triangle* triangle)
         {
-            _triangles.append(const_cast<Triangle*>(triangle));
+            assert(0 != triangle);
+            _triangles.append(triangle);
         }
 
         int numVertices() const
@@ -92,7 +94,7 @@ namespace Euclid
             return _vertices;
         }
 
-    protected:
+    private:
         QList<Triangle*> _triangles;
         QList<Vertex*> _vertices;
     };
