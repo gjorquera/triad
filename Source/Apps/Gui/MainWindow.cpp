@@ -1,4 +1,5 @@
 #include <QFileDialog>
+#include <Euclid/Algorithm/ConcurrentLeppStrategy.h>
 #include <Euclid/Algorithm/LongestEdgeCriterion.h>
 #include <Euclid/Algorithm/PercentageCriterion.h>
 #include <Euclid/Geometry/M2dFormatIO.h>
@@ -150,7 +151,7 @@ namespace App
     void
     MainWindow::setParallelLeppRefinement()
     {
-        /// @todo _refineStrat = new ParallelLeppStrategy;
+        _refineStrat = new Euclid::ConcurrentLeppStrategy<Kernel>;
     }
 
     void
