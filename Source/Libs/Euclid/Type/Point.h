@@ -17,6 +17,7 @@ namespace Euclid
         Point()
         {
             assert(N > 0);
+            _coords = QVector<T>(N);
             for (int i=0; i<N; i++)
             {
                 _coords.append(T());
@@ -26,6 +27,7 @@ namespace Euclid
         Point(const T coord)
         {
             assert(N > 0);
+            _coords = QVector<T>(N);
             for (int i=0; i<N; i++)
             {
                 _coords.append(coord);
