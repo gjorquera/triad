@@ -161,6 +161,7 @@ namespace App
         _refineStrat->setTriMesh(_trimesh);
         _refineStrat->refine(sc);
         _meshViewer->set(_trimesh);
+        _meshViewer->clearSelection();
         _meshViewer->updateGL();
         setStatusbarMessage();
     }
