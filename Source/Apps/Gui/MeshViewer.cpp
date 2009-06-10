@@ -84,7 +84,7 @@ namespace App
     void
     MeshViewer::projectionGL(int, int)
     {
-        glOrtho(0, 10, 0, 10, 0, 10);
+        glOrtho(0, 100000, 0, 100000, 0, 10);
     }
 }
 
