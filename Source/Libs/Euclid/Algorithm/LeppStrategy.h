@@ -40,14 +40,14 @@ namespace Euclid
             }
         }
 
-        const Vector* longestEdge(Triangle* triangle)
+        virtual const Vector* longestEdge(Triangle* triangle)
         {
             int index = longestEdgeIndex(triangle);
             return triangle->edge(index);
         }
 
     protected:
-        Triangle* refineTriangle(Triangle* triangle)
+        virtual Triangle* refineTriangle(Triangle* triangle)
         {
             Triangle* refined;
             do {
@@ -62,7 +62,7 @@ namespace Euclid
             return triangle;
         }
 
-        void refineTerminal(Triangle* triangle)
+        virtual void refineTerminal(Triangle* triangle)
         {
             TriMesh* trimesh = Strategy<Kernel>::trimesh();
             const Vector* edge = longestEdge(triangle);
@@ -85,7 +85,7 @@ namespace Euclid
             }
         }
 
-        Triangle* cut(Triangle* triangle, Vertex* newVertex)
+        virtual Triangle* cut(Triangle* triangle, Vertex* newVertex)
         {
             TriMesh* trimesh = Strategy<Kernel>::trimesh();
             int index = longestEdgeIndex(triangle);
@@ -118,7 +118,7 @@ namespace Euclid
             return const_cast<Triangle*>(triangle->neighbor(index));
         }
 
-        int longestEdgeIndex(Triangle* triangle)
+        virtual int longestEdgeIndex(Triangle* triangle)
         {
             Vector max;
             int index = -1;
@@ -138,7 +138,7 @@ namespace Euclid
             return index;
         }
 
-        bool isTerminal(Triangle* triangle)
+        virtual bool isTerminal(Triangle* triangle)
         {
             Triangle* neighbor = longestEdgeNeighbor(triangle);
             if (0 == neighbor || triangle == longestEdgeNeighbor(neighbor)) {
