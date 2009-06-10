@@ -30,7 +30,7 @@ namespace Euclid
         void refine(Criterion<Kernel>& criterion)
         {
             TriMesh* trimesh = Strategy<Kernel>::trimesh();
-            QMutableListIterator<Triangle*> i(trimesh->triangles());
+            QListIterator<Triangle*> i(trimesh->triangles());
             while (i.hasNext())
             {
                 if (criterion.test(i.peekNext())) {
