@@ -1,7 +1,7 @@
 #pragma once
 
 #include <qtconcurrentmap.h>
-#include "LeppStrategy.h"
+#include "Strategy.h"
 
 namespace Euclid
 {
@@ -32,7 +32,7 @@ namespace Euclid
     };
 
     template <class Kernel>
-    class ConcurrentLeppStrategy : public LeppStrategy<Kernel>
+    class ConcurrentLeppStrategy : public Strategy<Kernel>
     {
     public:
         typedef typename Kernel::Point  Point;
@@ -42,7 +42,7 @@ namespace Euclid
         typedef typename Euclid::TriMesh<Kernel>  TriMesh;
 
         ConcurrentLeppStrategy(TriMesh* trimesh = 0)
-            : LeppStrategy<Kernel>(trimesh)
+            : Strategy<Kernel>(trimesh)
         {
         }
 
