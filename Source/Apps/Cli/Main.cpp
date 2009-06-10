@@ -26,6 +26,7 @@ void benchmarkPercentage(QString& filename, Euclid::Strategy<Kernel>* strat,
         << "Triangles:" << triangles << "\t"
         << "Memory:" << memory << "\t"
         << "Refined:" << (b ? "Biggest" : "Smallest") << p << "\t"
+        << "=" << triangles * p / 100 << "\t"
         << "Elapsed:" << elapsed;
     delete trimesh;
 }
