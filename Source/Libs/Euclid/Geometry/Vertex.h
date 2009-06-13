@@ -6,7 +6,12 @@ namespace Euclid
 {
 
     /*!
-     * The Vertex< Kernel > class defines a triangle's vertex.
+     * Defines a triangle's vertex.
+     *
+     * A vertex contains a Point in an euclidean coordinate system and a custom
+     * Info structure.
+     *
+     * You can query for them with \b point and \b info.
      */
     template <class Kernel>
     class Vertex
