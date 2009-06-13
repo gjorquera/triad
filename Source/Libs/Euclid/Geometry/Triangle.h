@@ -1,14 +1,35 @@
 #pragma once
 
+#include <QVector>
 #include "Vertex.h"
 
 namespace Euclid
 {
 
     /*!
-     * The Triangle< Kernel > class defines a triangle in a coordinate system.
+     * Defines a triangle in a coordinate system.
      *
-     * Deleting a triangle do not delete it's vertices as they can be shared
+     * This class holds pointers to the vertices of the triangle. The vertice's
+     * indexes must be ordered in CCW, this means that \b vertex(1) is the CCW
+     * vertex of \b vertex(0).
+     *
+     * You can get a \b vertex given it's index as well as \b setVertex to a
+     * given index.
+     *
+     * You can get an \b edge given it's index. \b Note: The edge with index 0
+     * is the one opposed to vertex 0, this means, the edge formed by vertices 1
+     * and 2.
+     *
+     * You can also \b setNeighbor and get a \b neighbor given it's index. When
+     * you set or get a neighbor, the index is calculated automatically using
+     * the same convention as edges.
+     *
+     * You can query if \b isSelected or \b setSelected to select this
+     * triangle for refinement.
+     *
+     * Finally, you can query for the custom \b info structure.
+     *
+     * Deleting a triangle does not delete it's vertices as they can be shared
      * with other triangles.
      *
      * @todo Add Edge class.
@@ -25,6 +46,8 @@ namespace Euclid
         Triangle(VertexT *v1, VertexT *v2, VertexT *v3)
         {
             assert(0 != v1 && 0 != v2 && 0 != v3);
+            _vertices = QVector<VertexT*>(3);
+            _neighbors = QVector<TriangleT*>(3);
             _selected = false;
             _info = Info();
             _vertices[0] = v1;
@@ -95,8 +118,8 @@ namespace Euclid
     protected:
         bool _selected;
         Info _info;
-        VertexT* _vertices[3];
-        TriangleT* _neighbors[3];
+        QVector<VertexT*> _vertices;
+        QVector<TriangleT*> _neighbors;
 
         int neighborIndex(const TriangleT *triangle) const
         {
