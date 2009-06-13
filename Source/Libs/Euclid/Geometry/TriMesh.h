@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QList>
-#include <QMutableListIterator>
+#include <QListIterator>
 #include "Triangle.h"
 #include "Vertex.h"
 
@@ -27,21 +27,19 @@ namespace Euclid
 
         virtual ~TriMesh()
         {
-            QMutableListIterator<TriangleT*> i(triangles());
+            QListIterator<TriangleT*> i(triangles());
             while (i.hasNext())
             {
                 delete i.next();
-                i.remove();
             }
-            QMutableListIterator<Vertex*> j(vertices());
+            QListIterator<VertexT*> j(vertices());
             while (j.hasNext())
             {
                 delete j.next();
-                j.remove();
             }
         }
 
-        void addVertex(Vertex* vertex)
+        void addVertex(VertexT* vertex)
         {
             assert(0 != vertex);
             _vertices.append(vertex);
@@ -68,8 +66,8 @@ namespace Euclid
             int mem = 0;
             mem += numTriangles() * sizeof(TriangleT);
             mem += numTriangles() * sizeof(TriangleT*);
-            mem += numVertices() * sizeof(Vertex);
-            mem += numVertices() * sizeof(Vertex*);
+            mem += numVertices() * sizeof(VertexT);
+            mem += numVertices() * sizeof(VertexT*);
             mem += sizeof(TriMesh<Kernel>);
             return mem;
         }
@@ -84,19 +82,19 @@ namespace Euclid
             return _triangles;
         }
 
-        const QList<Vertex*>& vertices() const
+        const QList<VertexT*>& vertices() const
         {
             return _vertices;
         }
 
-        QList<Vertex*>& vertices()
+        QList<VertexT*>& vertices()
         {
             return _vertices;
         }
 
     private:
         QList<TriangleT*> _triangles;
-        QList<Vertex*> _vertices;
+        QList<VertexT*> _vertices;
     };
 }
 
