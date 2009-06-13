@@ -17,8 +17,9 @@ namespace Euclid
     public:
         typedef typename Kernel::Vector       Vector;
         typedef typename Kernel::TriangleInfo Info;
+        typedef Vertex<Kernel>                Vertex;
 
-        Triangle(Vertex<Kernel> *v1, Vertex<Kernel> *v2, Vertex<Kernel> *v3)
+        Triangle(Vertex *v1, Vertex *v2, Vertex *v3)
         {
             assert(0 != v1 && 0 != v2 && 0 != v3);
             _selected = false;
@@ -34,13 +35,13 @@ namespace Euclid
             }
         }
 
-        const Vertex<Kernel> *vertex(const int i) const
+        const Vertex *vertex(const int i) const
         {
             assert(0 <= i && i < 3);
             return _vertices[i];
         }
 
-        void setVertex(const int i, Vertex<Kernel> *vertex)
+        void setVertex(const int i, Vertex *vertex)
         {
             assert(0 <= i && i < 3 && 0 != vertex);
             _vertices[i] = vertex;
@@ -96,7 +97,7 @@ namespace Euclid
     protected:
         bool _selected;
         Info _info;
-        Vertex<Kernel>* _vertices[3];
+        Vertex* _vertices[3];
         Triangle<Kernel>* _neighbors[3];
 
         int neighborIndex(const Triangle<Kernel> *triangle) const
