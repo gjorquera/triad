@@ -18,8 +18,8 @@ namespace Euclid
     class TriMesh
     {
     public:
-        typedef Triangle<Kernel>                         Triangle;
-        typedef Vertex<Kernel>                           Vertex;
+        typedef Triangle<Kernel> TriangleT;
+        typedef Vertex<Kernel>   VertexT;
 
         TriMesh()
         {
@@ -27,7 +27,7 @@ namespace Euclid
 
         virtual ~TriMesh()
         {
-            QMutableListIterator<Triangle*> i(triangles());
+            QMutableListIterator<TriangleT*> i(triangles());
             while (i.hasNext())
             {
                 delete i.next();
@@ -47,7 +47,7 @@ namespace Euclid
             _vertices.append(vertex);
         }
 
-        void addTriangle(Triangle* triangle)
+        void addTriangle(TriangleT* triangle)
         {
             assert(0 != triangle);
             _triangles.append(triangle);
@@ -66,20 +66,20 @@ namespace Euclid
         int memory() const
         {
             int mem = 0;
-            mem += numTriangles() * sizeof(Triangle);
-            mem += numTriangles() * sizeof(Triangle*);
+            mem += numTriangles() * sizeof(TriangleT);
+            mem += numTriangles() * sizeof(TriangleT*);
             mem += numVertices() * sizeof(Vertex);
             mem += numVertices() * sizeof(Vertex*);
             mem += sizeof(TriMesh<Kernel>);
             return mem;
         }
 
-        const QList<Triangle*>& triangles() const
+        const QList<TriangleT*>& triangles() const
         {
             return _triangles;
         }
 
-        QList<Triangle*>& triangles()
+        QList<TriangleT*>& triangles()
         {
             return _triangles;
         }
@@ -95,7 +95,7 @@ namespace Euclid
         }
 
     private:
-        QList<Triangle*> _triangles;
+        QList<TriangleT*> _triangles;
         QList<Vertex*> _vertices;
     };
 }
