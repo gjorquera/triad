@@ -1,5 +1,4 @@
 #include <QFileDialog>
-#include <Euclid/Algorithm/ConcurrentLeppStrategy.h>
 #include <Euclid/Algorithm/LongestEdgeCriterion.h>
 #include <Euclid/Algorithm/PercentageCriterion.h>
 #include <Euclid/Geometry/M2dFormatIO.h>
@@ -49,8 +48,6 @@ namespace App
             this, SLOT(setViewLepp(bool)));
         connect(actionSecuentialLeppBisection, SIGNAL(triggered()),
             this, SLOT(setLeppRefinement()));
-        connect(actionParallelLeppBisection, SIGNAL(triggered()),
-            this, SLOT(setParallelLeppRefinement()));
         connect(actionExecute, SIGNAL(triggered()),
             this, SLOT(executeRefinement()));
     }
@@ -146,12 +143,6 @@ namespace App
     MainWindow::setLeppRefinement()
     {
         _refineStrat = new LeppStrategy;
-    }
-
-    void
-    MainWindow::setParallelLeppRefinement()
-    {
-        _refineStrat = new Euclid::ConcurrentLeppStrategy<Kernel>;
     }
 
     void
