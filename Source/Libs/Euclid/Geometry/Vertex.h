@@ -6,14 +6,15 @@ namespace Euclid
 {
 
     /*!
-     * The Vertex class defines a triangle's vertex.
+     * The Vertex< Kernel > class defines a triangle's vertex.
      */
     template <class Kernel>
     class Vertex
     {
     public:
-        typedef typename Kernel::Point Point;
+        typedef typename Kernel::Point      Point;
         typedef typename Kernel::VertexInfo Info;
+        typedef Vertex<Kernel>              VertexT;
 
         Vertex()
         {
@@ -39,20 +40,9 @@ namespace Euclid
             _info = info;
         }
 
-        Vertex(const Vertex<Kernel>& vertex)
+        Point& point()
         {
-            _point = vertex._point;
-            _info = vertex._info;
-        }
-
-        Vertex<Kernel>& operator=(const Vertex<Kernel>& vertex)
-        {
-            if (this == &vertex) return *this;
-
-            _point = vertex._point;
-            _info = vertex._info;
-
-            return *this;
+            return _point;
         }
 
         const Point& point() const
@@ -60,19 +50,14 @@ namespace Euclid
             return _point;
         }
 
-        void setPoint(const Point& point)
+        Info& info()
         {
-            _point = point;
+            return _info;
         }
 
         const Info& info() const
         {
             return _info;
-        }
-
-        void setInfo(const Info& info)
-        {
-            _info = info;
         }
 
     protected:
