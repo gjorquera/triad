@@ -9,10 +9,19 @@ namespace Euclid
 {
 
     /*!
-     * The TriMesh< Kernel > class defines a triangle mesh.
+     * Defines a triangle mesh.
      *
-     * This class holds vertices as well as triangles. Deleting this class will
-     * delete all added vertices and triangles.
+     * This class hold pointers to all the triangles and vertices of the
+     * triangle mesh. A vertex may be shared among different triangles.
+     *
+     * You can \b addVertex or \b addTriangle as well as query for the \b
+     * numVertices and \b numTriangles, and get a list with all the \b
+     * vertices and \b triangles.
+     *
+     * You can also get the ammount of \b memory that the trimesh uses.
+     *
+     * \b Note: Deleting this class will delete all added vertices and
+     * triangles.
      */
     template <class Kernel>
     class TriMesh
