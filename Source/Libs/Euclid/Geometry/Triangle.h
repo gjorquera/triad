@@ -6,7 +6,7 @@ namespace Euclid
 {
 
     /*!
-     * The Triangle class defines a triangle in a coordinate system.
+     * The Triangle< Kernel > class defines a triangle in a coordinate system.
      *
      * Deleting a triangle do not delete it's vertices as they can be shared
      * with other triangles.
