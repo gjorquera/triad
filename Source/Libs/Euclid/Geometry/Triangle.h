@@ -15,19 +15,23 @@ namespace Euclid
     class Triangle
     {
     public:
-
         typedef typename Kernel::Vector       Vector;
         typedef typename Kernel::TriangleInfo Info;
 
         Triangle(Vertex<Kernel> *v1, Vertex<Kernel> *v2, Vertex<Kernel> *v3)
         {
             assert(0 != v1 && 0 != v2 && 0 != v3);
+            _selected = false;
             _info = Info();
             _vertices[0] = v1;
             _vertices[1] = v2;
             _vertices[2] = v3;
-            for (int i=0; i<3; i++) _neighbors[i] = 0;
-            _info = Info();
+            for (int i=0; i<3; i++) {
+                /// @todo _edges[i] = new Edge(_vertices[i], _vertices[(i+1)%3]);
+            }
+            for (int i=0; i<3; i++) {
+                _neighbors[i] = 0;
+            }
         }
 
         const Vertex<Kernel> *vertex(const int i) const
@@ -63,6 +67,16 @@ namespace Euclid
             _neighbors[neighborIndex(neighbor)] = neighbor;
         }
 
+        bool isSelected() const
+        {
+            return _selected;
+        }
+
+        void setSelected(bool selected)
+        {
+            _selected = selected;
+        }
+
         Info& info()
         {
             return _info;
@@ -79,6 +93,7 @@ namespace Euclid
         }
 
     protected:
+        bool _selected;
         Info _info;
         Vertex<Kernel>* _vertices[3];
         Triangle<Kernel>* _neighbors[3];
