@@ -92,11 +92,6 @@ namespace Euclid
             return _info;
         }
 
-        void setInfo(const Info& info)
-        {
-            _info = info;
-        }
-
     protected:
         bool _selected;
         Info _info;
