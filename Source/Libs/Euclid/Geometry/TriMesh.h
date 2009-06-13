@@ -9,7 +9,7 @@ namespace Euclid
 {
 
     /*!
-     * The TriMesh class defines a triangle mesh.
+     * The TriMesh< Kernel > class defines a triangle mesh.
      *
      * This class holds vertices as well as triangles. Deleting this class will
      * delete all added vertices and triangles.
