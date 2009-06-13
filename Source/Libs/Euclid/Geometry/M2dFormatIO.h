@@ -19,7 +19,9 @@ namespace Euclid
     class M2dFormatIO : public TriMeshIO<Kernel>
     {
     public:
-        M2dFormatIO(QString& filename, TriMesh<Kernel>* trimesh)
+        typedef TriMesh<Kernel>   TriMeshT;
+
+        M2dFormatIO(QString& filename, TriMeshT* trimesh)
             : TriMeshIO<Kernel>(filename, trimesh)
         {
         }
@@ -33,9 +35,9 @@ namespace Euclid
             QMap<int,Triangle<Kernel>*> triangles;
             QMap<int,Vertex<Kernel>*> vertices;
 
-            TriMesh<Kernel> *trimesh = TriMeshIO<Kernel>::trimesh();
+            TriMeshT *trimesh = this->trimesh();
 
-            QString filename  = TriMeshIO<Kernel>::filename();
+            QString filename  = this->filename();
             QFile file(filename);
 
             if (! file.open(QIODevice::ReadOnly | QIODevice::Text)) return;
