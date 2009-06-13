@@ -18,7 +18,9 @@ namespace Euclid
     class TriMeshIO
     {
     public:
-        TriMeshIO(QString& filename, TriMesh<Kernel>* trimesh)
+        typedef TriMesh<Kernel> TriMeshT;
+
+        TriMeshIO(QString& filename, TriMeshT* trimesh)
         {
             assert(trimesh != 0);
             _filename = filename;
@@ -34,12 +36,12 @@ namespace Euclid
         virtual void save() = 0;
 
     protected:
-        QString& filename()
+        QString filename() const
         {
             return _filename;
         }
 
-        TriMesh<Kernel>* trimesh()
+        TriMeshT* trimesh() const
         {
             return _trimesh;
         }
@@ -77,7 +79,7 @@ namespace Euclid
 
     private:
         QString _filename;
-        TriMesh<Kernel>* _trimesh;
+        TriMeshT* _trimesh;
     };
 }
 
