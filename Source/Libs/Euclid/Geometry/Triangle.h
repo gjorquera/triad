@@ -40,15 +40,16 @@ namespace Euclid
             return _vertices[i];
         }
 
-        void setVertex(const int i, const Vertex<Kernel> *vertex)
+        void setVertex(const int i, Vertex<Kernel> *vertex)
         {
             assert(0 <= i && i < 3 && 0 != vertex);
-            _vertices[i] = const_cast<Vertex<Kernel>*>(vertex);
+            _vertices[i] = vertex;
         }
 
         const Vector* edge(const int i) const
         {
             assert(0 <= i && i < 3);
+            /// @todo use _edges and return Edge;
             Vector* v = new Vector;
             v->setInitial(vertex((i+1)%3)->point());
             v->setTerminal(vertex((i+2)%3)->point());
