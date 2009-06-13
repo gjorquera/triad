@@ -17,9 +17,10 @@ namespace Euclid
     public:
         typedef typename Kernel::Vector       Vector;
         typedef typename Kernel::TriangleInfo Info;
-        typedef Vertex<Kernel>                Vertex;
+        typedef Vertex<Kernel>                VertexT;
+        typedef Triangle<Kernel>              TriangleT;
 
-        Triangle(Vertex *v1, Vertex *v2, Vertex *v3)
+        Triangle(VertexT *v1, VertexT *v2, VertexT *v3)
         {
             assert(0 != v1 && 0 != v2 && 0 != v3);
             _selected = false;
@@ -35,13 +36,13 @@ namespace Euclid
             }
         }
 
-        const Vertex *vertex(const int i) const
+        const VertexT *vertex(const int i) const
         {
             assert(0 <= i && i < 3);
             return _vertices[i];
         }
 
-        void setVertex(const int i, Vertex *vertex)
+        void setVertex(const int i, VertexT *vertex)
         {
             assert(0 <= i && i < 3 && 0 != vertex);
             _vertices[i] = vertex;
@@ -57,13 +58,13 @@ namespace Euclid
             return v;
         }
 
-        const Triangle<Kernel> *neighbor(const int i) const
+        const TriangleT *neighbor(const int i) const
         {
             assert(0 <= i && i < 3);
             return _neighbors[i];
         }
 
-        void addNeighbor(Triangle<Kernel>* neighbor)
+        void addNeighbor(TriangleT* neighbor)
         {
             assert(0 != neighbor);
             _neighbors[neighborIndex(neighbor)] = neighbor;
@@ -97,10 +98,10 @@ namespace Euclid
     protected:
         bool _selected;
         Info _info;
-        Vertex* _vertices[3];
-        Triangle<Kernel>* _neighbors[3];
+        VertexT* _vertices[3];
+        TriangleT* _neighbors[3];
 
-        int neighborIndex(const Triangle<Kernel> *triangle) const
+        int neighborIndex(const TriangleT *triangle) const
         {
             assert(0 != triangle);
             int index = -1;
