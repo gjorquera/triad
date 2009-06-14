@@ -67,7 +67,7 @@ namespace Euclid
 
         virtual void refineTerminal(TriangleT* triangle)
         {
-            TriMesh* trimesh = Strategy<Kernel>::trimesh();
+            TriMesh* trimesh = this->trimesh();
             const EdgeT* edge = longestEdge(triangle);
             Point point((edge->vector() / 2).terminal());
             VertexT* newVertex = new VertexT(point);
@@ -118,7 +118,7 @@ namespace Euclid
         TriangleT* longestEdgeNeighbor(TriangleT* triangle)
         {
             int index = longestEdgeIndex(triangle);
-            return const_cast<TriangleT*>(triangle->neighbor(index));
+            return triangle->neighbor(index);
         }
 
         virtual int longestEdgeIndex(const TriangleT* triangle)

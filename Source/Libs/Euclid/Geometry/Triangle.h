@@ -92,7 +92,7 @@ namespace Euclid
             return _edges[i];
         }
 
-        const TriangleT *neighbor(const int i) const
+        TriangleT *neighbor(const int i)
         {
             assert(0 <= i && i < 3);
             return _neighbors[i];
