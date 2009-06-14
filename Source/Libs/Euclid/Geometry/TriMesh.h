@@ -4,6 +4,7 @@
 #include <QListIterator>
 #include "Triangle.h"
 #include "Vertex.h"
+#include "../Algorithm/Criterion.h"
 
 namespace Euclid
 {
@@ -27,8 +28,9 @@ namespace Euclid
     class TriMesh
     {
     public:
-        typedef Triangle<Kernel> TriangleT;
-        typedef Vertex<Kernel>   VertexT;
+        typedef Triangle<Kernel>  TriangleT;
+        typedef Vertex<Kernel>    VertexT;
+        typedef Criterion<Kernel> Criterion;
 
         TriMesh()
         {
@@ -79,6 +81,15 @@ namespace Euclid
             mem += numVertices() * sizeof(VertexT*);
             mem += sizeof(TriMesh<Kernel>);
             return mem;
+        }
+
+        void select(Criterion& criterion)
+        {
+            QListIterator<TriangleT*> i(triangles());
+            while (i.hasNext()) {
+                TriangleT* triangle = i.next();
+                triangle->setSelected(criterion.test(triangle));
+            }
         }
 
         const QList<TriangleT*>& triangles() const

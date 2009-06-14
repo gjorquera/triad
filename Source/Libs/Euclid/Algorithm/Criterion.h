@@ -18,6 +18,8 @@ namespace Euclid
     class Criterion
     {
     public:
+        typedef Triangle<Kernel> TriangleT;
+
         Criterion()
         {
         }
@@ -26,7 +28,7 @@ namespace Euclid
         {
         }
 
-        virtual bool test(Triangle<Kernel>* triangle) const = 0;
+        virtual bool test(TriangleT* triangle) const = 0;
     };
 }
 

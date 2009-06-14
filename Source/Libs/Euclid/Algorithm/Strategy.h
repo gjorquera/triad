@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cassert>
+#include <QListIterator>
 #include "Criterion.h"
 #include "../Geometry/TriMesh.h"
 
@@ -17,7 +18,10 @@ namespace Euclid
     class Strategy
     {
     public:
-        Strategy(TriMesh<Kernel>* trimesh = 0)
+        typedef Criterion<Kernel> Criterion;
+        typedef TriMesh<Kernel>   TriMesh;
+
+        Strategy(TriMesh* trimesh = 0)
         {
             _trimesh = trimesh;
         }
@@ -26,23 +30,23 @@ namespace Euclid
         {
         }
 
-        void setTriMesh(TriMesh<Kernel>* trimesh)
+        void setTriMesh(TriMesh* trimesh)
         {
             assert(0 != trimesh);
             _trimesh = trimesh;
         }
 
-        virtual void refine(Criterion<Kernel>& criterion) = 0;
+        virtual void refine(Criterion& criterion) = 0;
 
     protected:
-        TriMesh<Kernel>* trimesh()
+        TriMesh* trimesh()
         {
             assert(0 != _trimesh);
             return _trimesh;
         }
 
     private:
-        TriMesh<Kernel>* _trimesh;
+        TriMesh* _trimesh;
     };
 }
 
