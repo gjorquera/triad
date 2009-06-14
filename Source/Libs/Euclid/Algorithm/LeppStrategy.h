@@ -35,14 +35,15 @@ namespace Euclid
             QListIterator<TriangleT*> i(trimesh->triangles());
             while (i.hasNext())
             {
-                if (criterion.test(i.peekNext())) {
-                    refineTriangle(i.peekNext());
+                TriangleT* triangle = i.next();
+                while (criterion.test(triangle)) {
+                    refineTriangle(triangle);
+                    triangle->setSelected(false);
                 }
-                i.next();
             }
         }
 
-        virtual const EdgeT* longestEdge(TriangleT* triangle)
+        virtual const EdgeT* longestEdge(const TriangleT* triangle)
         {
             int index = longestEdgeIndex(triangle);
             return triangle->edge(index);
@@ -120,7 +121,7 @@ namespace Euclid
             return const_cast<TriangleT*>(triangle->neighbor(index));
         }
 
-        virtual int longestEdgeIndex(TriangleT* triangle)
+        virtual int longestEdgeIndex(const TriangleT* triangle)
         {
             T max = T();
             int index = -1;
