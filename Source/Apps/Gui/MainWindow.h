@@ -3,7 +3,7 @@
 #include <memory>
 #include <QMainWindow>
 #include <Euclid/Algorithm/Strategy.h>
-#include "TriMesh.h"
+#include <Euclid/Geometry/TriMesh.h>
 #include "Kernel.h"
 #include "MeshViewer.h"
 #include "ui_MainWindow.h"
@@ -40,7 +40,7 @@ namespace App
         void executeRefinement();
 
     private:
-        TriMesh* _trimesh;
+        Euclid::TriMesh<Kernel>* _trimesh;
         MeshViewer* _meshViewer;
         LongestEdgeDialog* _longestEdgeDialog;
         PercentageDialog* _percentageDialog;
