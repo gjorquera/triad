@@ -29,7 +29,7 @@ namespace Euclid
         {
         }
 
-        void refine(Criterion<Kernel>& criterion)
+        void refine(const Criterion<Kernel>& criterion)
         {
             TriMesh* trimesh = Strategy<Kernel>::trimesh();
             QListIterator<TriangleT*> i(trimesh->triangles());

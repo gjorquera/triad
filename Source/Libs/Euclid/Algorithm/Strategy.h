@@ -36,7 +36,7 @@ namespace Euclid
             _trimesh = trimesh;
         }
 
-        virtual void refine(Criterion& criterion) = 0;
+        virtual void refine(const Criterion& criterion) = 0;
 
     protected:
         TriMesh* trimesh()
