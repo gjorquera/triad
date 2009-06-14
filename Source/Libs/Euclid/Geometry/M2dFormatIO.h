@@ -19,7 +19,9 @@ namespace Euclid
     class M2dFormatIO : public TriMeshIO<Kernel>
     {
     public:
-        typedef TriMesh<Kernel>   TriMeshT;
+        typedef Vertex<Kernel>   VertexT;
+        typedef Triangle<Kernel> TriangleT;
+        typedef TriMesh<Kernel>  TriMeshT;
 
         M2dFormatIO(QString& filename, TriMeshT* trimesh)
             : TriMeshIO<Kernel>(filename, trimesh)
@@ -104,7 +106,63 @@ namespace Euclid
 
         void save()
         {
-            /// @todo implement save
+            QMap<int,VertexT*> vertices;
+            QMap<int,TriangleT*> triangles;
+
+            TriMeshT* trimesh = this->trimesh();
+
+            QString filename = this->filename();
+            QFile file(filename);
+            file.remove();
+
+            if (! file.open(QIODevice::WriteOnly | QIODevice::Append)) return;
+
+            QTextStream tout(&file);
+
+            int index = 0;
+            QListIterator<VertexT*> i(trimesh->vertices());
+            while (i.hasNext()) {
+                vertices[++index] = i.next();
+            }
+
+            index = 0;
+            QListIterator<TriangleT*> j(trimesh->triangles());
+            while (j.hasNext()) {
+                triangles[++index] = j.next();
+            }
+
+            tout << "# Mesh saved by Triad" << endl;
+
+            QMapIterator<int,VertexT*> k(vertices);
+            while (k.hasNext()) {
+                k.next();
+                tout << "v " << k.key();
+                for (int i=0; i<3; i++) {
+                    tout << " " << k.value()->point()[i];
+                }
+                tout << endl;
+            }
+
+            QMapIterator<int,TriangleT*> l(triangles);
+            while (l.hasNext()) {
+                l.next();
+                tout << "t " << l.key();
+                for (int i=0; i<3; i++) {
+                    VertexT* v = const_cast<VertexT*>(l.value()->vertex(i));
+                    tout << " " << vertices.key(v);
+                }
+                tout << endl;
+            }
+
+            l.toFront();
+            while (l.hasNext()) {
+                l.next();
+                tout << "n " << l.key();
+                for (int i=0; i<3; i++) {
+                    tout << " " << triangles.key(l.value()->neighbor(i));
+                }
+                tout << endl;
+            }
         }
     };
 }

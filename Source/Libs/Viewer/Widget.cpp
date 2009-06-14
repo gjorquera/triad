@@ -1,5 +1,5 @@
+#include <QListIterator>
 #include <QMapIterator>
-#include <QMutableMapIterator>
 #include "Figure.h"
 #include "FigureDecorator.h"
 #include "Widget.h"
@@ -28,7 +28,10 @@ namespace Viewer
     void
     Widget::clear()
     {
-        /// @todo See if this is a memory leak
+        QListIterator<Figure*> i(_figures.values());
+        while (i.hasNext()) {
+            delete i.next();
+        }
         _figures.clear();
     }
 
