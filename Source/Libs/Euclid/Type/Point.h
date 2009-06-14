@@ -7,8 +7,7 @@ namespace Euclid
 {
 
     /*!
-     * The Point class defines a point in an \b N dimensional vector space with
-     * \b T precision.
+     * Defines a point in an \b N dimensional vector space with \b T precision.
      */
     template <int N, typename T>
     class Point

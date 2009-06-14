@@ -8,8 +8,7 @@ namespace Euclid
 {
 
     /*!
-     * The Vector class defines a vector in an \b N dimensional vector space
-     * with \b T precision.
+     * Defines a vector in an \b N dimensional vector space with \b T precision.
      */
     template <int N, typename T>
     class Vector
