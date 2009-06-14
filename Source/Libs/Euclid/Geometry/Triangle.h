@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QVector>
+#include "Edge.h"
 #include "Vertex.h"
 
 namespace Euclid
@@ -41,12 +42,14 @@ namespace Euclid
         typedef typename Kernel::Vector       Vector;
         typedef typename Kernel::TriangleInfo Info;
         typedef Vertex<Kernel>                VertexT;
+        typedef Edge<Kernel>                  EdgeT;
         typedef Triangle<Kernel>              TriangleT;
 
         Triangle(VertexT *v1, VertexT *v2, VertexT *v3)
         {
             assert(0 != v1 && 0 != v2 && 0 != v3);
             _vertices = QVector<VertexT*>(3);
+            _edges = QVector<EdgeT*>(3);
             _neighbors = QVector<TriangleT*>(3);
             _selected = false;
             _info = Info();
@@ -54,7 +57,10 @@ namespace Euclid
             _vertices[1] = v2;
             _vertices[2] = v3;
             for (int i=0; i<3; i++) {
-                /// @todo _edges[i] = new Edge(_vertices[i], _vertices[(i+1)%3]);
+                Vector v;
+                v.setInitial(_vertices[(i+1)%3]->point());
+                v.setTerminal(_vertices[(i+2)%3]->point());
+                _edges[i] = new EdgeT(v);
             }
             for (int i=0; i<3; i++) {
                 _neighbors[i] = 0;
@@ -119,6 +125,7 @@ namespace Euclid
         bool _selected;
         Info _info;
         QVector<VertexT*> _vertices;
+        QVector<EdgeT*> _edges;
         QVector<TriangleT*> _neighbors;
 
         int neighborIndex(const TriangleT *triangle) const
