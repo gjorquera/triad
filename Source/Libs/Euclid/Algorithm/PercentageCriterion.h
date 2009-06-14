@@ -23,6 +23,13 @@ bool cmp(const Euclid::Triangle<Kernel>* t1, const Euclid::Triangle<Kernel>* t2)
 namespace Euclid
 {
 
+    /*!
+     * Percentage criterion.
+     *
+     * This class will order all the triangles based on it's longest edge. Then
+     * the \b test method returns true depending on the size of it's longest
+     * edge compared to the size of the other triangle's longest edge.
+     */
     template <class Kernel>
     class PercentageCriterion : public Criterion<Kernel>
     {

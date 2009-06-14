@@ -7,6 +7,8 @@ namespace Euclid
 
     /*!
      * Selected criterion.
+     *
+     * The \b test method returns true if the given triangle is selected.
      */
     template <class Kernel>
     class SelectedCriterion : public Criterion<Kernel>

@@ -6,7 +6,7 @@ namespace Euclid
 {
 
     /*!
-     * A naive lepp bisection refinement algorithm
+     * A secuential lepp bisection refinement algorithm.
      */
     template <class Kernel>
     class LeppStrategy : public Strategy<Kernel>

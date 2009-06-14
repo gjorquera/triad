@@ -7,6 +7,9 @@ namespace Euclid
 
     /*!
      * Longest edge criterion.
+     *
+     * The \b test method returns true depending on the size of the longest edge
+     * of the given triangle.
      */
     template <class Kernel>
     class LongestEdgeCriterion : public Criterion<Kernel>
