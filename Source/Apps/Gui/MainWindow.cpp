@@ -1,10 +1,10 @@
 #include <QFileDialog>
 #include <Euclid/Algorithm/LongestEdgeCriterion.h>
 #include <Euclid/Algorithm/PercentageCriterion.h>
+#include <Euclid/Algorithm/SelectedCriterion.h>
 #include <Euclid/Geometry/M2dFormatIO.h>
 #include "MainWindow.h"
 #include "Algorithm/LeppStrategy.h"
-#include "Algorithm/SelectedCriterion.h"
 #include "Dialog/LongestEdgeDialog.h"
 #include "Dialog/PercentageDialog.h"
 
@@ -149,7 +149,7 @@ namespace App
     MainWindow::executeRefinement()
     {
         assert(0 != _refineStrat);
-        SelectedCriterion sc;
+        Euclid::SelectedCriterion<Kernel> sc;
         _refineStrat->setTriMesh(_trimesh);
         _refineStrat->refine(sc);
         _meshViewer->set(_trimesh);

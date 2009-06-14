@@ -35,27 +35,27 @@ namespace App
     void
     TriangleFigure::clicked()
     {
-        _triangle->info().selected = (! _triangle->info().selected);
+        _triangle->setSelected(! _triangle->isSelected());
     }
 
     Viewer::FigureDecorator*
     TriangleFigure::decorations() const
     {
         Viewer::ComplexDecorator *decorator = new Viewer::ComplexDecorator;
-        if (_triangle->info().selected) {
+        if (_triangle->isSelected()) {
             decorator->add(new SelectedDecorator(this));
         }
         if (MainWindow::viewNeighbors) {
             for (int i=0; i<3; i++)
             {
                 const Euclid::Triangle<Kernel>* t = _triangle->neighbor(i);
-                if (0 != t && t->info().selected) {
+                if (0 != t && t->isSelected()) {
                     decorator->add(new NeighborDecorator(this));
                 }
             }
         }
         if (MainWindow::viewLepp
-            && _triangle->info().lepp) {
+            && _triangle->info()) {
             decorator->add(new LeppDecorator(this));
         }
         decorator->add(new NormalDecorator(this));

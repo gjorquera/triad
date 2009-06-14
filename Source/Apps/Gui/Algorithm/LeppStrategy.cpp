@@ -19,15 +19,15 @@ namespace App
         QMutableListIterator<Euclid::Triangle<Kernel>*> i(trimesh->triangles());
         while (i.hasNext())
         {
-            if (i.peekNext()->info().selected) {
+            if (i.peekNext()->isSelected()) {
                 Euclid::Triangle<Kernel>* t = i.peekNext();
                 do
                 {
-                    t->info().lepp = true;
+                    t->info() = true;
                     if (isTerminal(t)) {
                         Euclid::Triangle<Kernel>* n = longestEdgeNeighbor(t);
                         if (0 != n) {
-                            n->info().lepp = true;
+                            n->info() = true;
                         }
                         t = 0;
                     } else {

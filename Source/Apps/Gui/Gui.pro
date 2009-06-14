@@ -11,7 +11,6 @@ SOURCES += Main.cpp \
     MeshViewer.cpp \
     TriangleFigure.cpp \
     TriMesh.cpp \
-    Algorithm/SelectedCriterion.cpp \
     Algorithm/LeppStrategy.cpp \
     Decorator/LeppDecorator.cpp \
     Decorator/NeighborDecorator.cpp \
@@ -24,7 +23,6 @@ HEADERS += Kernel.h \
     MeshViewer.h \
     TriangleFigure.h \
     TriMesh.h \
-    Algorithm/SelectedCriterion.h \
     Algorithm/LeppStrategy.h \
     Decorator/LeppDecorator.h \
     Decorator/NeighborDecorator.h \

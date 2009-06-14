@@ -15,7 +15,7 @@ namespace App
         while (i.hasNext())
         {
             if (criterion.test(i.peekNext())) {
-                i.peekNext()->info().selected = true;
+                i.peekNext()->setSelected(true);
             }
             i.next();
         }

@@ -40,11 +40,10 @@ namespace App
     MeshViewer::clearSelection()
     {
         QListIterator<Viewer::Figure*> i(figures());
-        while (i.hasNext())
-        {
+        while (i.hasNext()) {
             TriangleFigure* tf = dynamic_cast<TriangleFigure*>(i.next());
-            tf->triangle()->info().selected = false;
-            tf->triangle()->info().lepp = false;
+            tf->triangle()->setSelected(false);
+            tf->triangle()->info() = false;
         }
     }
 
@@ -52,10 +51,9 @@ namespace App
     MeshViewer::paintGL()
     {
         QListIterator<Viewer::Figure*> i(figures());
-        while (i.hasNext())
-        {
+        while (i.hasNext()) {
             TriangleFigure* tf = dynamic_cast<TriangleFigure*>(i.next());
-            tf->triangle()->info().lepp = false;
+            tf->triangle()->info() = false;
         }
         if (0 != _leppStrat) {
             _leppStrat->highlightLepp();
