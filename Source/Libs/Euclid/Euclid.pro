@@ -4,13 +4,12 @@ DESTDIR = ../../../Static
 
 include(../../Workbench.pri)
 
-HEADERS += Algorithm/ConcurrentLeppStrategy.h \
-    Algorithm/Criterion.h \
+HEADERS += Algorithm/Criterion.h \
+    Algorithm/LeppStrategy.h \
     Algorithm/LongestEdgeCriterion.h \
-    Algorithm/NaiveLeppStrategy.h \
     Algorithm/PercentageCriterion.h \
     Algorithm/Strategy.h \
-    Geometry/BlockingTriangle.h \
+    Geometry/Edge.h \
     Geometry/M2dFormatIO.h \
     Geometry/Triangle.h \
     Geometry/TriMesh.h \
