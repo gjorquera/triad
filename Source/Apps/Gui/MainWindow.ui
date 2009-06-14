@@ -41,7 +41,6 @@
     <addaction name="actionManualSelection"/>
     <addaction name="separator"/>
     <addaction name="actionByLongestEdge"/>
-    <addaction name="actionByTriangleArea"/>
     <addaction name="actionByPercentage"/>
     <addaction name="separator"/>
     <addaction name="actionClearSelection"/>
