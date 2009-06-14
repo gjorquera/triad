@@ -8,7 +8,7 @@ namespace App
     class TriangleFigure;
 
     /*!
-     * The NeighborDecorator class implements a decorator for neighbor triangles
+     * Implements a decorator for neighbor triangles
      * of selected triangles.
      *
      * Neighbor triangles are drawn with green color lines.

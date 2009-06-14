@@ -7,7 +7,7 @@ namespace Viewer
     class FigureDecorator;
 
     /*!
-     * The Figure class defines a drawable component.
+     * Defines a drawable component.
      *
      * This class defines the \b decorations method that returns a new instance
      * of a FigureDecorator based on this figure. This class is created inside a

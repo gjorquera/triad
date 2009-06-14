@@ -8,7 +8,7 @@ namespace App
     class TriangleFigure;
 
     /*!
-     * The LeppDecorator class implements a decorator for lepp triangles.
+     * Implements a decorator for lepp triangles.
      *
      * Lepp triangles are drawn with gray background.
      */

@@ -7,7 +7,7 @@ namespace Viewer
 {
 
     /*!
-     * The ComplexDecorator class implements a decorator container.
+     * Implements a decorator container.
      *
      * The IFigure, FigureDecorator and ComplexDecorator classes implements the
      * Composite Pattern.

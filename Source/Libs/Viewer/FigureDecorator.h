@@ -6,7 +6,7 @@ namespace Viewer
 {
 
     /*!
-     * The FigureDecorator class defines a base class for figure decorators.
+     * Defines a base class for figure decorators.
      *
      * This class's main purpose is to hold an instance of the original class
      * without the decorations.

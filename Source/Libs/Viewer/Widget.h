@@ -9,7 +9,7 @@ namespace Viewer
     class Figure;
 
     /*!
-     * The Widget class inherits from \c QGLWidget to implement a custom OpenGL
+     * Inherits from \c QGLWidget to implement a custom OpenGL
      * widget viewer.
      *
      * This class implements the \b paintGL method but the \b initializeGL and

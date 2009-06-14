@@ -7,7 +7,7 @@ namespace App
 {
 
     /*!
-     * Naive lepp bisection customization.
+     * Customization of the Euclid::LeppStrategy implementation.
      */
     class LeppStrategy : public Euclid::LeppStrategy<Kernel>
     {

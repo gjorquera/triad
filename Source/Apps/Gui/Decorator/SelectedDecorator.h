@@ -8,7 +8,7 @@ namespace App
     class TriangleFigure;
 
     /*!
-     * The SelectedDecorator class implements a decorator for selected
+     * Implements a decorator for selected
      * triangles.
      *
      * Selected triangles are drawn with red color lines.

@@ -9,7 +9,7 @@ namespace App
 {
 
     /*!
-     * The TriangleFigure class defines a drawable triangle.
+     * Defines a drawable triangle.
      *
      * This class is in charge of returning the appropiate decorations based on
      * the state of the current triangle instance and draw a basic triangle.

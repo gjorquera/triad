@@ -9,7 +9,7 @@ namespace App
 {
 
     /*!
-     * The MeshViewer class defines a custom implementation of the
+     * Defines a custom implementation of the
      * Viewer::Widget class.
      *
      * This class implements the custom OpenGL \b initializeGL and \b resizeGL

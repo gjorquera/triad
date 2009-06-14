@@ -6,7 +6,7 @@ namespace App
 {
 
     /*!
-     * Longest edge dialog.
+     * Longest edge criterion dialog.
      */
     class LongestEdgeDialog : public QDialog, public Ui::LongestEdgeDialog
     {

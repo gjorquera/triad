@@ -5,6 +5,9 @@
 namespace App
 {
 
+    /*!
+     * Percentage criterion dialog.
+     */
     class PercentageDialog : public QDialog, public Ui::PercentageDialog
     {
         Q_OBJECT
