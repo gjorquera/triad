@@ -8,7 +8,10 @@ namespace Euclid
 {
 
     /*!
-     * Represents refinement algorithms applyable to trimeshes.
+     * Represents refinement algorithms applicable to trimeshes.
+     *
+     * Concrete refinement algorithms must implement the \b refine method which
+     * get's the \b trimesh and refines using the given criterion.
      */
     template <class Kernel>
     class Strategy
