@@ -67,6 +67,13 @@ namespace Euclid
             }
         }
 
+        virtual ~Triangle()
+        {
+            for (int i=0; i<3; i++) {
+                delete _edges[i];
+            }
+        }
+
         const VertexT *vertex(const int i) const
         {
             assert(0 <= i && i < 3);
