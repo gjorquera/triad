@@ -57,11 +57,9 @@ namespace Euclid
             _vertices[1] = v2;
             _vertices[2] = v3;
             for (int i=0; i<3; i++) {
-                Vector v;
-                v.setInitial(_vertices[(i+1)%3]->point());
-                v.setTerminal(_vertices[(i+2)%3]->point());
-                _edges[i] = new EdgeT(v);
+                _edges[i] = 0;
             }
+            fixEdges();
             for (int i=0; i<3; i++) {
                 _neighbors[i] = 0;
             }
@@ -84,6 +82,7 @@ namespace Euclid
         {
             assert(0 <= i && i < 3 && 0 != vertex);
             _vertices[i] = vertex;
+            fixEdges();
         }
 
         const EdgeT* edge(const int i) const
@@ -130,6 +129,21 @@ namespace Euclid
         QVector<VertexT*> _vertices;
         QVector<EdgeT*> _edges;
         QVector<TriangleT*> _neighbors;
+
+        void fixEdges()
+        {
+            for (int i=0; i<3; i++) {
+                if (0 != _edges[i]) {
+                    delete _edges[i];
+                }
+            }
+            for (int i=0; i<3; i++) {
+                Vector v;
+                v.setInitial(_vertices[(i+1)%3]->point());
+                v.setTerminal(_vertices[(i+2)%3]->point());
+                _edges[i] = new EdgeT(v);
+            }
+        }
 
         int neighborIndex(const TriangleT *triangle) const
         {

@@ -51,7 +51,7 @@ namespace Euclid
     protected:
         virtual TriangleT* refineTriangle(TriangleT* triangle)
         {
-            TriangleT* refined;
+            TriangleT* refined = 0;
             do {
                 if (isTerminal(triangle)) {
                     refineTerminal(triangle);
@@ -67,6 +67,7 @@ namespace Euclid
         virtual void refineTerminal(TriangleT* triangle)
         {
             TriMesh* trimesh = this->trimesh();
+
             const EdgeT* edge = longestEdge(triangle);
             Point point((edge->vector() / 2).terminal());
             VertexT* newVertex = new VertexT(point);
@@ -89,7 +90,7 @@ namespace Euclid
 
         virtual TriangleT* cut(TriangleT* triangle, VertexT* newVertex)
         {
-            TriMesh* trimesh = Strategy<Kernel>::trimesh();
+            TriMesh* trimesh = this->trimesh();
             int index = longestEdgeIndex(triangle);
 
             VertexT* v1 = const_cast<VertexT*>(triangle->vertex(index));
@@ -101,8 +102,7 @@ namespace Euclid
 
             triangle->setVertex((index+2)%3, newVertex);
 
-            TriangleT* neighbor = const_cast<TriangleT*>(
-                triangle->neighbor((index+1)%3));
+            TriangleT* neighbor = triangle->neighbor((index+1)%3);
             if (0 != neighbor) {
                 newTriangle->addNeighbor(neighbor);
                 neighbor->addNeighbor(newTriangle);
