@@ -6,7 +6,7 @@ namespace Euclid
 {
 
     /*!
-     * Longest edge criteria.
+     * Longest edge criterion.
      */
     template <class Kernel>
     class LongestEdgeCriterion : public Criterion<Kernel>
