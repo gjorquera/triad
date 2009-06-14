@@ -38,7 +38,6 @@ namespace Euclid
                 TriangleT* triangle = i.next();
                 while (criterion.test(triangle)) {
                     refineTriangle(triangle);
-                    triangle->setSelected(false);
                 }
             }
         }
