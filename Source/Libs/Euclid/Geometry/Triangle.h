@@ -86,14 +86,10 @@ namespace Euclid
             _vertices[i] = vertex;
         }
 
-        const Vector* edge(const int i) const
+        const EdgeT* edge(const int i) const
         {
             assert(0 <= i && i < 3);
-            /// @todo use _edges and return Edge;
-            Vector* v = new Vector;
-            v->setInitial(vertex((i+1)%3)->point());
-            v->setTerminal(vertex((i+2)%3)->point());
-            return v;
+            return _edges[i];
         }
 
         const TriangleT *neighbor(const int i) const

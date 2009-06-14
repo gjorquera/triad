@@ -10,14 +10,13 @@ template <class Kernel>
 bool cmp(const Euclid::Triangle<Kernel>* t1, const Euclid::Triangle<Kernel>* t2)
 {
     typedef typename Kernel::Vector Vector;
+
     Euclid::LeppStrategy<Kernel> lepp;
     const Vector* v1;
     const Vector* v2;
-    v1 = lepp.longestEdge(const_cast<Euclid::Triangle<Kernel>*>(t1));
-    v2 = lepp.longestEdge(const_cast<Euclid::Triangle<Kernel>*>(t2));
+    v1 = &lepp.longestEdge(const_cast<Euclid::Triangle<Kernel>*>(t1))->vector();
+    v2 = &lepp.longestEdge(const_cast<Euclid::Triangle<Kernel>*>(t2))->vector();
     bool result = v1->distance() < v2->distance();
-    delete v1;
-    delete v2;
     return result;
 }
 
