@@ -32,8 +32,6 @@ namespace Euclid
      *
      * Deleting a triangle does not delete it's vertices as they can be shared
      * with other triangles.
-     *
-     * @todo Add Edge class.
      */
     template <class Kernel>
     class Triangle
