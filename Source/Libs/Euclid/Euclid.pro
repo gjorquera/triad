@@ -8,6 +8,7 @@ HEADERS += Algorithm/Criterion.h \
     Algorithm/LeppStrategy.h \
     Algorithm/LongestEdgeCriterion.h \
     Algorithm/PercentageCriterion.h \
+    Algorithm/SelectedCriterion.h \
     Algorithm/Strategy.h \
     Geometry/Edge.h \
     Geometry/M2dFormatIO.h \
