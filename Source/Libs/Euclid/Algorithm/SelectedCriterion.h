@@ -21,7 +21,9 @@ namespace Euclid
 
         bool test(TriangleT* triangle) const
         {
-            return triangle->isSelected();
+            bool selected = triangle->isSelected();
+            triangle->setSelected(false);
+            return selected;
         }
     };
 }
