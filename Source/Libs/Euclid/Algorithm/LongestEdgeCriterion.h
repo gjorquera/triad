@@ -14,6 +14,7 @@ namespace Euclid
     public:
         typedef typename Kernel::T      T;
         typedef typename Kernel::Vector Vector;
+        typedef Triangle<Kernel>        TriangleT;
 
         LongestEdgeCriterion(T maxLength = 1.0, bool biggest = true)
             : Criterion<Kernel>()
@@ -22,7 +23,7 @@ namespace Euclid
             _biggest = biggest;
         }
 
-        bool test(Triangle<Kernel>* triangle) const
+        bool test(TriangleT* triangle) const
         {
             bool result = false;
             for (int i=0; i<3; i++)
