@@ -31,10 +31,9 @@ namespace Euclid
             bool result = false;
             for (int i=0; i<3; i++)
             {
-                /// @todo Fix this useless pointer
-                const Vector* v = &triangle->edge(i)->vector();
-                if (_biggest && v->distance() > _maxLength
-                    || ! _biggest && v->distance() < _maxLength) {
+                const Vector v = triangle->edge(i)->vector();
+                if (_biggest && v.distance() > _maxLength
+                    || ! _biggest && v.distance() < _maxLength) {
                     result = true;
                 }
             }
