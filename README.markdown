@@ -14,6 +14,19 @@ Triad depends on the following libraries:
 
   - [Qt 4.4](http://www.qtsoftware.com/products)
 
+Compilation
+===========
+
+To compile simply execute
+
+    qmake && make
+
+Documentation
+=============
+
+Open the Docs/index.html file to see the class diagram and the documentation of
+all the classes.
+
 Mesh Format
 ===========
 
