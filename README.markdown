@@ -13,8 +13,6 @@ Dependencies
 Triad depends on the following libraries:
 
   - [Qt 4.4](http://www.qtsoftware.com/products)
-  - Euclid
-  - MeshViewer
 
 Mesh Format
 ===========
