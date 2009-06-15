@@ -27,6 +27,11 @@ Documentation
 Open the Docs/index.html file to see the class diagram and the documentation of
 all the classes.
 
+Mesh
+====
+
+In the folder Mesh there's a 100 vertex (200 triangles aprox.) mesh.
+
 Mesh Format
 ===========
 
