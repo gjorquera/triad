@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QList>
-#include <QListIterator>
+#include <QMutableListIterator>
 #include <QRunnable>
 #include "../Geometry/TriMesh.h"
 
@@ -25,12 +25,27 @@ namespace Euclid
 
         void run()
         {
-            // iterate through _toRefine refining until no isSelected triangle
-            // is left.
-            QListIterator<TriangleT*> i(_toRefine);
-            while (i.hasNext()) {
-                i.next()->setSelected(false);
-            }
+            QMutableListIterator<TriangleT*> i(_toRefine);
+            do {
+                while (i.hasNext()) {
+                    TriangleT* t = i.next();
+                    bool taken = t->mutex().tryLock();
+                    if (! taken) continue;
+
+                    if (refine(t)) {
+                        t->setSelected(false);
+                        i.remove();
+                    }
+
+                    t->mutex().unlock();
+                }
+            } while (_toRefine.size() > 0);
+        }
+
+    protected:
+        bool refine(TriangleT* )
+        {
+            return true;
         }
 
     private:
