@@ -3,6 +3,7 @@
 #include <QTime>
 #include <Euclid/Algorithm/LeppStrategy.h>
 #include <Euclid/Algorithm/PercentageCriterion.h>
+#include <Euclid/Algorithm/SelectedCriterion.h>
 #include <Euclid/Geometry/M2dFormatIO.h>
 #include <Euclid/Type/DefaultKernel.h>
 
@@ -17,10 +18,12 @@ void benchmarkPercentage(QString& filename, Euclid::Strategy<Kernel>* strat,
     int triangles = trimesh->numTriangles();
     int memory = trimesh->memory();
     strat->setTriMesh(trimesh);
-    Euclid::PercentageCriterion<Kernel> c(trimesh->triangles(), p, b);
+    Euclid::PercentageCriterion<Kernel> pc(trimesh->triangles(), p, b);
+    trimesh->select(pc);
+    Euclid::SelectedCriterion<Kernel> sc;
     QTime t;
     t.start();
-    strat->refine(c);
+    strat->refine(sc);
     int elapsed = t.elapsed();
     qDebug() << "Vertices:" << vertices << "\t"
         << "Triangles:" << triangles << "\t"

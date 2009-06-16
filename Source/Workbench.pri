@@ -1,4 +1,4 @@
-CONFIG -= release
+CONFIG -= debug
 LIBS += -L../../../Static
 INCLUDEPATH += ../../Libs
 QMAKE_CXXFLAGS += -Werror -Wextra -Wpointer-arith -Wcast-qual -W
