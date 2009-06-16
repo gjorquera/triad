@@ -53,7 +53,7 @@ namespace Euclid
                     refineTerminal(triangle);
                     refined = triangle;
                 } else {
-                    refined = refineTriangle(longestEdgeNeighbor(triangle));
+                    refined = refineTriangle(LeppLibrary::longestEdgeNeighbor(triangle));
                 }
             } while (refined != triangle);
 
@@ -69,12 +69,14 @@ namespace Euclid
             VertexT* newVertex = new VertexT(point);
             trimesh->addVertex(newVertex);
 
-            TriangleT* neighbor = longestEdgeNeighbor(triangle);
+            TriangleT* neighbor = LeppLibrary::longestEdgeNeighbor(triangle);
 
-            TriangleT* newTriangle1 = cut(triangle, newVertex);
+            TriangleT* newTriangle1 = LeppLibrary::bisect(triangle, newVertex);
+            trimesh->addTriangle(newTriangle1);
 
             if (0 != neighbor) {
-                TriangleT* newTriangle2 = cut(neighbor, newVertex);
+                TriangleT* newTriangle2 = LeppLibrary::bisect(neighbor, newVertex);
+                trimesh->addTriangle(newTriangle2);
 
                 triangle->addNeighbor(newTriangle2);
                 newTriangle2->addNeighbor(triangle);
@@ -82,38 +84,6 @@ namespace Euclid
                 neighbor->addNeighbor(newTriangle1);
                 newTriangle1->addNeighbor(neighbor);
             }
-        }
-
-        virtual TriangleT* cut(TriangleT* triangle, VertexT* newVertex)
-        {
-            TriMesh* trimesh = this->trimesh();
-            int index = LeppLibrary::longestEdgeIndex(triangle);
-
-            VertexT* v1 = const_cast<VertexT*>(triangle->vertex(index));
-            VertexT* v2 = newVertex;
-            VertexT* v3 = const_cast<VertexT*>(triangle->vertex((index+2)%3));
-
-            TriangleT* newTriangle = new TriangleT(v1, v2, v3);
-            trimesh->addTriangle(newTriangle);
-
-            triangle->setVertex((index+2)%3, newVertex);
-
-            TriangleT* neighbor = triangle->neighbor((index+1)%3);
-            if (0 != neighbor) {
-                newTriangle->addNeighbor(neighbor);
-                neighbor->addNeighbor(newTriangle);
-            }
-
-            newTriangle->addNeighbor(triangle);
-            triangle->addNeighbor(newTriangle);
-
-            return newTriangle;
-        }
-
-        TriangleT* longestEdgeNeighbor(TriangleT* triangle)
-        {
-            int index = LeppLibrary::longestEdgeIndex(triangle);
-            return triangle->neighbor(index);
         }
     };
 }

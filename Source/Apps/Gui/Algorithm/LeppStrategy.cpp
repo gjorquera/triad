@@ -25,13 +25,13 @@ namespace App
                 {
                     t->info() = true;
                     if (LeppLibrary::isTerminal(t)) {
-                        Euclid::Triangle<Kernel>* n = longestEdgeNeighbor(t);
+                        Euclid::Triangle<Kernel>* n = LeppLibrary::longestEdgeNeighbor(t);
                         if (0 != n) {
                             n->info() = true;
                         }
                         t = 0;
                     } else {
-                        t = longestEdgeNeighbor(t);
+                        t = LeppLibrary::longestEdgeNeighbor(t);
                     }
                 } while (0 != t);
             }
@@ -52,10 +52,10 @@ namespace App
             {
                 lepps++;
                 if (LeppLibrary::isTerminal(t)) {
-                    if (0 != longestEdgeNeighbor(t)) lepps++;
+                    if (0 != LeppLibrary::longestEdgeNeighbor(t)) lepps++;
                     t = 0;
                 } else {
-                    t = longestEdgeNeighbor(t);
+                    t = LeppLibrary::longestEdgeNeighbor(t);
                 }
             } while (0 != t);
         }
