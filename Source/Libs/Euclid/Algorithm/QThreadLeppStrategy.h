@@ -44,8 +44,10 @@ namespace Euclid
             }
 
             int threads = QThreadPool::globalInstance()->maxThreadCount();
+            qDebug() << threads;
             for (int i=0; i<threads; i++) {
-                QRunnable* thread = new RefineThread<Kernel>(toRefine);
+                QRunnable* thread = new RefineThread<Kernel>(this->trimesh(), toRefine);
+                qDebug() << ":";
                 QThreadPool::globalInstance()->start(thread);
             }
 

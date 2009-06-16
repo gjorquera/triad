@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Strategy.h"
+#include "Lepp/Library.h"
 
 namespace Euclid
 {
@@ -19,6 +20,7 @@ namespace Euclid
         typedef Edge<Kernel>            EdgeT;
         typedef Triangle<Kernel>        TriangleT;
         typedef TriMesh<Kernel>         TriMesh;
+        typedef LeppLibrary<Kernel>     LeppLibrary;
 
         LeppStrategy(TriMesh* trimesh = 0)
             : Strategy<Kernel>(trimesh)
@@ -42,12 +44,6 @@ namespace Euclid
             }
         }
 
-        virtual const EdgeT* longestEdge(const TriangleT* triangle)
-        {
-            int index = longestEdgeIndex(triangle);
-            return triangle->edge(index);
-        }
-
     protected:
         virtual TriangleT* refineTriangle(TriangleT* triangle)
         {
@@ -68,7 +64,7 @@ namespace Euclid
         {
             TriMesh* trimesh = this->trimesh();
 
-            const EdgeT* edge = longestEdge(triangle);
+            const EdgeT* edge = LeppLibrary::longestEdge(triangle);
             Point point((edge->vector() / 2).terminal());
             VertexT* newVertex = new VertexT(point);
             trimesh->addVertex(newVertex);
@@ -91,7 +87,7 @@ namespace Euclid
         virtual TriangleT* cut(TriangleT* triangle, VertexT* newVertex)
         {
             TriMesh* trimesh = this->trimesh();
-            int index = longestEdgeIndex(triangle);
+            int index = LeppLibrary::longestEdgeIndex(triangle);
 
             VertexT* v1 = const_cast<VertexT*>(triangle->vertex(index));
             VertexT* v2 = newVertex;
@@ -116,27 +112,8 @@ namespace Euclid
 
         TriangleT* longestEdgeNeighbor(TriangleT* triangle)
         {
-            int index = longestEdgeIndex(triangle);
+            int index = LeppLibrary::longestEdgeIndex(triangle);
             return triangle->neighbor(index);
-        }
-
-        virtual int longestEdgeIndex(const TriangleT* triangle)
-        {
-            T max = T();
-            int index = -1;
-
-            for (int i=0; i<3; i++)
-            {
-                const EdgeT* e = triangle->edge(i);
-                if (max < e->vector().distance()) {
-                    max = e->vector().distance();
-                    index = i;
-                }
-            }
-
-            assert(-1 != index);
-
-            return index;
         }
 
         virtual bool isTerminal(TriangleT* triangle)

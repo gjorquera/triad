@@ -3,21 +3,19 @@
 #include <QtAlgorithms>
 #include <QList>
 #include "Criterion.h"
-#include "LeppStrategy.h"
+#include "Lepp/Library.h"
+#include "../Geometry/Edge.h"
 #include "../Geometry/Triangle.h"
 
 template <class Kernel>
 bool cmp(const Euclid::Triangle<Kernel>* t1, const Euclid::Triangle<Kernel>* t2)
 {
-    typedef typename Kernel::Vector Vector;
+    typedef Euclid::Edge<Kernel>        EdgeT;
+    typedef Euclid::LeppLibrary<Kernel> LeppLibrary;
 
-    Euclid::LeppStrategy<Kernel> lepp;
-    const Vector* v1;
-    const Vector* v2;
-    v1 = &lepp.longestEdge(const_cast<Euclid::Triangle<Kernel>*>(t1))->vector();
-    v2 = &lepp.longestEdge(const_cast<Euclid::Triangle<Kernel>*>(t2))->vector();
-    bool result = v1->distance() < v2->distance();
-    return result;
+    const EdgeT* v1 = LeppLibrary::longestEdge(t1);
+    const EdgeT* v2 = LeppLibrary::longestEdge(t2);
+    return v1->vector().distance() < v2->vector().distance();
 }
 
 namespace Euclid
