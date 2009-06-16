@@ -35,6 +35,22 @@ namespace Euclid
             int index = LeppLibrary::longestEdgeIndex(triangle);
             return triangle->edge(index);
         }
+
+        static TriangleT* longestEdgeNeighbor(TriangleT* triangle)
+        {
+            int index = LeppLibrary::longestEdgeIndex(triangle);
+            return triangle->neighbor(index);
+        }
+
+        static bool isTerminal(TriangleT* triangle)
+        {
+            TriangleT* neighbor = LeppLibrary::longestEdgeNeighbor(triangle);
+            neighbor = LeppLibrary::longestEdgeNeighbor(neighbor);
+            if (0 == neighbor || triangle == neighbor) {
+                return true;
+            }
+            return false;
+        }
     };
 }
 

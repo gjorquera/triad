@@ -49,7 +49,7 @@ namespace Euclid
         {
             TriangleT* refined = 0;
             do {
-                if (isTerminal(triangle)) {
+                if (LeppLibrary::isTerminal(triangle)) {
                     refineTerminal(triangle);
                     refined = triangle;
                 } else {
@@ -114,15 +114,6 @@ namespace Euclid
         {
             int index = LeppLibrary::longestEdgeIndex(triangle);
             return triangle->neighbor(index);
-        }
-
-        virtual bool isTerminal(TriangleT* triangle)
-        {
-            TriangleT* neighbor = longestEdgeNeighbor(triangle);
-            if (0 == neighbor || triangle == longestEdgeNeighbor(neighbor)) {
-                return true;
-            }
-            return false;
         }
     };
 }

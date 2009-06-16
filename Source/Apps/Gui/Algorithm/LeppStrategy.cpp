@@ -24,7 +24,7 @@ namespace App
                 do
                 {
                     t->info() = true;
-                    if (isTerminal(t)) {
+                    if (LeppLibrary::isTerminal(t)) {
                         Euclid::Triangle<Kernel>* n = longestEdgeNeighbor(t);
                         if (0 != n) {
                             n->info() = true;
@@ -51,7 +51,7 @@ namespace App
             do
             {
                 lepps++;
-                if (isTerminal(t)) {
+                if (LeppLibrary::isTerminal(t)) {
                     if (0 != longestEdgeNeighbor(t)) lepps++;
                     t = 0;
                 } else {
