@@ -1,12 +1,16 @@
 #pragma once
 
-#include "LeppStrategy.h"
+#include "Strategy.h"
 
 namespace Euclid
 {
 
+    /*!
+     * Parallel version of the Lepp-Bisection algorithm implemented with
+     * QThreads.
+     */
     template <class Kernel>
-    class QThreadLeppStrategy : public LeppStrategy<Kernel>
+    class QThreadLeppStrategy : public Strategy<Kernel>
     {
     public:
         typedef Triangle<Kernel>  TriangleT;
@@ -14,7 +18,7 @@ namespace Euclid
         typedef TriMesh<Kernel>   TriMesh;
 
         QThreadLeppStrategy(TriMesh* trimesh = 0)
-            : LeppStrategy<Kernel>(trimesh)
+            : Strategy<Kernel>(trimesh)
         {
         }
 
@@ -26,16 +30,14 @@ namespace Euclid
         {
             TriMesh* trimesh = this->trimesh();
             QListIterator<TriangleT*> i(trimesh->triangles());
-            bool selected = false;
-            do {
-                while (i.hasNext()) {
-                    TriangleT* t = i.next();
-                    if (criterion.test(t)) {
-                        selected = true;
-                        // refine
-                    }
+
+            QList<TriangleT*> toRefine;
+            while (i.hasNext()) {
+                TriangleT* t = i.next();
+                if (criterion.test(t)) {
+                    toRefine.append(t);
                 }
-            } while (selected);
+            }
         }
     };
 }

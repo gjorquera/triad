@@ -3,6 +3,7 @@
 #include <QTime>
 #include <Euclid/Algorithm/LeppStrategy.h>
 #include <Euclid/Algorithm/PercentageCriterion.h>
+#include <Euclid/Algorithm/QThreadLeppStrategy.h>
 #include <Euclid/Algorithm/SelectedCriterion.h>
 #include <Euclid/Geometry/M2dFormatIO.h>
 #include <Euclid/Type/DefaultKernel.h>
@@ -62,6 +63,11 @@ int main(int argc, char** argv)
 
     qDebug() << "SECUENTIAL";
     Euclid::Strategy<Kernel>* strat = new Euclid::LeppStrategy<Kernel>;
+    benchmarks<Kernel>(filename, strat);
+    delete strat;
+
+    qDebug() << "PARALLEL";
+    strat = new Euclid::QThreadLeppStrategy<Kernel>;
     benchmarks<Kernel>(filename, strat);
     delete strat;
 
