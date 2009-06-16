@@ -4,7 +4,7 @@
 #include <QList>
 #include <QMutableListIterator>
 #include <QRunnable>
-#include "../Geometry/TriMesh.h"
+#include "../../Geometry/TriMesh.h"
 
 namespace Euclid
 {

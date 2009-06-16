@@ -2,7 +2,7 @@
 
 #include <QThreadPool>
 #include "Strategy.h"
-#include "../Parallel/RefineThread.h"
+#include "Parallel/RefineThread.h"
 
 namespace Euclid
 {
@@ -12,19 +12,19 @@ namespace Euclid
      * QThreads.
      */
     template <class Kernel>
-    class QThreadLeppStrategy : public Strategy<Kernel>
+    class ParallelLeppStrategy : public Strategy<Kernel>
     {
     public:
         typedef Triangle<Kernel>  TriangleT;
         typedef Criterion<Kernel> Criterion;
         typedef TriMesh<Kernel>   TriMesh;
 
-        QThreadLeppStrategy(TriMesh* trimesh = 0)
+        ParallelLeppStrategy(TriMesh* trimesh = 0)
             : Strategy<Kernel>(trimesh)
         {
         }
 
-        ~QThreadLeppStrategy()
+        ~ParallelLeppStrategy()
         {
         }
 

@@ -47,13 +47,15 @@ namespace Euclid
     protected:
         virtual TriangleT* refineTriangle(TriangleT* triangle)
         {
+            TriangleT* neighbor = LeppLibrary::longestEdgeNeighbor(triangle);
             TriangleT* refined = 0;
+
             do {
                 if (LeppLibrary::isTerminal(triangle)) {
                     refineTerminal(triangle);
                     refined = triangle;
                 } else {
-                    refined = refineTriangle(LeppLibrary::longestEdgeNeighbor(triangle));
+                    refined = refineTriangle(neighbor);
                 }
             } while (refined != triangle);
 
