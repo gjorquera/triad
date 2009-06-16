@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QVector>
+#include <QMutex>
 #include "Edge.h"
 #include "Vertex.h"
 
@@ -121,12 +122,18 @@ namespace Euclid
             return _info;
         }
 
+        QMutex& mutex()
+        {
+            return _mutex;
+        }
+
     protected:
         bool _selected;
         Info _info;
         QVector<VertexT*> _vertices;
         QVector<EdgeT*> _edges;
         QVector<TriangleT*> _neighbors;
+        QMutex _mutex;
 
         void fixEdges()
         {
