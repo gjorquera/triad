@@ -39,7 +39,10 @@ namespace Euclid
             {
                 TriangleT* triangle = i.next();
                 while (criterion.test(triangle)) {
-                    refineTriangle(triangle);
+                    TriangleT* refined = 0;
+                    do {
+                        refined = refineTriangle(triangle);
+                    } while (refined != triangle);
                 }
             }
         }
@@ -50,16 +53,14 @@ namespace Euclid
             TriangleT* neighbor = LeppLibrary::longestEdgeNeighbor(triangle);
             TriangleT* refined = 0;
 
-            do {
-                if (LeppLibrary::isTerminal(triangle)) {
-                    refineTerminal(triangle);
-                    refined = triangle;
-                } else {
-                    refined = refineTriangle(neighbor);
-                }
-            } while (refined != triangle);
+            if (LeppLibrary::isTerminal(triangle)) {
+                refineTerminal(triangle);
+                refined = triangle;
+            } else {
+                refined = refineTriangle(neighbor);
+            }
 
-            return triangle;
+            return refined;
         }
 
         virtual void refineTerminal(TriangleT* triangle)
