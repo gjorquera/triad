@@ -46,11 +46,13 @@ namespace Euclid
         static bool isTerminal(TriangleT* triangle)
         {
             TriangleT* neighbor = LeppLibrary::longestEdgeNeighbor(triangle);
-            neighbor = LeppLibrary::longestEdgeNeighbor(neighbor);
-            if (0 == neighbor || triangle == neighbor) {
+            if (0 == neighbor) {
                 return true;
             }
-            return false;
+
+            neighbor = LeppLibrary::longestEdgeNeighbor(neighbor);
+
+            return (triangle == neighbor);
         }
 
         static TriangleT* bisect(TriangleT* triangle, VertexT* newVertex)

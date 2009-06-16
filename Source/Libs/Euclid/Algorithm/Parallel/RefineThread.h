@@ -22,7 +22,7 @@ namespace Euclid
         typedef TriMesh<Kernel>         TriMesh;
         typedef LeppLibrary<Kernel>     LeppLibrary;
 
-        RefineThread(TriMesh* trimesh, QList<TriangleT*> toRefine)
+        RefineThread(TriMesh* trimesh, QList<TriangleT*>* toRefine)
         {
             _trimesh = trimesh;
             _toRefine = toRefine;
@@ -34,8 +34,7 @@ namespace Euclid
 
         void run()
         {
-                std::cout << ".";
-            QMutableListIterator<TriangleT*> i(_toRefine);
+            QMutableListIterator<TriangleT*> i(*_toRefine);
             //do {
                 while (i.hasNext()) {
                     TriangleT* triangle = i.next();
@@ -82,7 +81,7 @@ namespace Euclid
         }
 
     private:
-        QList<TriangleT*> _toRefine;
+        QList<TriangleT*>* _toRefine;
         TriMesh* _trimesh;
     };
 }

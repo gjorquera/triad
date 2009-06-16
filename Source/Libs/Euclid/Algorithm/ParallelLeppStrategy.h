@@ -33,25 +33,26 @@ namespace Euclid
             TriMesh* trimesh = this->trimesh();
             QListIterator<TriangleT*> i(trimesh->triangles());
 
-            QList<TriangleT*> toRefine;
+            QList<TriangleT*>* toRefine = new QList<TriangleT*>;
             /// @todo maybe a do-while that refines until no criteria is met.
             while (i.hasNext()) {
                 TriangleT* t = i.next();
                 if (criterion.test(t)) {
-                    t->setSelected(true);
-                    toRefine.append(t);
+                    //t->setSelected(true);
+                    toRefine->append(t);
                 }
             }
 
             int threads = QThreadPool::globalInstance()->maxThreadCount();
-            qDebug() << threads;
+            threads = 1;
             for (int i=0; i<threads; i++) {
                 QRunnable* thread = new RefineThread<Kernel>(this->trimesh(), toRefine);
-                qDebug() << ":";
                 QThreadPool::globalInstance()->start(thread);
             }
 
             QThreadPool::globalInstance()->waitForDone();
+
+            delete toRefine;
         }
     };
 }
