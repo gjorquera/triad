@@ -1,6 +1,8 @@
 #pragma once
 
+#include <QThreadPool>
 #include "Strategy.h"
+#include "../Parallel/RefineThread.h"
 
 namespace Euclid
 {
@@ -32,12 +34,22 @@ namespace Euclid
             QListIterator<TriangleT*> i(trimesh->triangles());
 
             QList<TriangleT*> toRefine;
+            /// @todo maybe a do-while that refines until no criteria is met.
             while (i.hasNext()) {
                 TriangleT* t = i.next();
                 if (criterion.test(t)) {
+                    t->setSelected(true);
                     toRefine.append(t);
                 }
             }
+
+            int threads = QThreadPool::globalInstance()->maxThreadCount();
+            for (int i=0; i<threads; i++) {
+                QRunnable* thread = new RefineThread<Kernel>(toRefine);
+                QThreadPool::globalInstance()->start(thread);
+            }
+
+            QThreadPool::globalInstance()->waitForDone();
         }
     };
 }
