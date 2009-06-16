@@ -37,6 +37,7 @@ namespace App
         void setViewNeighbors(bool viewNeighbor);
         void setViewLepp(bool viewLepp);
         void setLeppRefinement();
+        void setParallelLeppRefinement();
         void executeRefinement();
 
     private:
