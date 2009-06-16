@@ -36,7 +36,7 @@ namespace Euclid
         void run()
         {
             QMutableListIterator<TriangleT*> i(*_toRefine);
-            //do {
+            do {
                 while (i.hasNext()) {
                     TriangleT* triangle = i.next();
                     bool obtained = triangle->mutex().tryLock();
@@ -53,8 +53,8 @@ namespace Euclid
 
                     triangle->mutex().unlock();
                 }
-                //i.toFront();
-            //} while (_toRefine.size() > 0);
+                i.toFront();
+            } while (_toRefine->size() > 0);
         }
 
     protected:
