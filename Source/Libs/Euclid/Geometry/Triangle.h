@@ -1,7 +1,7 @@
 #pragma once
 
-#include <QVector>
 #include <QMutex>
+#include <Thread/Array.h>
 #include "Edge.h"
 #include "Vertex.h"
 
@@ -47,9 +47,6 @@ namespace Euclid
         Triangle(VertexT *v1, VertexT *v2, VertexT *v3)
         {
             assert(0 != v1 && 0 != v2 && 0 != v3);
-            _vertices = QVector<VertexT*>(3);
-            _edges = QVector<EdgeT*>(3);
-            _neighbors = QVector<TriangleT*>(3);
             _selected = false;
             _info = Info();
             _vertices[0] = v1;
@@ -130,9 +127,9 @@ namespace Euclid
     protected:
         bool _selected;
         Info _info;
-        QVector<VertexT*> _vertices;
-        QVector<EdgeT*> _edges;
-        QVector<TriangleT*> _neighbors;
+        Thread::Array<3,VertexT*> _vertices;
+        Thread::Array<3,EdgeT*> _edges;
+        Thread::Array<3,TriangleT*> _neighbors;
         QMutex _mutex;
 
         void fixEdges()
