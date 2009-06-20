@@ -55,6 +55,7 @@ namespace Euclid
 
             if (LeppLibrary::isTerminal(triangle)) {
                 refineTerminal(triangle);
+                triangle->setSelected(false);
                 refined = triangle;
             } else {
                 refined = refineTriangle(neighbor);
