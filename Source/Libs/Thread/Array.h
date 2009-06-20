@@ -24,7 +24,7 @@ namespace Thread
 
         Array<N,T>& operator=(const Array<N,T>& array)
         {
-            if (this == &vector) return *this;
+            if (this == &array) return *this;
 
             for (int i=0; i<N; i++) {
                 _elems[i] = array._elems[i];
@@ -43,6 +43,16 @@ namespace Thread
         {
             assert(0 <= i && i < N);
             return _elems[i];
+        }
+
+        T* toArray()
+        {
+            return _elems;
+        }
+
+        const T* toArray() const
+        {
+            return _elems;
         }
 
     private:

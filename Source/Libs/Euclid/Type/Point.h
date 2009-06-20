@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cassert>
-#include <QVector>
+#include <Thread/Array.h>
 
 namespace Euclid
 {
@@ -16,20 +16,13 @@ namespace Euclid
         Point()
         {
             assert(N > 0);
-            _coords = QVector<T>(N);
-            for (int i=0; i<N; i++)
-            {
-                _coords.append(T());
-            }
         }
 
         Point(const T coord)
         {
             assert(N > 0);
-            _coords = QVector<T>(N);
-            for (int i=0; i<N; i++)
-            {
-                _coords.append(coord);
+            for (int i=0; i<N; i++) {
+                _coords[i] = coord;
             }
         }
 
@@ -47,7 +40,7 @@ namespace Euclid
 
         const T* toArray() const
         {
-            return _coords.constData();
+            return _coords.toArray();
         }
 
         T& operator[](const int i)
@@ -124,7 +117,7 @@ namespace Euclid
         }
 
     protected:
-        QVector<T> _coords;
+        Thread::Array<N,T> _coords;
     };
 }
 
