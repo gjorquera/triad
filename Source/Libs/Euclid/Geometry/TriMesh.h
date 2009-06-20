@@ -2,6 +2,8 @@
 
 #include <QList>
 #include <QListIterator>
+#include <QMutex>
+#include <QMutexLocker>
 #include "Triangle.h"
 #include "Vertex.h"
 #include "../Algorithm/Criterion.h"
@@ -112,9 +114,27 @@ namespace Euclid
             return _vertices;
         }
 
+        QMutex& trianglesMutex()
+        {
+            return _trianglesMutex;
+        }
+
+        QMutex& verticesMutex()
+        {
+            return _verticesMutex;
+        }
+
+        QMutex& auxLock()
+        {
+            return _auxMutex;
+        }
+
     private:
         QList<TriangleT*> _triangles;
         QList<VertexT*> _vertices;
+        QMutex _trianglesMutex;
+        QMutex _verticesMutex;
+        QMutex _auxMutex;
     };
 }
 

@@ -48,7 +48,9 @@ namespace Euclid
                     } while (refined != 0 && refined != triangle);
 
                     if (0 != refined) {
+                        _trimesh->auxLock().lock();
                         i.remove();
+                        _trimesh->auxLock().unlock();
                     }
 
                     triangle->mutex().unlock();
@@ -89,29 +91,37 @@ namespace Euclid
             const EdgeT* edge = LeppLibrary::longestEdge(triangle);
             Point point((edge->vector() / 2).terminal());
             VertexT* newVertex = new VertexT(point);
-            /// @todo lock trimesh->vertices
+            trimesh->verticesMutex().lock();
             trimesh->addVertex(newVertex);
-            /// @todo unlock trimesh->vertices
+            trimesh->verticesMutex().unlock();
 
             TriangleT* neighbor = LeppLibrary::longestEdgeNeighbor(triangle);
 
             TriangleT* newTriangle1 = LeppLibrary::bisect(triangle, newVertex);
-            /// @todo lock trimesh->triangles
+            newTriangle1->mutex().lock();
+
+            trimesh->trianglesMutex().lock();
             trimesh->addTriangle(newTriangle1);
-            /// @todo unlock trimesh->triangles
+            trimesh->trianglesMutex().unlock();
 
             if (0 != neighbor) {
                 TriangleT* newTriangle2 = LeppLibrary::bisect(neighbor, newVertex);
-                /// @todo lock trimesh->triangles
+                newTriangle2->mutex().lock();
+
+                trimesh->trianglesMutex().lock();
                 trimesh->addTriangle(newTriangle2);
-                /// @todo unlock trimesh->triangles
+                trimesh->trianglesMutex().unlock();
 
                 triangle->addNeighbor(newTriangle2);
                 newTriangle2->addNeighbor(triangle);
 
                 neighbor->addNeighbor(newTriangle1);
                 newTriangle1->addNeighbor(neighbor);
+
+                newTriangle2->mutex().unlock();
             }
+
+            newTriangle1->mutex().unlock();
         }
 
     private:

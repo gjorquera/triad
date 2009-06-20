@@ -65,7 +65,12 @@ namespace Euclid
         const T distance() const
         {
             Vector<N,T> c(*this);
-            T res = dot(c);
+            T res = T();
+            for (int i=0; i<N; i++)
+            {
+                T aux = (_terminal[i] - _initial[i]);
+                res += aux*aux;
+            }
             return NumTraits<T>::sqrt(res);
         }
 
