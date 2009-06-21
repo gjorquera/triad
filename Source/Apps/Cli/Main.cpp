@@ -5,6 +5,7 @@
 #include <Euclid/Algorithm/PercentageCriterion.h>
 #include <Euclid/Algorithm/CircularParallelLeppStrategy.h>
 #include <Euclid/Algorithm/SelectedCriterion.h>
+#include <Euclid/Algorithm/NaiveValidation.h>
 #include <Euclid/Geometry/M2dFormatIO.h>
 #include <Euclid/Type/DefaultKernel.h>
 
@@ -14,6 +15,7 @@ void benchmarkPercentage(QString& filename, Euclid::Strategy<Kernel>* strat,
 {
     int vertices, triangles, memory;
     int times = 10;
+    bool valid = true;
     float elapsed = 0;
     for (int i=0; i<times; i++) {
         Euclid::TriMesh<Kernel>* trimesh = new Euclid::TriMesh<Kernel>;
@@ -30,6 +32,10 @@ void benchmarkPercentage(QString& filename, Euclid::Strategy<Kernel>* strat,
         t.start();
         strat->refine(sc);
         elapsed += t.elapsed();
+        Euclid::NaiveValidation<Kernel> v(trimesh);
+        if (! v.validate()) {
+            valid = false;
+        }
         delete trimesh;
     }
     elapsed /= 1.0*times;
@@ -38,7 +44,8 @@ void benchmarkPercentage(QString& filename, Euclid::Strategy<Kernel>* strat,
         << "Memory:" << memory << "\t"
         << "Refined:" << (b ? "Biggest" : "Smallest") << p << "\t"
         << "=" << triangles * p / 100 << "\t"
-        << "Elapsed:" << elapsed;
+        << "Elapsed:" << elapsed << "\t"
+        << "Valid:" << valid;
 }
 
 template <class Kernel>
