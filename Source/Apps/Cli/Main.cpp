@@ -3,7 +3,7 @@
 #include <QTime>
 #include <Euclid/Algorithm/LeppStrategy.h>
 #include <Euclid/Algorithm/PercentageCriterion.h>
-#include <Euclid/Algorithm/ParallelLeppStrategy.h>
+#include <Euclid/Algorithm/CircularParallelLeppStrategy.h>
 #include <Euclid/Algorithm/SelectedCriterion.h>
 #include <Euclid/Geometry/M2dFormatIO.h>
 #include <Euclid/Type/DefaultKernel.h>
@@ -66,8 +66,8 @@ int main(int argc, char** argv)
     benchmarks<Kernel>(filename, strat);
     delete strat;
 
-    qDebug() << "PARALLEL";
-    strat = new Euclid::ParallelLeppStrategy<Kernel>;
+    qDebug() << "CIRCULAR PARALLEL";
+    strat = new Euclid::CircularParallelLeppStrategy<Kernel>;
     benchmarks<Kernel>(filename, strat);
     delete strat;
 

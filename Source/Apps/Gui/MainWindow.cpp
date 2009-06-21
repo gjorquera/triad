@@ -1,5 +1,5 @@
 #include <QFileDialog>
-#include <Euclid/Algorithm/ParallelLeppStrategy.h>
+#include <Euclid/Algorithm/CircularParallelLeppStrategy.h>
 #include <Euclid/Algorithm/LongestEdgeCriterion.h>
 #include <Euclid/Algorithm/PercentageCriterion.h>
 #include <Euclid/Algorithm/SelectedCriterion.h>
@@ -157,7 +157,7 @@ namespace App
         if (0 != _refineStrat) {
             delete _refineStrat;
         }
-        _refineStrat = new Euclid::ParallelLeppStrategy<Kernel>;
+        _refineStrat = new Euclid::CircularParallelLeppStrategy<Kernel>;
     }
 
     void
