@@ -2,7 +2,7 @@ QT += opengl
 TEMPLATE = app
 TARGET = TriadGui
 DESTDIR = ../../../Bin
-LIBS += -lViewer -lEuclid
+LIBS += -lViewer
 
 include(../../Workbench.pri)
 

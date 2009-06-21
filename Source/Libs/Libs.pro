@@ -1,3 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS = Euclid \
-    Viewer
+SUBDIRS = Viewer
