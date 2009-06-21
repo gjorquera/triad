@@ -45,9 +45,9 @@ namespace Euclid
         typedef Triangle<Kernel>              TriangleT;
 
         Triangle(VertexT *v1, VertexT *v2, VertexT *v3)
+            : _selected(false), _mutex(QMutex::Recursive)
         {
             assert(0 != v1 && 0 != v2 && 0 != v3);
-            _selected = false;
             _info = Info();
             _vertices[0] = v1;
             _vertices[1] = v2;
@@ -122,6 +122,33 @@ namespace Euclid
         QMutex& mutex()
         {
             return _mutex;
+        }
+
+        bool tryLockNeighbors()
+        {
+            for (int i=0; i<3; i++) {
+                if (0 != neighbor(i)) {
+                    bool obtained = neighbor(i)->mutex().tryLock();
+                    if (! obtained) {
+                        for (int j=0; j<i; j++) {
+                            if (0 != neighbor(j)) {
+                                neighbor(j)->mutex().unlock();
+                            }
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        void unlockNeighbors()
+        {
+            for (int i=0; i<3; i++) {
+                if (0 != neighbor(i)) {
+                    neighbor(i)->mutex().unlock();
+                }
+            }
         }
 
     protected:
