@@ -73,21 +73,10 @@ namespace Euclid
             TriangleT* refined = 0;
 
             if (LeppLibrary::isTerminal(triangle, neighbor)) {
-                bool obtained = triangle->tryLockNeighbors();
-                if (! obtained) {
-                    return 0;
-                }
-                if (0 != neighbor) {
-                    obtained = neighbor->tryLockNeighbors();
-                    if (! obtained) {
-                        return 0;
-                    }
-                }
-                refineTerminal(triangle, neighbor);
-                refined = triangle;
-                triangle->unlockNeighbors();
-                if (0 != neighbor) {
-                    neighbor->unlockNeighbors();
+                if (refineTerminal(triangle, neighbor)) {
+                    refined = triangle;
+                } else {
+                    refined = 0;
                 }
             } else {
                 assert(0 != neighbor);
@@ -101,80 +90,106 @@ namespace Euclid
             return refined;
         }
 
-        void refineTerminal(TriangleT* triangle, TriangleT* neighbor)
+        VertexT* bisectedVertex(TriangleT* triangle)
         {
-            // Calculating the bisection vertex
             const EdgeT* edge = LeppLibrary::longestEdge(triangle);
             Point point((edge->vector() / 2).terminal());
             VertexT* newVertex = new VertexT(point);
             _trimesh->verticesMutex().lock();
             _trimesh->addVertex(newVertex);
             _trimesh->verticesMutex().unlock();
+            return newVertex;
+        }
 
-            // Bisecting triangle
+        bool refineTerminal(TriangleT* triangle)
+        {
+            assert(0 != triangle);
+
             int index = LeppLibrary::longestEdgeIndex(triangle);
-
-            VertexT* v1 = const_cast<VertexT*>(triangle->vertex(index));
-            VertexT* v2 = newVertex;
-            VertexT* v3 = const_cast<VertexT*>(triangle->vertex((index+2)%3));
-
-            TriangleT* newTriangle1 = new TriangleT(v1, v2, v3);
-            newTriangle1->mutex().lock();
-
-            triangle->setVertex((index+2)%3, newVertex);
-
-            TriangleT* newNeighbor1 = triangle->neighbor((index+1)%3);
-            if (0 != newNeighbor1) {
-                newTriangle1->addNeighbor(newNeighbor1);
-                newNeighbor1->addNeighbor(newTriangle1);
+            TriangleT* sideNeighbor = triangle->neighbor((index+1)%3);
+            if (0 != sideNeighbor) {
+                bool obtained = sideNeighbor->mutex().tryLock();
+                if (! obtained) {
+                    return false;
+                }
             }
 
-            newTriangle1->addNeighbor(triangle);
-            triangle->addNeighbor(newTriangle1);
+            VertexT* newVertex = bisectedVertex(triangle);
+
+            TriangleT* newTriangle = LeppLibrary::bisect(triangle, newVertex);
+            newTriangle->mutex().lock();
+
+            _trimesh->trianglesMutex().lock();
+            _trimesh->addTriangle(newTriangle);
+            _trimesh->trianglesMutex().unlock();
+
+            newTriangle->mutex().unlock();
+            if (0 != sideNeighbor) {
+                sideNeighbor->mutex().unlock();
+            }
+
+            return true;
+        }
+
+        bool refineTerminal(TriangleT* triangle, TriangleT* neighbor)
+        {
+            assert(0 != triangle && 0 != neighbor);
+
+            int index1 = LeppLibrary::longestEdgeIndex(triangle);
+            int index2 = LeppLibrary::longestEdgeIndex(neighbor);
+            TriangleT* sideNeighbor1 = triangle->neighbor((index1+1)%3);
+            TriangleT* sideNeighbor2 = neighbor->neighbor((index2+1)%3);
+            if (0 != sideNeighbor1) {
+                bool obtained = sideNeighbor1->mutex().tryLock();
+                if (! obtained) {
+                    return false;
+                }
+            }
+            if (0 != sideNeighbor2) {
+                bool obtained = sideNeighbor2->mutex().tryLock();
+                if (! obtained) {
+                    if (0 != sideNeighbor1) {
+                        sideNeighbor1->mutex().unlock();
+                    }
+                    return false;
+                }
+            }
+
+            VertexT* newVertex = bisectedVertex(triangle);
+
+            TriangleT* newTriangle1 = LeppLibrary::bisect(triangle, newVertex);
+            newTriangle1->mutex().lock();
 
             _trimesh->trianglesMutex().lock();
             _trimesh->addTriangle(newTriangle1);
             _trimesh->trianglesMutex().unlock();
 
-            if (0 != neighbor) {
-                // Bisection neighbor
-                index = LeppLibrary::longestEdgeIndex(neighbor);
+            TriangleT* newTriangle2 = LeppLibrary::bisect(neighbor, newVertex);
+            newTriangle2->mutex().lock();
 
-                VertexT* v1 = const_cast<VertexT*>(neighbor->vertex(index));
-                VertexT* v2 = newVertex;
-                VertexT* v3 = const_cast<VertexT*>(neighbor->vertex((index+2)%3));
+            _trimesh->trianglesMutex().lock();
+            _trimesh->addTriangle(newTriangle2);
+            _trimesh->trianglesMutex().unlock();
 
-                TriangleT* newTriangle2 = new TriangleT(v1, v2, v3);
-                newTriangle2->mutex().lock();
+            triangle->addNeighbor(newTriangle2);
+            newTriangle2->addNeighbor(triangle);
 
-                neighbor->setVertex((index+2)%3, newVertex);
-
-                TriangleT* newNeighbor2 = neighbor->neighbor((index+1)%3);
-                if (0 != newNeighbor2) {
-                    newTriangle2->addNeighbor(newNeighbor2);
-                    newNeighbor2->addNeighbor(newTriangle2);
-                }
-
-                newTriangle2->addNeighbor(neighbor);
-                neighbor->addNeighbor(newTriangle2);
-
-                _trimesh->trianglesMutex().lock();
-                _trimesh->addTriangle(newTriangle2);
-                _trimesh->trianglesMutex().unlock();
-
-                triangle->addNeighbor(newTriangle2);
-                newTriangle2->addNeighbor(triangle);
-
-                neighbor->addNeighbor(newTriangle1);
-                newTriangle1->addNeighbor(neighbor);
-
-                newTriangle2->mutex().unlock();
-            }
+            neighbor->addNeighbor(newTriangle1);
+            newTriangle1->addNeighbor(neighbor);
 
             newTriangle1->mutex().unlock();
+            newTriangle2->mutex().unlock();
+            if (0 != sideNeighbor1) {
+                sideNeighbor1->mutex().unlock();
+            }
+            if (0 != sideNeighbor2) {
+                sideNeighbor2->mutex().unlock();
+            }
 
             // We have just refined this triangle
             triangle->setSelected(false);
+
+            return true;
         }
     };
 }
