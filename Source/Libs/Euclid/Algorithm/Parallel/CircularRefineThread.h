@@ -13,6 +13,9 @@ namespace Euclid
     class CircularRefineThread : public QRunnable
     {
     public:
+        typedef typename Kernel::Point  Point;
+        typedef Vertex<Kernel>      VertexT;
+        typedef Edge<Kernel>        EdgeT;
         typedef Triangle<Kernel>    TriangleT;
         typedef TriMesh<Kernel>     TriMesh;
         typedef Criterion<Kernel>   Criterion;
@@ -66,7 +69,7 @@ namespace Euclid
             TriangleT* refined = 0;
 
             if (LeppLibrary::isTerminal(triangle, neighbor)) {
-                refineTerminal(triangle);
+                refineTerminal(triangle, neighbor);
                 refined = triangle;
             } else {
                 assert(0 != neighbor);
@@ -80,9 +83,42 @@ namespace Euclid
             return refined;
         }
 
-        void refineTerminal(TriangleT* triangle)
+        void refineTerminal(TriangleT* triangle, TriangleT* neighbor)
         {
             triangle->setSelected(false);
+
+            const EdgeT* edge = LeppLibrary::longestEdge(triangle);
+            Point point((edge->vector() / 2).terminal());
+            VertexT* newVertex = new VertexT(point);
+            _trimesh->verticesMutex().lock();
+            _trimesh->addVertex(newVertex);
+            _trimesh->verticesMutex().unlock();
+
+            TriangleT* newTriangle1 = LeppLibrary::bisect(triangle, newVertex);
+            newTriangle1->mutex().lock();
+
+            _trimesh->trianglesMutex().lock();
+            _trimesh->addTriangle(newTriangle1);
+            _trimesh->trianglesMutex().unlock();
+
+            if (0 != neighbor) {
+                TriangleT* newTriangle2 = LeppLibrary::bisect(neighbor, newVertex);
+                newTriangle2->mutex().lock();
+
+                _trimesh->trianglesMutex().lock();
+                _trimesh->addTriangle(newTriangle2);
+                _trimesh->trianglesMutex().unlock();
+
+                triangle->addNeighbor(newTriangle2);
+                newTriangle2->addNeighbor(triangle);
+
+                neighbor->addNeighbor(newTriangle1);
+                newTriangle1->addNeighbor(neighbor);
+
+                newTriangle2->mutex().unlock();
+            }
+
+            newTriangle1->mutex().unlock();
         }
     };
 }
