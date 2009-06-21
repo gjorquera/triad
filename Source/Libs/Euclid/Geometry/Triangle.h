@@ -45,6 +45,7 @@ namespace Euclid
         typedef Triangle<Kernel>              TriangleT;
 
         Triangle(VertexT *v1, VertexT *v2, VertexT *v3)
+            : _mutex(QMutex::Recursive)
         {
             assert(0 != v1 && 0 != v2 && 0 != v3);
             _selected = false;

@@ -12,27 +12,33 @@ template <class Kernel>
 void benchmarkPercentage(QString& filename, Euclid::Strategy<Kernel>* strat,
     int p, bool b)
 {
-    Euclid::TriMesh<Kernel>* trimesh = new Euclid::TriMesh<Kernel>;
-    Euclid::M2dFormatIO<Kernel> io(filename, trimesh);
-    io.load();
-    int vertices = trimesh->numVertices();
-    int triangles = trimesh->numTriangles();
-    int memory = trimesh->memory();
-    strat->setTriMesh(trimesh);
-    Euclid::PercentageCriterion<Kernel> pc(trimesh->triangles(), p, b);
-    trimesh->select(pc);
-    Euclid::SelectedCriterion<Kernel> sc;
-    QTime t;
-    t.start();
-    strat->refine(sc);
-    int elapsed = t.elapsed();
+    int vertices, triangles, memory;
+    int times = 10;
+    float elapsed = 0;
+    for (int i=0; i<times; i++) {
+        Euclid::TriMesh<Kernel>* trimesh = new Euclid::TriMesh<Kernel>;
+        Euclid::M2dFormatIO<Kernel> io(filename, trimesh);
+        io.load();
+        vertices = trimesh->numVertices();
+        triangles = trimesh->numTriangles();
+        memory = trimesh->memory();
+        strat->setTriMesh(trimesh);
+        Euclid::PercentageCriterion<Kernel> pc(trimesh->triangles(), p, b);
+        trimesh->select(pc);
+        Euclid::SelectedCriterion<Kernel> sc;
+        QTime t;
+        t.start();
+        strat->refine(sc);
+        elapsed += t.elapsed();
+        delete trimesh;
+    }
+    elapsed /= 1.0*times;
     qDebug() << "Vertices:" << vertices << "\t"
         << "Triangles:" << triangles << "\t"
         << "Memory:" << memory << "\t"
         << "Refined:" << (b ? "Biggest" : "Smallest") << p << "\t"
         << "=" << triangles * p / 100 << "\t"
         << "Elapsed:" << elapsed;
-    delete trimesh;
 }
 
 template <class Kernel>

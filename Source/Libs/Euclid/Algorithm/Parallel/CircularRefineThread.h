@@ -111,14 +111,14 @@ namespace Euclid
         {
             assert(0 != triangle);
 
-            /*int index = LeppLibrary::longestEdgeIndex(triangle);
+            int index = LeppLibrary::longestEdgeIndex(triangle);
             TriangleT* sideNeighbor = triangle->neighbor((index+1)%3);
             if (0 != sideNeighbor) {
                 bool obtained = sideNeighbor->mutex().tryLock();
                 if (! obtained) {
                     return false;
                 }
-            }*/
+            }
 
             VertexT* newVertex = bisectedVertex(triangle);
 
@@ -130,9 +130,9 @@ namespace Euclid
             _trimesh->trianglesMutex().unlock();
 
             newTriangle->mutex().unlock();
-            /*if (0 != sideNeighbor) {
+            if (0 != sideNeighbor) {
                 sideNeighbor->mutex().unlock();
-            }*/
+            }
 
             return true;
         }
@@ -141,7 +141,7 @@ namespace Euclid
         {
             assert(0 != triangle && 0 != neighbor);
 
-            /*int index1 = LeppLibrary::longestEdgeIndex(triangle);
+            int index1 = LeppLibrary::longestEdgeIndex(triangle);
             int index2 = LeppLibrary::longestEdgeIndex(neighbor);
             TriangleT* sideNeighbor1 = triangle->neighbor((index1+1)%3);
             TriangleT* sideNeighbor2 = neighbor->neighbor((index2+1)%3);
@@ -159,7 +159,7 @@ namespace Euclid
                     }
                     return false;
                 }
-            }*/
+            }
 
             VertexT* newVertex = bisectedVertex(triangle);
 
@@ -185,12 +185,12 @@ namespace Euclid
 
             newTriangle1->mutex().unlock();
             newTriangle2->mutex().unlock();
-            /*if (0 != sideNeighbor1) {
+            if (0 != sideNeighbor1) {
                 sideNeighbor1->mutex().unlock();
             }
             if (0 != sideNeighbor2) {
                 sideNeighbor2->mutex().unlock();
-            }*/
+            }
 
             // We have just refined this triangle
             triangle->setSelected(false);
