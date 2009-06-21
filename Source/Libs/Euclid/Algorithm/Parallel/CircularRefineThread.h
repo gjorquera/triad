@@ -13,9 +13,10 @@ namespace Euclid
     class CircularRefineThread : public QRunnable
     {
     public:
-        typedef Triangle<Kernel>  TriangleT;
-        typedef TriMesh<Kernel>   TriMesh;
-        typedef Criterion<Kernel> Criterion;
+        typedef Triangle<Kernel>    TriangleT;
+        typedef TriMesh<Kernel>     TriMesh;
+        typedef Criterion<Kernel>   Criterion;
+        typedef LeppLibrary<Kernel> LeppLibrary;
 
         CircularRefineThread(TriMesh* trimesh, const Criterion* criterion)
         {
@@ -39,7 +40,7 @@ namespace Euclid
 
                         TriangleT* refined = 0;
                         do {
-                            //refined = refineTriangle(triangle);
+                            refined = refineTriangle(triangle);
                         } while (refined != 0 && refined != triangle);
 
                         triangle->mutex().unlock();
@@ -52,6 +53,37 @@ namespace Euclid
     private:
         TriMesh* _trimesh;
         const Criterion* _criterion;
+
+        TriangleT* refineTriangle(TriangleT* triangle)
+        {
+            TriangleT* neighbor = LeppLibrary::longestEdgeNeighbor(triangle);
+
+            if (0 != neighbor) {
+                bool obtained = neighbor->mutex().tryLock();
+                if (! obtained) return 0;
+            }
+
+            TriangleT* refined = 0;
+
+            if (LeppLibrary::isTerminal(triangle, neighbor)) {
+                refineTerminal(triangle);
+                refined = triangle;
+            } else {
+                assert(0 != neighbor);
+                refined = refineTriangle(neighbor);
+            }
+
+            if (0 != neighbor) {
+                neighbor->mutex().unlock();
+            }
+
+            return refined;
+        }
+
+        void refineTerminal(TriangleT* triangle)
+        {
+            triangle->setSelected(false);
+        }
     };
 }
 
