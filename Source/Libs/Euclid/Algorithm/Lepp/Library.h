@@ -1,5 +1,9 @@
 #pragma once
 
+#include "../../Geometry/Vertex.h"
+#include "../../Geometry/Edge.h"
+#include "../../Geometry/Triangle.h"
+
 namespace Euclid
 {
 
