@@ -1,4 +1,4 @@
 TEMPLATE = subdirs
-SUBDIRS = Cli \
+SUBDIRS = Benchmarks \
     Triad
 

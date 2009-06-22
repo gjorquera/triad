@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = TriadCli
+TARGET = Benchmarks
 DESTDIR = ../../../Bin
 
 include(../../Workbench.pri)
