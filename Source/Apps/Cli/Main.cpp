@@ -47,7 +47,7 @@ void benchmarkPercentage(QString& filename, Euclid::Strategy<Kernel>* strat,
 {
     int vertices, triangles, memory;
     int minLepp, maxLepp, avgLepp;
-    int times = 10;
+    int times = 1;
     bool valid = true;
     float elapsed = 0;
     for (int i=0; i<times; i++) {
