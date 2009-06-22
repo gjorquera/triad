@@ -105,7 +105,7 @@ int main(int argc, char** argv)
     QCoreApplication app(argc, argv);
 
     if (argc < 2) {
-        qDebug() << "Usage: ./TriadCli filename";
+        qDebug() << "Usage: ./Benchmarks filename";
         return 0;
     }
 
