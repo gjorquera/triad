@@ -12,30 +12,38 @@
 #include <Euclid/Geometry/M2dFormatIO.h>
 #include <Euclid/Type/DefaultKernel.h>
 
-template <class Kernel>
-void benchmarkPercentage(QString& filename, Euclid::Strategy<Kernel>* strat,
-    int p, bool b)
+typedef Euclid::DefaultKernel                        Kernel;
+typedef Euclid::CircularParallelLeppStrategy<Kernel> CircularParallelLeppStrategy;
+typedef Euclid::LeppStrategy<Kernel>                 LeppStrategy;
+typedef Euclid::NaiveValidation<Kernel>              NaiveValidation;
+typedef Euclid::M2dFormatIO<Kernel>                  M2dFormatIO;
+typedef Euclid::PercentageCriterion<Kernel>          PercentageCriterion;
+typedef Euclid::SelectedCriterion<Kernel>            SelectedCriterion;
+typedef Euclid::Strategy<Kernel>                     Strategy;
+typedef Euclid::TriMesh<Kernel>                      TriMesh;
+
+void benchmarkPercentage(QString& filename, Strategy* strat, int p, bool b)
 {
     int vertices, triangles, memory;
     int times = 1;
     bool valid = true;
     float elapsed = 0;
     for (int i=0; i<times; i++) {
-        Euclid::TriMesh<Kernel>* trimesh = new Euclid::TriMesh<Kernel>;
-        Euclid::M2dFormatIO<Kernel> io(filename, trimesh);
+        TriMesh* trimesh = new TriMesh;
+        M2dFormatIO io(filename, trimesh);
         io.load();
         vertices = trimesh->numVertices();
         triangles = trimesh->numTriangles();
         memory = trimesh->memory();
         strat->setTriMesh(trimesh);
-        Euclid::PercentageCriterion<Kernel> pc(trimesh->triangles(), p, b);
+        PercentageCriterion pc(trimesh->triangles(), p, b);
         trimesh->select(pc);
-        Euclid::SelectedCriterion<Kernel> sc;
+        SelectedCriterion sc;
         QTime t;
         t.start();
         strat->refine(sc);
         elapsed += t.elapsed();
-        Euclid::NaiveValidation<Kernel> v(trimesh);
+        NaiveValidation v(trimesh);
         if (! v.validate()) {
             valid = false;
         }
@@ -51,23 +59,20 @@ void benchmarkPercentage(QString& filename, Euclid::Strategy<Kernel>* strat,
         << "Valid:" << valid;
 }
 
-template <class Kernel>
-void benchmarks(QString& filename, Euclid::Strategy<Kernel>* strat)
+void benchmarks(QString& filename, Strategy* strat)
 {
-    benchmarkPercentage<Kernel>(filename, strat, 2, false);
-    benchmarkPercentage<Kernel>(filename, strat, 5, false);
-    benchmarkPercentage<Kernel>(filename, strat, 10, false);
-    benchmarkPercentage<Kernel>(filename, strat, 25, false);
-    benchmarkPercentage<Kernel>(filename, strat, 2, true);
-    benchmarkPercentage<Kernel>(filename, strat, 5, true);
-    benchmarkPercentage<Kernel>(filename, strat, 10, true);
-    benchmarkPercentage<Kernel>(filename, strat, 25, true);
+    benchmarkPercentage(filename, strat, 2, false);
+    benchmarkPercentage(filename, strat, 5, false);
+    benchmarkPercentage(filename, strat, 10, false);
+    benchmarkPercentage(filename, strat, 25, false);
+    benchmarkPercentage(filename, strat, 2, true);
+    benchmarkPercentage(filename, strat, 5, true);
+    benchmarkPercentage(filename, strat, 10, true);
+    benchmarkPercentage(filename, strat, 25, true);
 }
 
 int main(int argc, char** argv)
 {
-    typedef Euclid::DefaultKernel Kernel;
-
     QCoreApplication app(argc, argv);
 
     if (argc < 2) {
@@ -78,13 +83,13 @@ int main(int argc, char** argv)
     QString filename(argv[1]);
 
     qDebug() << "SECUENTIAL";
-    Euclid::Strategy<Kernel>* strat = new Euclid::LeppStrategy<Kernel>;
-    benchmarks<Kernel>(filename, strat);
+    Strategy* strat = new LeppStrategy;
+    benchmarks(filename, strat);
     delete strat;
 
     qDebug() << "CIRCULAR PARALLEL";
-    strat = new Euclid::CircularParallelLeppStrategy<Kernel>;
-    benchmarks<Kernel>(filename, strat);
+    strat = new CircularParallelLeppStrategy;
+    benchmarks(filename, strat);
     delete strat;
 
     return 0;
